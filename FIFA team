@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tirage FC 26</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:
+            radial-gradient(circle at top, #18304d 0%, #080d14 45%, #020406 100%);
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 650px;
+    }
+
+    h1 {
+        font-size: 42px;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        color: #9ca7b5;
+        margin-bottom: 40px;
+        letter-spacing: 3px;
+    }
+
+    .screen {
+        min-height: 190px;
+        padding: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 20px;
+
+        box-shadow:
+            0 0 40px rgba(0,150,255,0.15),
+            inset 0 0 30px rgba(255,255,255,0.03);
+    }
+
+    #team {
+        font-size: 38px;
+        font-weight: 900;
+        text-transform: uppercase;
+        transition: 0.15s;
+    }
+
+    .rolling {
+        transform: scale(0.93);
+        opacity: 0.65;
+        filter: blur(1px);
+    }
+
+    .winner {
+        animation: winner 0.7s ease;
+    }
+
+    @keyframes winner {
+        0% {
+            transform: scale(0.7);
+            opacity: 0;
+        }
+
+        50% {
+            transform: scale(1.15);
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    button {
+        margin-top: 35px;
+        padding: 18px 40px;
+
+        border: none;
+        border-radius: 12px;
+
+        font-size: 18px;
+        font-weight: bold;
+
+        background: white;
+        color: #05080c;
+
+        cursor: pointer;
+
+        transition: 0.2s;
+    }
+
+    button:hover {
+        transform: scale(1.05);
+    }
+
+    button:disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
+
+    #counter {
+        margin-top: 20px;
+        color: #7e8a98;
+        font-size: 14px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>⚽ FC 26</h1>
+
+    <div class="subtitle">
+        TIRAGE AU SORT
+    </div>
+
+    <div class="screen">
+        <div id="team">
+            PRÊT ?
+        </div>
+    </div>
+
+    <button id="button" onclick="tirage()">
+        🎲 TIRER UNE ÉQUIPE
+    </button>
+
+    <div id="counter">
+        10 équipes disponibles
+    </div>
+
+</div>
+
+
+<script>
+
+const teams = [
+    "Manchester City",
+    "Real Madrid",
+    "Bayern Munich",
+    "Bayer Leverkusen",
+    "Paris Saint-Germain",
+    "Arsenal",
+    "FC Barcelone",
+    "Atlético de Madrid",
+    "Liverpool",
+    "Borussia Dortmund"
+];
+
+const teamDisplay = document.getElementById("team");
+const button = document.getElementById("button");
+
+let animationEnCours = false;
+
+function tirage() {
+
+    if (animationEnCours) return;
+
+    animationEnCours = true;
+
+    button.disabled = true;
+
+    teamDisplay.classList.remove("winner");
+
+    let vitesse = 60;
+    let tours = 0;
+
+    function roulette() {
+
+        const random =
+            Math.floor(Math.random() * teams.length);
+
+        teamDisplay.innerText = teams[random];
+
+        teamDisplay.classList.add("rolling");
+
+        tours++;
+
+        // ralentissement progressif
+        if (tours > 15) vitesse += 25;
+        if (tours > 25) vitesse += 50;
+
+        if (tours < 32) {
+
+            setTimeout(roulette, vitesse);
+
+        } else {
+
+            const winner =
+                teams[Math.floor(Math.random() * teams.length)];
+
+            teamDisplay.innerText = winner;
+
+            teamDisplay.classList.remove("rolling");
+
+            void teamDisplay.offsetWidth;
+
+            teamDisplay.classList.add("winner");
+
+            button.disabled = false;
+
+            animationEnCours = false;
+        }
+    }
+
+    roulette();
+}
+
+</script>
+
+</body>
+</html>
