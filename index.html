@@ -107,7 +107,7 @@ button,input{font-family:inherit}
 }
 
 /* =========================
-   FIREBASE STATUS
+   FIREBASE
 ========================= */
 
 .sync-status{
@@ -121,7 +121,7 @@ button,input{font-family:inherit}
     padding:8px 12px;
     border:1px solid #344752;
     border-radius:30px;
-    background:rgba(4,12,18,.92);
+    background:rgba(4,12,18,.94);
     backdrop-filter:blur(8px);
     color:#aebbc3;
     font-size:10px;
@@ -381,12 +381,10 @@ button,input{font-family:inherit}
     outline:none;
 }
 
-.score:focus{
-    border-color:var(--group);
-}
+.score:focus{border-color:var(--group)}
 
 /* =========================
-   CLASSEMENT
+   CLASSEMENTS
 ========================= */
 
 .standings-title{
@@ -413,9 +411,7 @@ button,input{font-family:inherit}
     border-top:1px solid rgba(255,255,255,.07);
 }
 
-.standings td:nth-child(2){
-    text-align:left;
-}
+.standings td:nth-child(2){text-align:left}
 
 .rank{
     display:inline-grid;
@@ -427,9 +423,7 @@ button,input{font-family:inherit}
     font-weight:1000;
 }
 
-.rank.qual{
-    background:var(--group);
-}
+.rank.qual{background:var(--group)}
 
 /* =========================
    PHASE FINALE
@@ -492,9 +486,7 @@ button,input{font-family:inherit}
     font-weight:1000;
 }
 
-.leg{
-    padding:14px;
-}
+.leg{padding:14px}
 
 .leg + .leg{
     border-top:1px solid rgba(255,255,255,.11);
@@ -528,9 +520,7 @@ button,input{font-family:inherit}
     font-size:14px;
 }
 
-.ko-name:focus{
-    border-color:var(--ko);
-}
+.ko-name:focus{border-color:var(--ko)}
 
 .ko-name.mirror{
     color:#dce4e9;
@@ -550,9 +540,7 @@ button,input{font-family:inherit}
     font-weight:1000;
 }
 
-.ko-score:focus{
-    border-color:var(--gold);
-}
+.ko-score:focus{border-color:var(--gold)}
 
 .aggregate{
     padding:13px;
@@ -564,9 +552,7 @@ button,input{font-family:inherit}
     background:rgba(0,0,0,.16);
 }
 
-.section-gap{
-    margin-top:50px;
-}
+.section-gap{margin-top:50px}
 
 .final-wrapper{
     max-width:540px;
@@ -601,23 +587,18 @@ button,input{font-family:inherit}
     font-weight:1000;
 }
 
-.third-place{
-    color:#e09a54;
-}
+.third-place{color:#e09a54}
 
 /* =========================
    MOBILE
 ========================= */
 
 @media(max-width:1000px){
-    .groups,
-    .knockout-grid{
+    .groups,.knockout-grid{
         grid-template-columns:1fr 1fr;
     }
 
-    .draw-grid{
-        grid-template-columns:1fr;
-    }
+    .draw-grid{grid-template-columns:1fr}
 
     .team-list{
         grid-template-columns:repeat(2,1fr);
@@ -641,23 +622,16 @@ button,input{font-family:inherit}
         margin:0 0 4px;
     }
 
-    .title{
-        font-size:30px;
-    }
+    .title{font-size:30px}
 
     .subtitle{
         font-size:10px;
         letter-spacing:2px;
     }
 
-    .draw-panel,
-    .final-panel{
-        padding:14px;
-    }
+    .draw-panel,.final-panel{padding:14px}
 
-    .groups,
-    .knockout-grid,
-    .semi-grid{
+    .groups,.knockout-grid,.semi-grid{
         grid-template-columns:1fr;
     }
 
@@ -680,22 +654,20 @@ button,input{font-family:inherit}
 <div class="app">
 
 <nav class="tabs">
+    <button class="tab active" data-page="tirage">
+        <span class="tab-icon">🎲</span>
+        TIRAGE D'ÉQUIPE
+    </button>
 
-<button class="tab active" data-page="tirage">
-<span class="tab-icon">🎲</span>
-TIRAGE D'ÉQUIPE
-</button>
+    <button class="tab" data-page="poules">
+        <span class="tab-icon">👥</span>
+        PHASE DE POULES
+    </button>
 
-<button class="tab" data-page="poules">
-<span class="tab-icon">👥</span>
-PHASE DE POULES
-</button>
-
-<button class="tab" data-page="finale">
-<span class="tab-icon">🏆</span>
-PHASE FINALE
-</button>
-
+    <button class="tab" data-page="finale">
+        <span class="tab-icon">🏆</span>
+        PHASE FINALE
+    </button>
 </nav>
 
 
@@ -710,43 +682,24 @@ PHASE FINALE
 <div class="draw-grid">
 
 <div>
+    <h1 class="title">TIRAGE D'ÉQUIPE</h1>
+    <div class="subtitle">10 ÉQUIPES DISPONIBLES</div>
 
-<h1 class="title">
-TIRAGE D'ÉQUIPE
-</h1>
-
-<div class="subtitle">
-10 ÉQUIPES DISPONIBLES
-</div>
-
-<button id="drawBtn" class="draw-button">
-🎲 &nbsp; TIRER UNE ÉQUIPE
-</button>
-
+    <button id="drawBtn" class="draw-button">
+        🎲 &nbsp; TIRER UNE ÉQUIPE
+    </button>
 </div>
 
 <div id="teamScreen" class="team-screen">
 
-<div class="draw-logo-box">
+    <div class="draw-logo-box">
+        <img id="drawLogo" class="draw-logo" alt="">
+        <div id="drawFallback" class="logo-fallback">FC</div>
+    </div>
 
-<img
-id="drawLogo"
-class="draw-logo"
-alt=""
->
-
-<div
-id="drawFallback"
-class="logo-fallback"
->
-FC
-</div>
-
-</div>
-
-<div id="teamResult" class="team-result">
-PRÊT ?
-</div>
+    <div id="teamResult" class="team-result">
+        PRÊT ?
+    </div>
 
 </div>
 
@@ -765,9 +718,7 @@ PRÊT ?
 
 <section id="poules" class="page">
 
-<h1 class="title">
-PHASE DE POULES
-</h1>
+<h1 class="title">PHASE DE POULES</h1>
 
 <div class="subtitle">
 4 POULES DE 3 JOUEURS • MATCHS ALLER / RETOUR
@@ -784,9 +735,7 @@ PHASE DE POULES
 
 <section id="finale" class="page">
 
-<h1 class="title">
-PHASE FINALE
-</h1>
+<h1 class="title">PHASE FINALE</h1>
 
 <div class="subtitle">
 QUARTS • DEMI-FINALES • FINALE • PETITE FINALE
@@ -794,7 +743,10 @@ QUARTS • DEMI-FINALES • FINALE • PETITE FINALE
 
 <div class="final-panel">
 
-<!-- QUARTS -->
+
+<!-- =========================
+     QUARTS
+========================= -->
 
 <div class="round-title">
 QUARTS DE FINALE
@@ -807,7 +759,7 @@ A1 - B2 • B1 - A2 • C1 - D2 • D1 - C2
 <div class="knockout-grid">
 
 
-<!-- QUART 1 : A1 / B2 -->
+<!-- QF1 -->
 
 <div class="ko-card ko-blue">
 
@@ -854,7 +806,7 @@ CUMUL : 0 - 0
 </div>
 
 
-<!-- QUART 2 : B1 / A2 -->
+<!-- QF2 -->
 
 <div class="ko-card ko-red">
 
@@ -901,7 +853,7 @@ CUMUL : 0 - 0
 </div>
 
 
-<!-- QUART 3 : C1 / D2 -->
+<!-- QF3 -->
 
 <div class="ko-card ko-green">
 
@@ -948,7 +900,7 @@ CUMUL : 0 - 0
 </div>
 
 
-<!-- QUART 4 : D1 / C2 -->
+<!-- QF4 -->
 
 <div class="ko-card ko-gold">
 
@@ -996,7 +948,10 @@ CUMUL : 0 - 0
 
 </div>
 
-<!-- DEMI-FINALES -->
+
+<!-- =========================
+     DEMI-FINALES
+========================= -->
 
 <div class="section-gap">
 
@@ -1011,10 +966,12 @@ VAINQUEUR QUART 1 - VAINQUEUR QUART 3 • VAINQUEUR QUART 2 - VAINQUEUR QUART 4
 <div class="semi-grid">
 
 
+<!-- DEMI 1 -->
+
 <div class="ko-card ko-blue">
 
 <div class="ko-header">
-DEMI-FINALE — A / C
+DEMI-FINALE 1 — QF1 / QF3
 </div>
 
 <div class="leg">
@@ -1022,12 +979,12 @@ DEMI-FINALE — A / C
 <div class="leg-title">MATCH ALLER</div>
 
 <div class="ko-player">
-<input id="sf1-p1" class="ko-name" placeholder="Vainqueur A">
+<input id="sf1-p1" class="ko-name" placeholder="Vainqueur quart 1">
 <input id="sf1-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
-<input id="sf1-p2" class="ko-name" placeholder="Vainqueur C">
+<input id="sf1-p2" class="ko-name" placeholder="Vainqueur quart 3">
 <input id="sf1-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
@@ -1038,12 +995,12 @@ DEMI-FINALE — A / C
 <div class="leg-title">MATCH RETOUR</div>
 
 <div class="ko-player">
-<input class="ko-name mirror" data-source="sf1-p2" placeholder="Vainqueur C" readonly>
+<input class="ko-name mirror" data-source="sf1-p2" placeholder="Vainqueur quart 3" readonly>
 <input id="sf1-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
-<input class="ko-name mirror" data-source="sf1-p1" placeholder="Vainqueur A" readonly>
+<input class="ko-name mirror" data-source="sf1-p1" placeholder="Vainqueur quart 1" readonly>
 <input id="sf1-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
@@ -1056,10 +1013,12 @@ CUMUL : 0 - 0
 </div>
 
 
+<!-- DEMI 2 -->
+
 <div class="ko-card ko-gold">
 
 <div class="ko-header">
-DEMI-FINALE — B / D
+DEMI-FINALE 2 — QF2 / QF4
 </div>
 
 <div class="leg">
@@ -1067,12 +1026,12 @@ DEMI-FINALE — B / D
 <div class="leg-title">MATCH ALLER</div>
 
 <div class="ko-player">
-<input id="sf2-p1" class="ko-name" placeholder="Vainqueur B">
+<input id="sf2-p1" class="ko-name" placeholder="Vainqueur quart 2">
 <input id="sf2-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
-<input id="sf2-p2" class="ko-name" placeholder="Vainqueur D">
+<input id="sf2-p2" class="ko-name" placeholder="Vainqueur quart 4">
 <input id="sf2-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
@@ -1083,12 +1042,12 @@ DEMI-FINALE — B / D
 <div class="leg-title">MATCH RETOUR</div>
 
 <div class="ko-player">
-<input class="ko-name mirror" data-source="sf2-p2" placeholder="Vainqueur D" readonly>
+<input class="ko-name mirror" data-source="sf2-p2" placeholder="Vainqueur quart 4" readonly>
 <input id="sf2-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
-<input class="ko-name mirror" data-source="sf2-p1" placeholder="Vainqueur B" readonly>
+<input class="ko-name mirror" data-source="sf2-p1" placeholder="Vainqueur quart 2" readonly>
 <input id="sf2-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
@@ -1104,7 +1063,9 @@ CUMUL : 0 - 0
 </div>
 
 
-<!-- GRANDE FINALE -->
+<!-- =========================
+     FINALE
+========================= -->
 
 <div class="final-wrapper">
 
@@ -1167,7 +1128,9 @@ CUMUL : 0 - 0
 </div>
 
 
-<!-- FINALE DES PERDANTS -->
+<!-- =========================
+     PETITE FINALE
+========================= -->
 
 <div class="small-final-wrapper">
 
@@ -1193,12 +1156,12 @@ MATCH ALLER / RETOUR
 <div class="leg-title">MATCH ALLER</div>
 
 <div class="ko-player">
-<input id="third-p1" class="ko-name" placeholder="Perdant demi-finale A / C">
+<input id="third-p1" class="ko-name" placeholder="Perdant demi-finale 1">
 <input id="third-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
-<input id="third-p2" class="ko-name" placeholder="Perdant demi-finale B / D">
+<input id="third-p2" class="ko-name" placeholder="Perdant demi-finale 2">
 <input id="third-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
@@ -1209,12 +1172,12 @@ MATCH ALLER / RETOUR
 <div class="leg-title">MATCH RETOUR</div>
 
 <div class="ko-player">
-<input class="ko-name mirror" data-source="third-p2" placeholder="Perdant demi-finale B / D" readonly>
+<input class="ko-name mirror" data-source="third-p2" placeholder="Perdant demi-finale 2" readonly>
 <input id="third-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
-<input class="ko-name mirror" data-source="third-p1" placeholder="Perdant demi-finale A / C" readonly>
+<input class="ko-name mirror" data-source="third-p1" placeholder="Perdant demi-finale 1" readonly>
 <input id="third-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
@@ -1224,10 +1187,7 @@ MATCH ALLER / RETOUR
 CUMUL : 0 - 0
 </div>
 
-<div
-id="third-winner"
-class="champion third-place"
-></div>
+<div id="third-winner" class="champion third-place"></div>
 
 </div>
 </div>
@@ -1238,23 +1198,19 @@ class="champion third-place"
 </div>
 
 
-<!-- INDICATEUR FIREBASE -->
+<!-- FIREBASE STATUS -->
 
 <div id="syncStatus" class="sync-status">
-<span class="sync-dot"></span>
-<span id="syncText">CONNEXION...</span>
+    <span class="sync-dot"></span>
+    <span id="syncText">CONNEXION...</span>
 </div>
 
 
-<!-- ======================================================
-     FIREBASE + APPLICATION
-======================================================= -->
-
 <script type="module">
 
-/* ======================================================
+/* =====================================================
    FIREBASE
-====================================================== */
+===================================================== */
 
 import {
     initializeApp
@@ -1300,18 +1256,16 @@ const firebaseConfig = {
 const firebaseApp =
     initializeApp(firebaseConfig);
 
-
 const database =
     getDatabase(firebaseApp);
-
 
 const tournamentRef =
     ref(database,"tournoiFC26");
 
 
-/* ======================================================
-   INDICATEUR DE SYNCHRONISATION
-====================================================== */
+/* =====================================================
+   FIREBASE STATUS
+===================================================== */
 
 const syncStatus =
     document.getElementById("syncStatus");
@@ -1333,13 +1287,12 @@ function setSyncStatus(type,text){
     }
 
     syncText.textContent = text;
-
 }
 
 
-/* ======================================================
+/* =====================================================
    NAVIGATION
-====================================================== */
+===================================================== */
 
 const tabs =
     document.querySelectorAll(".tab");
@@ -1376,9 +1329,9 @@ tabs.forEach(tab=>{
 });
 
 
-/* ======================================================
+/* =====================================================
    ÉQUIPES
-====================================================== */
+===================================================== */
 
 const teams = [
 
@@ -1445,9 +1398,9 @@ const teams = [
 ];
 
 
-/* ======================================================
-   LISTE DES ÉQUIPES
-====================================================== */
+/* =====================================================
+   AFFICHAGE ÉQUIPES
+===================================================== */
 
 const teamList =
     document.getElementById("teamList");
@@ -1458,28 +1411,21 @@ teams.forEach(team=>{
     const card =
         document.createElement("div");
 
-    card.className =
-        "team-chip";
+    card.className = "team-chip";
 
 
     const img =
         document.createElement("img");
 
-    img.className =
-        "club-logo";
-
-    img.src =
-        team.logo;
-
-    img.alt =
-        team.name;
+    img.className = "club-logo";
+    img.src = team.logo;
+    img.alt = team.name;
 
 
     const name =
         document.createElement("span");
 
-    name.textContent =
-        team.name;
+    name.textContent = team.name;
 
 
     card.appendChild(img);
@@ -1490,9 +1436,9 @@ teams.forEach(team=>{
 });
 
 
-/* ======================================================
+/* =====================================================
    TIRAGE
-====================================================== */
+===================================================== */
 
 const drawBtn =
     document.getElementById("drawBtn");
@@ -1555,13 +1501,8 @@ drawBtn.addEventListener("click",()=>{
 
     drawBtn.disabled = true;
 
-    teamScreen.classList.remove(
-        "winner"
-    );
-
-    teamScreen.classList.add(
-        "rolling"
-    );
+    teamScreen.classList.remove("winner");
+    teamScreen.classList.add("rolling");
 
     let count = 0;
 
@@ -1608,11 +1549,9 @@ drawBtn.addEventListener("click",()=>{
                     .classList
                     .add("winner");
 
-                drawBtn.disabled =
-                    false;
+                drawBtn.disabled = false;
 
-                drawing =
-                    false;
+                drawing = false;
 
             }
 
@@ -1621,9 +1560,9 @@ drawBtn.addEventListener("click",()=>{
 });
 
 
-/* ======================================================
-   POULES
-====================================================== */
+/* =====================================================
+   DONNÉES DES POULES
+===================================================== */
 
 const groupData = {
 
@@ -1681,6 +1620,10 @@ function createMatches(players){
 
 }
 
+
+/* =====================================================
+   CRÉATION DES POULES
+===================================================== */
 
 const groupsContainer =
     document.getElementById("groups");
@@ -1847,9 +1790,9 @@ Object.entries(groupData)
 });
 
 
-/* ======================================================
+/* =====================================================
    CLASSEMENTS
-====================================================== */
+===================================================== */
 
 function calculateGroup(letter){
 
@@ -2056,9 +1999,9 @@ function calculateGroup(letter){
 }
 
 
-/* ======================================================
+/* =====================================================
    PHASE FINALE
-====================================================== */
+===================================================== */
 
 const knockoutMatches = [
 
@@ -2096,6 +2039,25 @@ function getScore(id){
         ||
         0
     );
+
+}
+
+
+function allScoresEntered(prefix){
+
+    return [
+        prefix+"-a1",
+        prefix+"-a2",
+        prefix+"-r1",
+        prefix+"-r2"
+    ].every(id=>{
+
+        const el =
+            document.getElementById(id);
+
+        return el && el.value !== "";
+
+    });
 
 }
 
@@ -2142,6 +2104,14 @@ function updateAggregate(prefix){
                 "champion"
             );
 
+        if(!allScoresEntered("final")){
+
+            champion.textContent = "";
+            return;
+
+        }
+
+
         const p1 =
             document
             .getElementById("final-p1")
@@ -2183,7 +2153,8 @@ function updateAggregate(prefix){
 
         else{
 
-            champion.textContent = "";
+            champion.textContent =
+                "⚖️ ÉGALITÉ AU CUMUL";
 
         }
 
@@ -2198,6 +2169,14 @@ function updateAggregate(prefix){
             document.getElementById(
                 "third-winner"
             );
+
+        if(!allScoresEntered("third")){
+
+            winner.textContent = "";
+            return;
+
+        }
+
 
         const p1 =
             document
@@ -2240,7 +2219,8 @@ function updateAggregate(prefix){
 
         else{
 
-            winner.textContent = "";
+            winner.textContent =
+                "⚖️ ÉGALITÉ AU CUMUL";
 
         }
 
@@ -2249,9 +2229,9 @@ function updateAggregate(prefix){
 }
 
 
-/* ======================================================
+/* =====================================================
    MIROIRS MATCHS RETOUR
-====================================================== */
+===================================================== */
 
 function updateMirrors(){
 
@@ -2276,9 +2256,9 @@ function updateMirrors(){
 }
 
 
-/* ======================================================
-   IDENTIFIANT DES INPUTS
-====================================================== */
+/* =====================================================
+   IDENTIFICATION DES INPUTS
+===================================================== */
 
 function getInputKey(input){
 
@@ -2316,9 +2296,9 @@ function getInputKey(input){
 }
 
 
-/* ======================================================
-   RÉCUPÉRER TOUT L'ÉTAT DU TOURNOI
-====================================================== */
+/* =====================================================
+   COLLECTER TOUT LE TOURNOI
+===================================================== */
 
 function collectTournamentData(){
 
@@ -2347,9 +2327,9 @@ function collectTournamentData(){
 }
 
 
-/* ======================================================
-   APPLIQUER LES DONNÉES FIREBASE
-====================================================== */
+/* =====================================================
+   APPLIQUER FIREBASE
+===================================================== */
 
 function applyTournamentData(data){
 
@@ -2375,12 +2355,6 @@ function applyTournamentData(data){
             .hasOwnProperty
             .call(data,key)
         ){
-
-            /*
-               Ne pas écraser un champ que
-               l'utilisateur est précisément
-               en train de modifier.
-            */
 
             if(
                 document.activeElement
@@ -2411,9 +2385,9 @@ function applyTournamentData(data){
 }
 
 
-/* ======================================================
-   FIREBASE : ENREGISTREMENT
-====================================================== */
+/* =====================================================
+   ENREGISTREMENT FIREBASE
+===================================================== */
 
 let saveTimer = null;
 
@@ -2423,10 +2397,6 @@ async function saveToFirebase(){
     const data =
         collectTournamentData();
 
-
-    /*
-       Sauvegarde locale de secours
-    */
 
     localStorage.setItem(
         "FC26_TOURNAMENT_BACKUP",
@@ -2471,10 +2441,6 @@ async function saveToFirebase(){
 }
 
 
-/* ======================================================
-   PETIT DÉLAI POUR ÉVITER TROP D'ÉCRITURES
-====================================================== */
-
 function scheduleFirebaseSave(){
 
     clearTimeout(saveTimer);
@@ -2488,11 +2454,12 @@ function scheduleFirebaseSave(){
 }
 
 
-/* ======================================================
-   FIREBASE : SYNCHRONISATION TEMPS RÉEL
-====================================================== */
+/* =====================================================
+   SYNCHRONISATION TEMPS RÉEL
+===================================================== */
 
 onValue(
+
     tournamentRef,
 
     snapshot=>{
@@ -2510,11 +2477,9 @@ onValue(
         else{
 
             /*
-               Base vide.
-
-               Si cet appareil possède
-               une ancienne sauvegarde locale,
-               on l'envoie dans Firebase.
+            Base Firebase vide :
+            récupération éventuelle
+            de l'ancienne sauvegarde locale.
             */
 
             const oldBackup =
@@ -2547,7 +2512,9 @@ onValue(
 
                 catch(error){
 
-                    console.error(error);
+                    console.error(
+                        error
+                    );
 
                 }
 
@@ -2576,12 +2543,13 @@ onValue(
         );
 
     }
+
 );
 
 
-/* ======================================================
-   ÉVÉNEMENTS
-====================================================== */
+/* =====================================================
+   MODIFICATIONS UTILISATEUR
+===================================================== */
 
 document.addEventListener(
     "input",
@@ -2601,9 +2569,7 @@ document.addEventListener(
         }
 
 
-        /*
-           Classement poule
-        */
+        /* CLASSEMENT */
 
         if(
             event.target
@@ -2618,24 +2584,18 @@ document.addEventListener(
         }
 
 
-        /*
-           Noms des matchs retour
-        */
+        /* MATCHS RETOUR */
 
         updateMirrors();
 
 
-        /*
-           Cumuls
-        */
+        /* CUMULS */
 
         knockoutMatches
         .forEach(updateAggregate);
 
 
-        /*
-           Envoi Firebase
-        */
+        /* FIREBASE */
 
         scheduleFirebaseSave();
 
@@ -2643,9 +2603,9 @@ document.addEventListener(
 );
 
 
-/* ======================================================
+/* =====================================================
    INITIALISATION
-====================================================== */
+===================================================== */
 
 Object.keys(groupData)
 .forEach(calculateGroup);
