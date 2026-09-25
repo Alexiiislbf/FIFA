@@ -6,6 +6,10 @@
 <title>Tournoi FC 26</title>
 
 <style>
+/* =========================================================
+   BASE
+========================================================= */
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -13,76 +17,121 @@
 }
 
 :root{
-    --bg:#050a0f;
-    --panel:#08121b;
-    --panel2:#0b1721;
-    --border:#273540;
-    --text:#fff;
-    --muted:#aeb8c1;
-    --gold:#f6c744;
+    --bg:#04080d;
+    --panel:#08131c;
+    --panel2:#0b1822;
+    --border:#31424f;
+
+    --text:#ffffff;
+    --muted:#aeb9c2;
+
+    --gold:#f5c542;
+    --gold2:#d9a51e;
+
     --blue:#087cff;
     --red:#ef2448;
     --green:#00c968;
     --yellow:#dcae21;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     min-height:100vh;
     font-family:Arial,Helvetica,sans-serif;
-    color:white;
+    color:var(--text);
+
     background:
-        radial-gradient(circle at 50% 0%,#152737 0%,transparent 32%),
-        linear-gradient(rgba(3,8,12,.88),rgba(3,8,12,.96)),
-        #05090d;
+        radial-gradient(circle at 50% 0%,#183043 0%,transparent 28%),
+        radial-gradient(circle at 15% 50%,rgba(0,123,255,.06),transparent 25%),
+        radial-gradient(circle at 85% 50%,rgba(255,190,40,.05),transparent 25%),
+        linear-gradient(#050a0f,#020507);
+}
+
+button,
+input{
+    font-family:inherit;
 }
 
 .app{
-    width:min(1250px,96%);
+    width:min(1280px,95%);
     margin:auto;
-    padding:20px 0 60px;
+    padding:18px 0 70px;
 }
 
-/* =========================
+
+/* =========================================================
    NAVIGATION
-========================= */
+========================================================= */
 
 .tabs{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    border:1px solid #43515d;
+
+    max-width:1000px;
+    margin:0 auto 30px;
+
+    border:1px solid #455661;
     border-radius:12px;
+
     overflow:hidden;
-    max-width:950px;
-    margin:0 auto 28px;
-    background:#08111a;
+
+    background:#07111a;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.35);
 }
 
 .tab{
     min-height:68px;
+
     border:0;
-    border-right:1px solid #43515d;
-    background:#08111a;
+    border-right:1px solid #455661;
+
+    background:#07111a;
     color:white;
-    font-size:16px;
-    font-weight:800;
+
+    font-size:15px;
+    font-weight:900;
+
     cursor:pointer;
-    padding:12px;
+
+    transition:.2s;
 }
 
 .tab:last-child{
     border-right:0;
 }
 
-.tab.active{
-    color:#050505;
-    background:linear-gradient(135deg,#ffe578,#e6ad1c);
-    box-shadow:inset 0 0 20px rgba(255,255,255,.25);
+.tab:hover{
+    background:#0d1c27;
 }
 
-.icon{
-    font-size:22px;
-    margin-right:8px;
+.tab.active{
+    color:#070707;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe97e,
+            #d9a51e
+        );
+
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,.25);
 }
+
+.tab-icon{
+    font-size:21px;
+    margin-right:7px;
+}
+
+
+/* =========================================================
+   PAGES
+========================================================= */
 
 .page{
     display:none;
@@ -90,52 +139,96 @@ body{
 
 .page.active{
     display:block;
+    animation:pageIn .25s ease;
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(5px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 .title{
-    font-size:42px;
+    font-size:40px;
     font-weight:1000;
     letter-spacing:-1px;
-    margin-bottom:4px;
+    margin-bottom:5px;
 }
 
 .subtitle{
-    color:#c1cad1;
-    letter-spacing:4px;
-    font-size:14px;
+    color:var(--muted);
+
+    font-size:13px;
+    letter-spacing:3px;
+
     margin-bottom:22px;
 }
 
-/* =========================
-   TIRAGE
-========================= */
+
+/* =========================================================
+   TIRAGE D'ÉQUIPE
+========================================================= */
 
 .draw-panel{
-    border:1px solid #34434f;
-    border-radius:14px;
-    background:linear-gradient(145deg,rgba(12,25,35,.96),rgba(4,10,15,.97));
     padding:28px;
+
+    border:1px solid var(--border);
+    border-radius:15px;
+
+    background:
+        radial-gradient(circle at 75% 35%,rgba(13,117,189,.13),transparent 30%),
+        linear-gradient(145deg,#0a1822,#040a0f);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.25);
 }
 
 .draw-grid{
     display:grid;
     grid-template-columns:1fr 1.15fr;
+
     gap:30px;
     align-items:center;
 }
 
 .draw-button{
-    margin-top:25px;
     width:min(390px,100%);
+
+    margin-top:20px;
+
+    padding:20px;
+
     border:0;
-    border-radius:13px;
-    padding:21px;
-    font-size:20px;
-    font-weight:900;
-    color:#090909;
-    background:linear-gradient(135deg,#ffe576,#dca61e);
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe779,
+            #dca71e
+        );
+
+    color:#070707;
+
+    font-size:19px;
+    font-weight:1000;
+
     cursor:pointer;
-    box-shadow:0 7px 25px rgba(255,190,30,.16);
+
+    box-shadow:
+        0 10px 30px rgba(240,180,20,.15);
+
+    transition:.15s;
+}
+
+.draw-button:hover{
+    transform:translateY(-1px);
 }
 
 .draw-button:active{
@@ -143,47 +236,126 @@ body{
 }
 
 .draw-button:disabled{
-    opacity:.65;
+    opacity:.6;
 }
 
+
+/* GRAND ÉCRAN DU TIRAGE */
+
 .team-screen{
-    min-height:230px;
-    border:1px solid #3a4c5b;
-    border-radius:13px;
-    background:
-        radial-gradient(circle,#15344a 0%,#07111a 65%);
+    position:relative;
+
+    min-height:270px;
+
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+
     text-align:center;
-    padding:25px;
+
+    border:1px solid #405565;
+    border-radius:15px;
+
     overflow:hidden;
+
+    background:
+        radial-gradient(circle,#163b54 0%,#081721 55%,#040a0f 100%);
+
+    box-shadow:
+        inset 0 0 60px rgba(0,0,0,.45);
 }
 
-.team-badge{
-    width:85px;
-    height:85px;
-    border-radius:50%;
-    border:2px solid rgba(255,255,255,.8);
+.team-screen::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.03),
+            transparent
+        );
+
+    pointer-events:none;
+}
+
+.draw-logo-box{
+    width:125px;
+    height:125px;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:25px;
+
+    margin-bottom:18px;
+
+    border-radius:22px;
+
+    background:
+        rgba(255,255,255,.05);
+
+    border:
+        1px solid rgba(255,255,255,.12);
+}
+
+.draw-logo{
+    width:100px;
+    height:100px;
+
+    object-fit:contain;
+
+    filter:
+        drop-shadow(0 8px 15px rgba(0,0,0,.5));
+}
+
+.logo-fallback{
+    display:none;
+
+    width:95px;
+    height:95px;
+
+    border:2px solid white;
+    border-radius:50%;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:23px;
     font-weight:1000;
-    margin-bottom:20px;
-    background:#101b25;
 }
 
 .team-result{
-    font-size:32px;
+    padding:0 15px;
+
+    font-size:30px;
     font-weight:1000;
+
     text-transform:uppercase;
 }
 
-.team-screen.rolling .team-result{
-    opacity:.7;
-    transform:scale(.96);
+.team-screen.rolling .draw-logo{
+    animation:logoSpin .12s linear infinite;
+}
+
+@keyframes logoSpin{
+    0%{
+        transform:scale(.85) rotate(-4deg);
+        opacity:.6;
+    }
+
+    50%{
+        transform:scale(1) rotate(4deg);
+        opacity:1;
+    }
+
+    100%{
+        transform:scale(.85) rotate(-4deg);
+        opacity:.6;
+    }
 }
 
 .team-screen.winner{
@@ -191,151 +363,268 @@ body{
 }
 
 @keyframes winner{
-    0%{transform:scale(.94)}
-    55%{transform:scale(1.025)}
-    100%{transform:scale(1)}
+    0%{
+        transform:scale(.94);
+    }
+
+    55%{
+        transform:scale(1.025);
+    }
+
+    100%{
+        transform:scale(1);
+    }
 }
 
+
+/* LISTE DES 10 CLUBS */
+
 .team-list{
-    margin-top:25px;
     display:grid;
-    grid-template-columns:repeat(5,1fr);
+
+    grid-template-columns:
+        repeat(5,1fr);
+
     gap:10px;
+
+    margin-top:25px;
 }
 
 .team-chip{
-    background:#0b151e;
-    border:1px solid #263743;
-    padding:13px 8px;
-    border-radius:8px;
-    text-align:center;
-    color:#cbd3da;
-    font-size:13px;
+    min-height:82px;
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    padding:10px;
+
+    border:1px solid #293b47;
+    border-radius:10px;
+
+    background:
+        linear-gradient(145deg,#0b1822,#071018);
+
+    color:#e1e7eb;
+
+    font-size:12px;
+    font-weight:800;
+
+    transition:.2s;
 }
 
-/* =========================
+.team-chip:hover{
+    border-color:#627481;
+    transform:translateY(-2px);
+}
+
+.club-logo{
+    width:45px;
+    height:45px;
+
+    object-fit:contain;
+
+    flex-shrink:0;
+
+    filter:
+        drop-shadow(0 4px 7px rgba(0,0,0,.45));
+}
+
+
+/* =========================================================
    POULES
-========================= */
+========================================================= */
 
 .groups{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:12px;
 }
 
 .group{
-    --group:#087cff;
-    border:2px solid var(--group);
-    border-radius:10px;
+    --group:var(--blue);
+
     overflow:hidden;
-    background:rgba(4,11,16,.95);
+
+    border:
+        2px solid var(--group);
+
+    border-radius:10px;
+
+    background:
+        rgba(4,11,16,.97);
 }
 
-.group-a{--group:var(--blue)}
-.group-b{--group:var(--red)}
-.group-c{--group:var(--green)}
-.group-d{--group:var(--yellow)}
+.group-a{
+    --group:var(--blue);
+}
+
+.group-b{
+    --group:var(--red);
+}
+
+.group-c{
+    --group:var(--green);
+}
+
+.group-d{
+    --group:var(--yellow);
+}
 
 .group-title{
-    padding:14px 16px;
-    font-size:23px;
+    padding:14px 15px;
+
+    font-size:22px;
     font-weight:1000;
-    background:color-mix(in srgb,var(--group) 72%,#111);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--group) 70%,
+            #111
+        );
 }
 
 .players{
-    padding:7px 14px 10px;
-    border-bottom:1px solid #27343d;
+    padding:7px 13px 10px;
+
+    border-bottom:
+        1px solid #283640;
 }
 
 .players-label{
-    font-size:12px;
-    font-weight:900;
-    margin:3px 0 6px;
+    margin:5px 0;
+
+    font-size:11px;
+    font-weight:1000;
 }
 
 .player{
     display:flex;
     align-items:center;
+
     padding:7px 0;
-    border-bottom:1px solid rgba(255,255,255,.06);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.06);
 }
 
 .number{
-    width:29px;
-    height:29px;
-    border-radius:5px;
+    width:28px;
+    height:28px;
+
     display:grid;
     place-items:center;
+
+    margin-right:9px;
+
+    border-radius:4px;
+
     background:var(--group);
-    font-weight:900;
-    margin-right:10px;
+
+    font-weight:1000;
 }
 
 .match-section-title{
-    padding:10px 13px 4px;
-    font-size:13px;
+    padding:11px 12px 5px;
+
+    font-size:12px;
     font-weight:1000;
 }
 
 .matches{
-    padding:0 10px 9px;
+    padding:0 9px 9px;
 }
 
 .match{
     display:grid;
-    grid-template-columns:minmax(0,1fr) 38px 12px 38px minmax(0,1fr);
+
+    grid-template-columns:
+        minmax(0,1fr)
+        38px
+        10px
+        38px
+        minmax(0,1fr);
+
     gap:4px;
+
     align-items:center;
+
     min-height:43px;
-    border-bottom:1px solid rgba(255,255,255,.08);
-    font-size:13px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+
+    font-size:12px;
 }
 
-.match .away{
+.away{
     text-align:right;
 }
 
 .score{
     width:38px;
     height:34px;
+
     border:1px solid #71808b;
     border-radius:5px;
-    background:#07111a;
-    color:white;
-    text-align:center;
-    font-size:18px;
-    font-weight:bold;
+
     outline:none;
+
+    background:#07111a;
+
+    color:white;
+
+    text-align:center;
+
+    font-size:17px;
+    font-weight:bold;
 }
 
 .score:focus{
     border-color:var(--group);
-    box-shadow:0 0 0 2px color-mix(in srgb,var(--group) 30%,transparent);
 }
 
 .standings-title{
-    background:color-mix(in srgb,var(--group) 55%,#111);
-    padding:10px 13px;
+    padding:10px 12px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--group) 53%,
+            #111
+        );
+
     font-weight:1000;
 }
 
 .standings{
     width:100%;
+
     border-collapse:collapse;
-    font-size:12px;
+
+    font-size:11px;
 }
 
 .standings th{
+    padding:8px 2px;
+
     color:#b9c2c9;
-    font-size:10px;
-    padding:9px 3px;
+
+    font-size:9px;
 }
 
 .standings td{
+    padding:8px 2px;
+
     text-align:center;
-    padding:9px 3px;
-    border-top:1px solid rgba(255,255,255,.07);
+
+    border-top:
+        1px solid rgba(255,255,255,.07);
 }
 
 .standings td:nth-child(2){
@@ -343,146 +632,253 @@ body{
 }
 
 .rank{
+    width:23px;
+    height:23px;
+
     display:inline-grid;
     place-items:center;
-    width:25px;
-    height:25px;
+
     border-radius:4px;
+
     background:#27333c;
-    font-weight:900;
+
+    font-weight:1000;
 }
 
 .rank.qual{
     background:var(--group);
 }
 
-/* =========================
+
+/* =========================================================
    PHASE FINALE
-========================= */
+========================================================= */
 
 .final-panel{
-    border:1px solid #34434f;
-    border-radius:13px;
     padding:25px;
-    background:
-        radial-gradient(circle at 85% 45%,rgba(226,167,29,.12),transparent 25%),
-        linear-gradient(135deg,#08131c,#03080c);
-}
 
-.bracket{
-    display:grid;
-    grid-template-columns:1fr .9fr .85fr;
-    gap:55px;
-    align-items:center;
-    min-height:510px;
+    border:1px solid var(--border);
+    border-radius:14px;
+
+    background:
+        radial-gradient(circle at 85% 45%,rgba(226,167,29,.10),transparent 25%),
+        linear-gradient(135deg,#08131c,#03080c);
 }
 
 .round-title{
     text-align:center;
-    font-size:19px;
+
+    font-size:26px;
     font-weight:1000;
-    margin-bottom:8px;
+
+    margin-bottom:5px;
 }
 
 .round-subtitle{
     text-align:center;
-    color:#bfc7ce;
+
+    color:#aeb8c1;
+
     font-size:12px;
-    margin-bottom:20px;
+
+    margin-bottom:23px;
 }
 
-.quarter-list,
-.semi-list{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
+.knockout-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:14px;
 }
 
-.semi-list{
-    gap:75px;
+.semi-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:18px;
+
+    max-width:850px;
+
+    margin:auto;
 }
 
 .bracket-match{
-    --match:#e4b428;
+    --match:var(--gold);
+
+    padding:15px;
+
     border:1px solid var(--match);
-    border-left:8px solid var(--match);
+    border-left:7px solid var(--match);
+
+    border-radius:8px;
+
     background:#08131c;
-    border-radius:7px;
-    padding:10px;
 }
 
-.blue{--match:var(--blue)}
-.red{--match:var(--red)}
-.green{--match:var(--green)}
-.gold{--match:var(--yellow)}
+.blue{
+    --match:var(--blue);
+}
 
-.bracket-row{
-    display:grid;
-    grid-template-columns:minmax(0,1fr) 40px 12px 40px;
-    gap:6px;
-    align-items:center;
+.red{
+    --match:var(--red);
+}
+
+.green{
+    --match:var(--green);
+}
+
+.gold{
+    --match:var(--yellow);
+}
+
+.bracket-title{
+    font-size:17px;
+    font-weight:1000;
+
+    margin-bottom:13px;
 }
 
 .player-input{
     width:100%;
-    height:38px;
-    border:1px solid #566775;
-    background:#0b1720;
-    color:white;
-    border-radius:5px;
+    height:40px;
+
     padding:0 10px;
-    font-size:14px;
+
+    border:1px solid #566775;
+    border-radius:5px;
+
+    outline:none;
+
+    background:#0b1720;
+
+    color:white;
+
+    font-size:15px;
+}
+
+.player-input:focus{
+    border-color:var(--gold);
+}
+
+.game-label{
+    margin-top:17px;
+
+    text-align:center;
+
+    color:#cbd2d7;
+
+    font-size:11px;
+    font-weight:1000;
+
+    letter-spacing:1px;
+}
+
+.final-game{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:10px;
+
+    margin-top:8px;
 }
 
 .final-score{
-    width:40px;
-    height:38px;
+    width:65px;
+    height:44px;
+
     border:1px solid #71808b;
-    border-radius:5px;
+    border-radius:6px;
+
+    outline:none;
+
     background:#061019;
+
     color:white;
+
     text-align:center;
-    font-size:18px;
-    font-weight:bold;
+
+    font-size:21px;
+    font-weight:1000;
 }
 
-.final-box{
-    border:1px solid #586874;
-    border-radius:10px;
-    padding:22px;
-    background:rgba(8,20,29,.92);
+.final-score:focus{
+    border-color:var(--gold);
+}
+
+.aggregate{
+    margin-top:15px;
+    padding-top:12px;
+
+    border-top:
+        1px solid rgba(255,255,255,.12);
+
+    text-align:center;
+
+    color:var(--gold);
+
+    font-size:15px;
+    font-weight:1000;
+}
+
+.section-gap{
+    margin-top:50px;
+}
+
+.final-wrapper{
+    max-width:550px;
+
+    margin:50px auto 0;
 }
 
 .trophy{
     text-align:center;
-    font-size:75px;
-    margin-bottom:12px;
+
+    font-size:70px;
+
+    margin-bottom:7px;
+}
+
+.final-box{
+    padding:20px;
+
+    border:1px solid #586874;
+    border-radius:10px;
+
+    background:
+        rgba(8,20,29,.93);
 }
 
 .champion{
+    min-height:28px;
+
     margin-top:18px;
+
     text-align:center;
-    font-weight:900;
+
     color:var(--gold);
-    min-height:24px;
+
+    font-size:19px;
+    font-weight:1000;
 }
 
-/* =========================
-   MOBILE
-========================= */
 
-@media(max-width:950px){
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:1000px){
+
     .groups{
         grid-template-columns:1fr 1fr;
     }
 
-    .bracket{
-        grid-template-columns:1fr;
-        gap:35px;
-    }
-
-    .semi-list{
-        gap:16px;
+    .knockout-grid{
+        grid-template-columns:1fr 1fr;
     }
 
     .draw-grid{
@@ -490,450 +886,1268 @@ body{
     }
 
     .team-list{
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:
+            repeat(2,1fr);
     }
 }
 
-@media(max-width:600px){
+
+@media(max-width:650px){
+
     .app{
         width:94%;
         padding-top:12px;
     }
 
     .tabs{
-        margin-bottom:20px;
+        margin-bottom:21px;
     }
 
     .tab{
-        min-height:60px;
-        font-size:11px;
+        min-height:61px;
+
         padding:7px 3px;
+
+        font-size:10px;
     }
 
-    .icon{
+    .tab-icon{
         display:block;
+
         margin:0 0 4px;
+
+        font-size:19px;
     }
 
     .title{
-        font-size:31px;
+        font-size:30px;
     }
 
     .subtitle{
-        font-size:11px;
+        font-size:10px;
         letter-spacing:2px;
     }
 
-    .groups{
-        grid-template-columns:1fr;
+    .draw-panel,
+    .final-panel{
+        padding:15px;
     }
 
     .team-result{
-        font-size:25px;
+        font-size:24px;
+    }
+
+    .groups,
+    .knockout-grid,
+    .semi-grid{
+        grid-template-columns:1fr;
     }
 
     .team-list{
         grid-template-columns:1fr 1fr;
     }
 
-    .final-panel{
-        padding:15px;
+    .team-chip{
+        flex-direction:column;
+
+        text-align:center;
+
+        min-height:105px;
+
+        justify-content:center;
+    }
+
+    .club-logo{
+        width:48px;
+        height:48px;
     }
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div class="app">
 
-    <!-- NAVIGATION -->
 
-    <nav class="tabs">
-        <button class="tab active" data-page="tirage">
-            <span class="icon">🎲</span>
-            TIRAGE D'ÉQUIPE
-        </button>
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
-        <button class="tab" data-page="poules">
-            <span class="icon">👥</span>
-            PHASE DE POULES
-        </button>
+<nav class="tabs">
 
-        <button class="tab" data-page="finale">
-            <span class="icon">🏆</span>
-            PHASE FINALE
-        </button>
-    </nav>
+    <button
+        class="tab active"
+        data-page="tirage"
+    >
+        <span class="tab-icon">🎲</span>
+        TIRAGE D'ÉQUIPE
+    </button>
 
 
-    <!-- ======================
-         TIRAGE
-    ======================= -->
+    <button
+        class="tab"
+        data-page="poules"
+    >
+        <span class="tab-icon">👥</span>
+        PHASE DE POULES
+    </button>
 
-    <section id="tirage" class="page active">
 
-        <div class="draw-panel">
+    <button
+        class="tab"
+        data-page="finale"
+    >
+        <span class="tab-icon">🏆</span>
+        PHASE FINALE
+    </button>
 
-            <div class="draw-grid">
+</nav>
 
-                <div>
-                    <h1 class="title">TIRAGE D'ÉQUIPE</h1>
-                    <div class="subtitle">10 ÉQUIPES DISPONIBLES</div>
 
-                    <button id="drawBtn" class="draw-button">
-                        🎲 &nbsp; TIRER UNE ÉQUIPE
-                    </button>
-                </div>
 
-                <div id="teamScreen" class="team-screen">
-                    <div id="teamBadge" class="team-badge">FC</div>
-                    <div id="teamResult" class="team-result">
-                        PRÊT ?
-                    </div>
-                </div>
+<!-- =====================================================
+     TIRAGE D'ÉQUIPE
+===================================================== -->
 
-            </div>
+<section
+    id="tirage"
+    class="page active"
+>
 
-            <div class="team-list">
-                <div class="team-chip">Manchester City</div>
-                <div class="team-chip">Real Madrid</div>
-                <div class="team-chip">Bayern Munich</div>
-                <div class="team-chip">Bayer Leverkusen</div>
-                <div class="team-chip">Paris Saint-Germain</div>
-                <div class="team-chip">Arsenal</div>
-                <div class="team-chip">FC Barcelone</div>
-                <div class="team-chip">Atlético de Madrid</div>
-                <div class="team-chip">Liverpool</div>
-                <div class="team-chip">Borussia Dortmund</div>
-            </div>
+<div class="draw-panel">
 
-        </div>
 
-    </section>
+<div class="draw-grid">
 
 
-    <!-- ======================
-         PHASE DE POULES
-    ======================= -->
+<div>
 
-    <section id="poules" class="page">
+    <h1 class="title">
+        TIRAGE D'ÉQUIPE
+    </h1>
 
-        <h1 class="title">PHASE DE POULES</h1>
-        <div class="subtitle">
-            4 POULES DE 3 JOUEURS &nbsp;•&nbsp; MATCHS ALLER / RETOUR
-        </div>
+    <div class="subtitle">
+        10 ÉQUIPES DISPONIBLES
+    </div>
 
-        <div id="groups" class="groups"></div>
-
-    </section>
-
-
-    <!-- ======================
-         PHASE FINALE
-    ======================= -->
-
-    <section id="finale" class="page">
-
-        <h1 class="title">PHASE FINALE</h1>
-
-        <div class="subtitle">
-            QUARTS DE FINALE • DEMI-FINALES • FINALE
-        </div>
-
-        <div class="final-panel">
-
-            <div class="bracket">
-
-                <!-- QUARTS -->
-
-                <div>
-
-                    <div class="round-title">
-                        QUARTS DE FINALE
-                    </div>
-
-                    <div class="round-subtitle">
-                        Les deux premiers de chaque poule
-                    </div>
-
-                    <div class="quarter-list">
-
-                        <div class="bracket-match blue">
-                            <div class="bracket-row">
-                                <input class="player-input" placeholder="A1 - Joueur">
-                                <input class="final-score" type="number" min="0">
-                                <span>-</span>
-                                <input class="final-score" type="number" min="0">
-                            </div>
-
-                            <div class="bracket-row" style="margin-top:7px">
-                                <input class="player-input" placeholder="A2 - Joueur">
-                                <span></span><span></span><span></span>
-                            </div>
-                        </div>
-
-
-                        <div class="bracket-match red">
-                            <div class="bracket-row">
-                                <input class="player-input" placeholder="B1 - Joueur">
-                                <input class="final-score" type="number" min="0">
-                                <span>-</span>
-                                <input class="final-score" type="number" min="0">
-                            </div>
-
-                            <div class="bracket-row" style="margin-top:7px">
-                                <input class="player-input" placeholder="B2 - Joueur">
-                                <span></span><span></span><span></span>
-                            </div>
-                        </div>
-
-
-                        <div class="bracket-match green">
-                            <div class="bracket-row">
-                                <input class="player-input" placeholder="C1 - Joueur">
-                                <input class="final-score" type="number" min="0">
-                                <span>-</span>
-                                <input class="final-score" type="number" min="0">
-                            </div>
-
-                            <div class="bracket-row" style="margin-top:7px">
-                                <input class="player-input" placeholder="C2 - Joueur">
-                                <span></span><span></span><span></span>
-                            </div>
-                        </div>
-
-
-                        <div class="bracket-match gold">
-                            <div class="bracket-row">
-                                <input class="player-input" placeholder="D1 - Joueur">
-                                <input class="final-score" type="number" min="0">
-                                <span>-</span>
-                                <input class="final-score" type="number" min="0">
-                            </div>
-
-                            <div class="bracket-row" style="margin-top:7px">
-                                <input class="player-input" placeholder="D2 - Joueur">
-                                <span></span><span></span><span></span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <!-- DEMIS -->
-
-                <div>
-
-                    <div class="round-title">
-                        DEMI-FINALES
-                    </div>
-
-                    <div class="round-subtitle">
-                        A contre C • B contre D
-                    </div>
-
-                    <div class="semi-list">
-
-                        <div class="bracket-match blue">
-                            <div class="bracket-row">
-                                <input class="player-input" placeholder="Vainqueur A">
-                                <input class="final-score" type="number" min="0">
-                                <span>-</span>
-                                <input class="final-score" type="number" min="0">
-                            </div>
-
-                            <div class="bracket-row" style="margin-top:7px">
-                                <input class="player-input" placeholder="Vainqueur C">
-                                <span></span><span></span><span></span>
-                            </div>
-                        </div>
-
-
-                        <div class="bracket-match red">
-                            <div class="bracket-row">
-                                <input class="player-input" placeholder="Vainqueur B">
-                                <input class="final-score" type="number" min="0">
-                                <span>-</span>
-                                <input class="final-score" type="number" min="0">
-                            </div>
-
-                            <div class="bracket-row" style="margin-top:7px">
-                                <input class="player-input" placeholder="Vainqueur D">
-                                <span></span><span></span><span></span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <!-- FINALE -->
-
-                <div>
-
-                    <div class="trophy">🏆</div>
-
-                    <div class="round-title">
-                        FINALE
-                    </div>
-
-                    <div class="round-subtitle">
-                        Les 2 meilleurs parmi les 4
-                    </div>
-
-                    <div class="final-box">
-
-                        <div class="bracket-row">
-                            <input class="player-input" placeholder="Finaliste 1">
-                            <input id="finalScore1" class="final-score" type="number" min="0">
-                            <span>-</span>
-                            <input id="finalScore2" class="final-score" type="number" min="0">
-                        </div>
-
-                        <div style="height:10px"></div>
-
-                        <input id="finaliste2"
-                               class="player-input"
-                               placeholder="Finaliste 2">
-
-                        <div id="champion" class="champion"></div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
+    <button
+        id="drawBtn"
+        class="draw-button"
+    >
+        🎲 &nbsp; TIRER UNE ÉQUIPE
+    </button>
 
 </div>
 
 
+
+<div
+    id="teamScreen"
+    class="team-screen"
+>
+
+    <div class="draw-logo-box">
+
+        <img
+            id="drawLogo"
+            class="draw-logo"
+            alt=""
+        >
+
+        <div
+            id="drawFallback"
+            class="logo-fallback"
+        >
+            FC
+        </div>
+
+    </div>
+
+    <div
+        id="teamResult"
+        class="team-result"
+    >
+        PRÊT ?
+    </div>
+
+</div>
+
+
+</div>
+
+
+<!-- LISTE DES ÉQUIPES -->
+
+<div
+    id="teamList"
+    class="team-list"
+></div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PHASE DE POULES
+===================================================== -->
+
+<section
+    id="poules"
+    class="page"
+>
+
+<h1 class="title">
+    PHASE DE POULES
+</h1>
+
+<div class="subtitle">
+    4 POULES DE 3 JOUEURS • MATCHS ALLER / RETOUR
+</div>
+
+<div
+    id="groups"
+    class="groups"
+></div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PHASE FINALE
+===================================================== -->
+
+<section
+    id="finale"
+    class="page"
+>
+
+<h1 class="title">
+    PHASE FINALE
+</h1>
+
+<div class="subtitle">
+    QUARTS • DEMI-FINALES • FINALE • MATCHS ALLER / RETOUR
+</div>
+
+
+<div class="final-panel">
+
+
+<!-- =====================================================
+     QUARTS
+===================================================== -->
+
+<div class="round-title">
+    QUARTS DE FINALE
+</div>
+
+<div class="round-subtitle">
+    A1 - A2 &nbsp;•&nbsp;
+    B1 - B2 &nbsp;•&nbsp;
+    C1 - C2 &nbsp;•&nbsp;
+    D1 - D2
+</div>
+
+
+<div class="knockout-grid">
+
+
+<!-- QUART A -->
+
+<div class="bracket-match blue">
+
+    <div class="bracket-title">
+        QUART A
+    </div>
+
+    <input
+        id="qa-p1"
+        class="player-input save"
+        placeholder="A1 - Joueur"
+    >
+
+    <div style="height:7px"></div>
+
+    <input
+        id="qa-p2"
+        class="player-input save"
+        placeholder="A2 - Joueur"
+    >
+
+
+    <div class="game-label">
+        MATCH ALLER
+    </div>
+
+    <div class="final-game">
+
+        <input
+            id="qa-a1"
+            class="final-score save"
+            type="number"
+            min="0"
+            inputmode="numeric"
+        >
+
+        <span>-</span>
+
+        <input
+            id="qa-a2"
+            class="final-score save"
+            type="number"
+            min="0"
+            inputmode="numeric"
+        >
+
+    </div>
+
+
+    <div class="game-label">
+        MATCH RETOUR
+    </div>
+
+    <div class="final-game">
+
+        <input
+            id="qa-r2"
+            class="final-score save"
+            type="number"
+            min="0"
+            inputmode="numeric"
+        >
+
+        <span>-</span>
+
+        <input
+            id="qa-r1"
+            class="final-score save"
+            type="number"
+            min="0"
+            inputmode="numeric"
+        >
+
+    </div>
+
+
+    <div
+        id="qa-total"
+        class="aggregate"
+    >
+        Cumul : 0 - 0
+    </div>
+
+</div>
+
+
+
+<!-- QUART B -->
+
+<div class="bracket-match red">
+
+    <div class="bracket-title">
+        QUART B
+    </div>
+
+    <input
+        id="qb-p1"
+        class="player-input save"
+        placeholder="B1 - Joueur"
+    >
+
+    <div style="height:7px"></div>
+
+    <input
+        id="qb-p2"
+        class="player-input save"
+        placeholder="B2 - Joueur"
+    >
+
+
+    <div class="game-label">
+        MATCH ALLER
+    </div>
+
+    <div class="final-game">
+
+        <input
+            id="qb-a1"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+        <span>-</span>
+
+        <input
+            id="qb-a2"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+    </div>
+
+
+    <div class="game-label">
+        MATCH RETOUR
+    </div>
+
+    <div class="final-game">
+
+        <input
+            id="qb-r2"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+        <span>-</span>
+
+        <input
+            id="qb-r1"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+    </div>
+
+
+    <div
+        id="qb-total"
+        class="aggregate"
+    >
+        Cumul : 0 - 0
+    </div>
+
+</div>
+
+
+
+<!-- QUART C -->
+
+<div class="bracket-match green">
+
+    <div class="bracket-title">
+        QUART C
+    </div>
+
+    <input
+        id="qc-p1"
+        class="player-input save"
+        placeholder="C1 - Joueur"
+    >
+
+    <div style="height:7px"></div>
+
+    <input
+        id="qc-p2"
+        class="player-input save"
+        placeholder="C2 - Joueur"
+    >
+
+
+    <div class="game-label">
+        MATCH ALLER
+    </div>
+
+    <div class="final-game">
+
+        <input
+            id="qc-a1"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+        <span>-</span>
+
+        <input
+            id="qc-a2"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+    </div>
+
+
+    <div class="game-label">
+        MATCH RETOUR
+    </div>
+
+    <div class="final-game">
+
+        <input
+            id="qc-r2"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+        <span>-</span>
+
+        <input
+            id="qc-r1"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+    </div>
+
+
+    <div
+        id="qc-total"
+        class="aggregate"
+    >
+        Cumul : 0 - 0
+    </div>
+
+</div>
+
+
+
+<!-- QUART D -->
+
+<div class="bracket-match gold">
+
+    <div class="bracket-title">
+        QUART D
+    </div>
+
+    <input
+        id="qd-p1"
+        class="player-input save"
+        placeholder="D1 - Joueur"
+    >
+
+    <div style="height:7px"></div>
+
+    <input
+        id="qd-p2"
+        class="player-input save"
+        placeholder="D2 - Joueur"
+    >
+
+
+    <div class="game-label">
+        MATCH ALLER
+    </div>
+
+    <div class="final-game">
+
+        <input
+            id="qd-a1"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+        <span>-</span>
+
+        <input
+            id="qd-a2"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+    </div>
+
+
+    <div class="game-label">
+        MATCH RETOUR
+    </div>
+
+    <div class="final-game">
+
+        <input
+            id="qd-r2"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+        <span>-</span>
+
+        <input
+            id="qd-r1"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+    </div>
+
+
+    <div
+        id="qd-total"
+        class="aggregate"
+    >
+        Cumul : 0 - 0
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     DEMI-FINALES
+===================================================== -->
+
+<div class="section-gap">
+
+<div class="round-title">
+    DEMI-FINALES
+</div>
+
+<div class="round-subtitle">
+    VAINQUEUR A vs VAINQUEUR C &nbsp;•&nbsp;
+    VAINQUEUR B vs VAINQUEUR D
+</div>
+
+
+<div class="semi-grid">
+
+
+<!-- DEMI A / C -->
+
+<div class="bracket-match blue">
+
+    <div class="bracket-title">
+        DEMI-FINALE A / C
+    </div>
+
+    <input
+        id="sf1-p1"
+        class="player-input save"
+        placeholder="Vainqueur A"
+    >
+
+    <div style="height:7px"></div>
+
+    <input
+        id="sf1-p2"
+        class="player-input save"
+        placeholder="Vainqueur C"
+    >
+
+
+    <div class="game-label">
+        MATCH ALLER
+    </div>
+
+    <div class="final-game">
+
+        <input
+            id="sf1-a1"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+        <span>-</span>
+
+        <input
+            id="sf1-a2"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+    </div>
+
+
+    <div class="game-label">
+        MATCH RETOUR
+    </div>
+
+    <div class="final-game">
+
+        <input
+            id="sf1-r2"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+        <span>-</span>
+
+        <input
+            id="sf1-r1"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+    </div>
+
+
+    <div
+        id="sf1-total"
+        class="aggregate"
+    >
+        Cumul : 0 - 0
+    </div>
+
+</div>
+
+
+
+<!-- DEMI B / D -->
+
+<div class="bracket-match gold">
+
+    <div class="bracket-title">
+        DEMI-FINALE B / D
+    </div>
+
+    <input
+        id="sf2-p1"
+        class="player-input save"
+        placeholder="Vainqueur B"
+    >
+
+    <div style="height:7px"></div>
+
+    <input
+        id="sf2-p2"
+        class="player-input save"
+        placeholder="Vainqueur D"
+    >
+
+
+    <div class="game-label">
+        MATCH ALLER
+    </div>
+
+    <div class="final-game">
+
+        <input
+            id="sf2-a1"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+        <span>-</span>
+
+        <input
+            id="sf2-a2"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+    </div>
+
+
+    <div class="game-label">
+        MATCH RETOUR
+    </div>
+
+    <div class="final-game">
+
+        <input
+            id="sf2-r2"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+        <span>-</span>
+
+        <input
+            id="sf2-r1"
+            class="final-score save"
+            type="number"
+            min="0"
+        >
+
+    </div>
+
+
+    <div
+        id="sf2-total"
+        class="aggregate"
+    >
+        Cumul : 0 - 0
+    </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FINALE
+===================================================== -->
+
+<div class="final-wrapper">
+
+    <div class="trophy">
+        🏆
+    </div>
+
+    <div class="round-title">
+        FINALE
+    </div>
+
+    <div class="round-subtitle">
+        MATCH ALLER / RETOUR
+    </div>
+
+
+    <div class="final-box">
+
+        <input
+            id="final-p1"
+            class="player-input save"
+            placeholder="Finaliste 1"
+        >
+
+        <div style="height:7px"></div>
+
+        <input
+            id="final-p2"
+            class="player-input save"
+            placeholder="Finaliste 2"
+        >
+
+
+        <div class="game-label">
+            MATCH ALLER
+        </div>
+
+        <div class="final-game">
+
+            <input
+                id="final-a1"
+                class="final-score save"
+                type="number"
+                min="0"
+            >
+
+            <span>-</span>
+
+            <input
+                id="final-a2"
+                class="final-score save"
+                type="number"
+                min="0"
+            >
+
+        </div>
+
+
+        <div class="game-label">
+            MATCH RETOUR
+        </div>
+
+        <div class="final-game">
+
+            <input
+                id="final-r2"
+                class="final-score save"
+                type="number"
+                min="0"
+            >
+
+            <span>-</span>
+
+            <input
+                id="final-r1"
+                class="final-score save"
+                type="number"
+                min="0"
+            >
+
+        </div>
+
+
+        <div
+            id="final-total"
+            class="aggregate"
+        >
+            Cumul : 0 - 0
+        </div>
+
+
+        <div
+            id="champion"
+            class="champion"
+        ></div>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+</div>
+
+
+
 <script>
 
-/* =====================================================
+/* =========================================================
    NAVIGATION
-===================================================== */
+========================================================= */
 
-const tabs = document.querySelectorAll(".tab");
-const pages = document.querySelectorAll(".page");
+const tabs =
+    document.querySelectorAll(".tab");
+
+const pages =
+    document.querySelectorAll(".page");
+
 
 tabs.forEach(tab => {
 
-    tab.addEventListener("click", () => {
+    tab.addEventListener(
+        "click",
+        () => {
 
-        tabs.forEach(t => t.classList.remove("active"));
-        pages.forEach(p => p.classList.remove("active"));
+            tabs.forEach(t =>
+                t.classList.remove("active")
+            );
 
-        tab.classList.add("active");
+            pages.forEach(p =>
+                p.classList.remove("active")
+            );
 
-        document
-            .getElementById(tab.dataset.page)
-            .classList.add("active");
+            tab.classList.add("active");
 
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-    });
+            document
+                .getElementById(
+                    tab.dataset.page
+                )
+                .classList
+                .add("active");
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+
+        }
+    );
 
 });
 
 
-/* =====================================================
-   TIRAGE
-===================================================== */
+
+/* =========================================================
+   ÉQUIPES + LOGOS
+========================================================= */
+
+/*
+   Les logos sont récupérés automatiquement
+   depuis le domaine officiel de chaque club
+   via Logo.dev.
+*/
 
 const teams = [
-    "Manchester City",
-    "Real Madrid",
-    "Bayern Munich",
-    "Bayer Leverkusen",
-    "Paris Saint-Germain",
-    "Arsenal",
-    "FC Barcelone",
-    "Atlético de Madrid",
-    "Liverpool",
-    "Borussia Dortmund"
+
+    {
+        name:"Manchester City",
+        short:"MCI",
+        logo:"https://img.logo.dev/mancity.com?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+    },
+
+    {
+        name:"Real Madrid",
+        short:"RMA",
+        logo:"https://img.logo.dev/realmadrid.com?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+    },
+
+    {
+        name:"Bayern Munich",
+        short:"FCB",
+        logo:"https://img.logo.dev/fcbayern.com?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+    },
+
+    {
+        name:"Bayer Leverkusen",
+        short:"B04",
+        logo:"https://img.logo.dev/bayer04.de?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+    },
+
+    {
+        name:"Paris Saint-Germain",
+        short:"PSG",
+        logo:"https://img.logo.dev/psg.fr?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+    },
+
+    {
+        name:"Arsenal",
+        short:"ARS",
+        logo:"https://img.logo.dev/arsenal.com?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+    },
+
+    {
+        name:"FC Barcelone",
+        short:"BAR",
+        logo:"https://img.logo.dev/fcbarcelona.com?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+    },
+
+    {
+        name:"Atlético de Madrid",
+        short:"ATM",
+        logo:"https://img.logo.dev/atleticodemadrid.com?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+    },
+
+    {
+        name:"Liverpool",
+        short:"LFC",
+        logo:"https://img.logo.dev/liverpoolfc.com?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+    },
+
+    {
+        name:"Borussia Dortmund",
+        short:"BVB",
+        logo:"https://img.logo.dev/bvb.de?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+    }
+
 ];
 
-const abbreviations = {
-    "Manchester City":"MCI",
-    "Real Madrid":"RMA",
-    "Bayern Munich":"FCB",
-    "Bayer Leverkusen":"B04",
-    "Paris Saint-Germain":"PSG",
-    "Arsenal":"ARS",
-    "FC Barcelone":"BAR",
-    "Atlético de Madrid":"ATM",
-    "Liverpool":"LFC",
-    "Borussia Dortmund":"BVB"
-};
 
-const drawBtn = document.getElementById("drawBtn");
-const teamResult = document.getElementById("teamResult");
-const teamBadge = document.getElementById("teamBadge");
-const teamScreen = document.getElementById("teamScreen");
+
+/* =========================================================
+   AFFICHAGE DES 10 ÉQUIPES
+========================================================= */
+
+const teamList =
+    document.getElementById("teamList");
+
+
+teams.forEach(team => {
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "team-chip";
+
+
+    const img =
+        document.createElement("img");
+
+    img.className =
+        "club-logo";
+
+    img.src =
+        team.logo;
+
+    img.alt =
+        team.name;
+
+
+    const name =
+        document.createElement("span");
+
+    name.textContent =
+        team.name;
+
+
+    card.appendChild(img);
+    card.appendChild(name);
+
+    teamList.appendChild(card);
+
+});
+
+
+
+/* =========================================================
+   TIRAGE ALÉATOIRE
+========================================================= */
+
+const drawBtn =
+    document.getElementById("drawBtn");
+
+const teamScreen =
+    document.getElementById("teamScreen");
+
+const teamResult =
+    document.getElementById("teamResult");
+
+const drawLogo =
+    document.getElementById("drawLogo");
+
+const drawFallback =
+    document.getElementById("drawFallback");
+
 
 let drawing = false;
 
-drawBtn.addEventListener("click", () => {
 
-    if(drawing) return;
+function displayTeam(team){
 
-    drawing = true;
-    drawBtn.disabled = true;
+    teamResult.textContent =
+        team.name;
 
-    teamScreen.classList.remove("winner");
-    teamScreen.classList.add("rolling");
+    drawFallback.textContent =
+        team.short;
 
-    let count = 0;
+    drawFallback.style.display =
+        "none";
 
-    const roulette = setInterval(() => {
+    drawLogo.style.display =
+        "block";
 
-        const team =
-            teams[Math.floor(Math.random() * teams.length)];
+    drawLogo.src =
+        team.logo;
 
-        teamResult.textContent = team;
-        teamBadge.textContent = abbreviations[team];
+    drawLogo.onerror = function(){
 
-        count++;
+        drawLogo.style.display =
+            "none";
 
-        /*
-        Animation volontairement rapide
-        */
-        if(count >= 18){
+        drawFallback.style.display =
+            "flex";
 
-            clearInterval(roulette);
+    };
 
-            const winner =
-                teams[Math.floor(Math.random() * teams.length)];
+}
 
-            teamResult.textContent = winner;
-            teamBadge.textContent = abbreviations[winner];
 
-            teamScreen.classList.remove("rolling");
+/*
+   Affichage initial
+*/
 
-            void teamScreen.offsetWidth;
+drawLogo.style.display =
+    "none";
 
-            teamScreen.classList.add("winner");
+drawFallback.style.display =
+    "flex";
 
-            drawBtn.disabled = false;
-            drawing = false;
+
+
+drawBtn.addEventListener(
+    "click",
+    () => {
+
+        if(drawing){
+            return;
         }
 
-    },55);
+        drawing = true;
 
-});
+        drawBtn.disabled =
+            true;
+
+        teamScreen
+            .classList
+            .remove("winner");
+
+        teamScreen
+            .classList
+            .add("rolling");
 
 
-/* =====================================================
-   DONNÉES DES POULES
-===================================================== */
+        let count = 0;
+
+
+        /*
+           Animation rapide :
+           changement toutes les 50 ms
+        */
+
+        const roulette =
+            setInterval(() => {
+
+                const randomTeam =
+                    teams[
+                        Math.floor(
+                            Math.random()
+                            *
+                            teams.length
+                        )
+                    ];
+
+                displayTeam(
+                    randomTeam
+                );
+
+                count++;
+
+
+                if(count >= 20){
+
+                    clearInterval(
+                        roulette
+                    );
+
+
+                    const winner =
+                        teams[
+                            Math.floor(
+                                Math.random()
+                                *
+                                teams.length
+                            )
+                        ];
+
+
+                    displayTeam(
+                        winner
+                    );
+
+
+                    teamScreen
+                        .classList
+                        .remove(
+                            "rolling"
+                        );
+
+
+                    void teamScreen.offsetWidth;
+
+
+                    teamScreen
+                        .classList
+                        .add(
+                            "winner"
+                        );
+
+
+                    drawBtn.disabled =
+                        false;
+
+                    drawing =
+                        false;
+
+                }
+
+            },50);
+
+    }
+);
+
+
+
+/* =========================================================
+   JOUEURS
+========================================================= */
 
 const groupData = {
 
@@ -972,14 +2186,16 @@ const groupData = {
 };
 
 
-/*
-Chaque joueur rencontre les deux autres
-à l'aller puis au retour.
-*/
+
+/* =========================================================
+   MATCHS DE POULE
+========================================================= */
 
 function createMatches(players){
 
-    const [p1,p2,p3] = players;
+    const [p1,p2,p3] =
+        players;
+
 
     return [
 
@@ -1025,33 +2241,44 @@ function createMatches(players){
         }
 
     ];
+
 }
 
 
-/* =====================================================
+
+/* =========================================================
    CRÉATION DES POULES
-===================================================== */
+========================================================= */
 
 const groupsContainer =
     document.getElementById("groups");
 
 
-Object.entries(groupData).forEach(([letter,data]) => {
+Object.entries(groupData)
+.forEach(([letter,data]) => {
+
 
     data.matches =
-        createMatches(data.players);
+        createMatches(
+            data.players
+        );
+
 
     const group =
         document.createElement("div");
 
+
     group.className =
-        `group group-${letter.toLowerCase()}`;
+        "group group-"
+        +
+        letter.toLowerCase();
 
 
-    /* JOUEURS */
 
     const playersHTML =
-        data.players.map((player,index) => `
+        data.players
+        .map(
+            (player,index) => `
 
             <div class="player">
 
@@ -1063,62 +2290,75 @@ Object.entries(groupData).forEach(([letter,data]) => {
 
             </div>
 
-        `).join("");
+        `
+        )
+        .join("");
 
 
-    /* MATCHS */
 
     function matchesHTML(type){
 
         return data.matches
 
-            .map((match,index) => ({
+        .map(
+            (match,index) => ({
                 match,
                 index
-            }))
+            })
+        )
 
-            .filter(item =>
-                item.match.type === type
-            )
+        .filter(
+            item =>
+                item.match.type
+                ===
+                type
+        )
 
-            .map(({match,index}) => `
+        .map(
+            ({match,index}) => `
 
-                <div class="match">
+            <div class="match">
 
-                    <span>
-                        ${match.home}
-                    </span>
+                <span>
+                    ${match.home}
+                </span>
 
-                    <input
-                        class="score group-score"
-                        type="number"
-                        inputmode="numeric"
-                        min="0"
-                        data-group="${letter}"
-                        data-match="${index}"
-                        data-side="home"
-                    >
+                <input
+                    class="score group-score"
+                    type="number"
+                    inputmode="numeric"
+                    min="0"
 
-                    <span>-</span>
+                    data-group="${letter}"
+                    data-match="${index}"
+                    data-side="home"
+                >
 
-                    <input
-                        class="score group-score"
-                        type="number"
-                        inputmode="numeric"
-                        min="0"
-                        data-group="${letter}"
-                        data-match="${index}"
-                        data-side="away"
-                    >
+                <span>-</span>
 
-                    <span class="away">
-                        ${match.away}
-                    </span>
+                <input
+                    class="score group-score"
+                    type="number"
+                    inputmode="numeric"
+                    min="0"
 
-                </div>
+                    data-group="${letter}"
+                    data-match="${index}"
+                    data-side="away"
+                >
 
-            `).join("");
+                <span class="away">
+                    ${match.away}
+                </span>
+
+            </div>
+
+        `
+        )
+        .join("");
+
     }
+
 
 
     group.innerHTML = `
@@ -1126,6 +2366,7 @@ Object.entries(groupData).forEach(([letter,data]) => {
         <div class="group-title">
             POULE ${letter}
         </div>
+
 
         <div class="players">
 
@@ -1160,39 +2401,52 @@ Object.entries(groupData).forEach(([letter,data]) => {
             CLASSEMENT
         </div>
 
+
         <table class="standings">
 
             <thead>
 
                 <tr>
+
                     <th>#</th>
                     <th>JOUEUR</th>
+
                     <th>J</th>
                     <th>V</th>
                     <th>N</th>
                     <th>D</th>
+
                     <th>BP</th>
                     <th>BC</th>
-                    <th>DIFF</th>
+
+                    <th>+/-</th>
+
                     <th>PTS</th>
+
                 </tr>
 
             </thead>
 
-            <tbody id="standing-${letter}">
-            </tbody>
+
+            <tbody
+                id="standing-${letter}"
+            ></tbody>
 
         </table>
+
     `;
 
-    groupsContainer.appendChild(group);
+
+    groupsContainer
+        .appendChild(group);
 
 });
 
 
-/* =====================================================
+
+/* =========================================================
    CLASSEMENT AUTOMATIQUE
-===================================================== */
+========================================================= */
 
 function calculateGroup(letter){
 
@@ -1201,13 +2455,15 @@ function calculateGroup(letter){
 
     const stats = {};
 
+
     data.players.forEach(player => {
 
         stats[player] = {
 
-            player:player,
+            player,
 
             played:0,
+
             win:0,
             draw:0,
             loss:0,
@@ -1222,89 +2478,116 @@ function calculateGroup(letter){
     });
 
 
-    data.matches.forEach((match,index) => {
 
-        const homeInput =
-            document.querySelector(
-                `[data-group="${letter}"][data-match="${index}"][data-side="home"]`
-            );
-
-        const awayInput =
-            document.querySelector(
-                `[data-group="${letter}"][data-match="${index}"][data-side="away"]`
-            );
+    data.matches.forEach(
+        (match,index) => {
 
 
-        if(
-            homeInput.value === "" ||
-            awayInput.value === ""
-        ){
-            return;
+            const homeInput =
+                document.querySelector(
+                    `[data-group="${letter}"][data-match="${index}"][data-side="home"]`
+                );
+
+
+            const awayInput =
+                document.querySelector(
+                    `[data-group="${letter}"][data-match="${index}"][data-side="away"]`
+                );
+
+
+            if(
+                homeInput.value === ""
+                ||
+                awayInput.value === ""
+            ){
+                return;
+            }
+
+
+            const hs =
+                Math.max(
+                    0,
+                    parseInt(
+                        homeInput.value
+                    ) || 0
+                );
+
+
+            const as =
+                Math.max(
+                    0,
+                    parseInt(
+                        awayInput.value
+                    ) || 0
+                );
+
+
+            const home =
+                stats[match.home];
+
+            const away =
+                stats[match.away];
+
+
+            home.played++;
+            away.played++;
+
+
+            home.gf += hs;
+            home.ga += as;
+
+            away.gf += as;
+            away.ga += hs;
+
+
+            if(hs > as){
+
+                home.win++;
+                away.loss++;
+
+                home.points += 3;
+
+            }
+
+            else if(hs < as){
+
+                away.win++;
+                home.loss++;
+
+                away.points += 3;
+
+            }
+
+            else{
+
+                home.draw++;
+                away.draw++;
+
+                home.points++;
+                away.points++;
+
+            }
+
         }
+    );
 
-
-        const homeScore =
-            Math.max(0,parseInt(homeInput.value));
-
-        const awayScore =
-            Math.max(0,parseInt(awayInput.value));
-
-
-        const home =
-            stats[match.home];
-
-        const away =
-            stats[match.away];
-
-
-        home.played++;
-        away.played++;
-
-        home.gf += homeScore;
-        home.ga += awayScore;
-
-        away.gf += awayScore;
-        away.ga += homeScore;
-
-
-        if(homeScore > awayScore){
-
-            home.win++;
-            away.loss++;
-
-            home.points += 3;
-
-        }
-
-        else if(homeScore < awayScore){
-
-            away.win++;
-            home.loss++;
-
-            away.points += 3;
-
-        }
-
-        else{
-
-            home.draw++;
-            away.draw++;
-
-            home.points++;
-            away.points++;
-
-        }
-
-    });
 
 
     const ranking =
         Object.values(stats)
-
         .sort((a,b) => {
 
-            if(b.points !== a.points)
-                return b.points - a.points;
+
+            if(
+                b.points !== a.points
+            ){
+                return (
+                    b.points
+                    -
+                    a.points
+                );
+            }
+
 
             const diffA =
                 a.gf - a.ga;
@@ -1312,15 +2595,35 @@ function calculateGroup(letter){
             const diffB =
                 b.gf - b.ga;
 
-            if(diffB !== diffA)
-                return diffB - diffA;
 
-            if(b.gf !== a.gf)
-                return b.gf - a.gf;
+            if(diffB !== diffA){
 
-            return a.player.localeCompare(b.player);
+                return (
+                    diffB
+                    -
+                    diffA
+                );
+
+            }
+
+
+            if(b.gf !== a.gf){
+
+                return (
+                    b.gf
+                    -
+                    a.gf
+                );
+
+            }
+
+
+            return a.player.localeCompare(
+                b.player
+            );
 
         });
+
 
 
     const tbody =
@@ -1330,41 +2633,77 @@ function calculateGroup(letter){
 
 
     tbody.innerHTML =
-        ranking.map((p,index) => {
+        ranking
+        .map(
+            (p,index) => {
 
-            const diff =
-                p.gf - p.ga;
 
-            return `
+                const diff =
+                    p.gf - p.ga;
+
+
+                return `
 
                 <tr>
 
                     <td>
-                        <span class="rank ${index < 2 ? "qual" : ""}">
+
+                        <span
+                            class="rank ${
+                                index < 2
+                                ?
+                                "qual"
+                                :
+                                ""
+                            }"
+                        >
                             ${index + 1}
                         </span>
+
                     </td>
+
 
                     <td>
                         ${p.player}
                     </td>
 
-                    <td>${p.played}</td>
-
-                    <td>${p.win}</td>
-
-                    <td>${p.draw}</td>
-
-                    <td>${p.loss}</td>
-
-                    <td>${p.gf}</td>
-
-                    <td>${p.ga}</td>
 
                     <td>
-                        ${diff > 0 ? "+" : ""}
-                        ${diff}
+                        ${p.played}
                     </td>
+
+                    <td>
+                        ${p.win}
+                    </td>
+
+                    <td>
+                        ${p.draw}
+                    </td>
+
+                    <td>
+                        ${p.loss}
+                    </td>
+
+
+                    <td>
+                        ${p.gf}
+                    </td>
+
+                    <td>
+                        ${p.ga}
+                    </td>
+
+
+                    <td>
+                        ${
+                            diff > 0
+                            ?
+                            "+"
+                            :
+                            ""
+                        }${diff}
+                    </td>
+
 
                     <td>
                         <strong>
@@ -1374,48 +2713,463 @@ function calculateGroup(letter){
 
                 </tr>
 
-            `;
+                `;
 
-        }).join("");
+            }
+        )
+        .join("");
 
 }
 
 
 /*
-Classement initial
+   Classements initiaux
 */
 
 Object.keys(groupData)
-    .forEach(calculateGroup);
+.forEach(
+    calculateGroup
+);
 
 
-/*
-Mise à jour immédiate lorsqu'un score change
-*/
 
-document.addEventListener("input", event => {
+/* =========================================================
+   SAUVEGARDE DES SCORES DE POULE
+========================================================= */
 
-    if(
-        event.target.classList.contains(
-            "group-score"
-        )
-    ){
+function saveGroupScores(){
+
+    const scores = {};
+
+
+    document
+    .querySelectorAll(
+        ".group-score"
+    )
+    .forEach(input => {
+
+        const key =
+            input.dataset.group
+            +
+            "-"
+            +
+            input.dataset.match
+            +
+            "-"
+            +
+            input.dataset.side;
+
+
+        scores[key] =
+            input.value;
+
+    });
+
+
+    localStorage.setItem(
+        "fc26GroupScores",
+        JSON.stringify(scores)
+    );
+
+}
+
+
+
+function loadGroupScores(){
+
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "fc26GroupScores"
+            )
+            ||
+            "{}"
+        );
+
+
+    document
+    .querySelectorAll(
+        ".group-score"
+    )
+    .forEach(input => {
+
+        const key =
+            input.dataset.group
+            +
+            "-"
+            +
+            input.dataset.match
+            +
+            "-"
+            +
+            input.dataset.side;
+
 
         if(
-            event.target.value !== "" &&
-            Number(event.target.value) < 0
+            saved[key]
+            !==
+            undefined
         ){
-            event.target.value = 0;
+            input.value =
+                saved[key];
         }
 
-        calculateGroup(
-            event.target.dataset.group
+    });
+
+
+    Object.keys(groupData)
+    .forEach(
+        calculateGroup
+    );
+
+}
+
+
+
+/* =========================================================
+   SCORES PHASE FINALE
+========================================================= */
+
+const knockoutMatches = [
+
+    "qa",
+    "qb",
+    "qc",
+    "qd",
+
+    "sf1",
+    "sf2",
+
+    "final"
+
+];
+
+
+function getScore(id){
+
+    const element =
+        document.getElementById(id);
+
+
+    if(
+        !element
+        ||
+        element.value === ""
+    ){
+        return 0;
+    }
+
+
+    return Math.max(
+        0,
+        parseInt(
+            element.value
+        )
+        ||
+        0
+    );
+
+}
+
+
+
+function updateAggregate(prefix){
+
+    /*
+       ALLER :
+       joueur 1 vs joueur 2
+
+       RETOUR :
+       joueur 2 vs joueur 1
+    */
+
+
+    const total1 =
+        getScore(
+            prefix + "-a1"
+        )
+        +
+        getScore(
+            prefix + "-r1"
         );
+
+
+    const total2 =
+        getScore(
+            prefix + "-a2"
+        )
+        +
+        getScore(
+            prefix + "-r2"
+        );
+
+
+    const display =
+        document.getElementById(
+            prefix + "-total"
+        );
+
+
+    if(display){
+
+        display.textContent =
+            "Cumul : "
+            +
+            total1
+            +
+            " - "
+            +
+            total2;
 
     }
 
-});
 
+
+    /*
+       Champion de la finale
+    */
+
+    if(prefix === "final"){
+
+        const champion =
+            document.getElementById(
+                "champion"
+            );
+
+
+        const p1 =
+            document
+            .getElementById(
+                "final-p1"
+            )
+            .value
+            .trim();
+
+
+        const p2 =
+            document
+            .getElementById(
+                "final-p2"
+            )
+            .value
+            .trim();
+
+
+        if(total1 > total2){
+
+            champion.textContent =
+                p1
+                ?
+                "🏆 CHAMPION : " + p1
+                :
+                "🏆 FINALISTE 1 VAINQUEUR";
+
+        }
+
+        else if(total2 > total1){
+
+            champion.textContent =
+                p2
+                ?
+                "🏆 CHAMPION : " + p2
+                :
+                "🏆 FINALISTE 2 VAINQUEUR";
+
+        }
+
+        else{
+
+            champion.textContent =
+                "";
+
+        }
+
+    }
+
+}
+
+
+
+/* =========================================================
+   SAUVEGARDE PHASE FINALE
+========================================================= */
+
+function saveFinalPhase(){
+
+    const data = {};
+
+
+    document
+    .querySelectorAll(
+        "#finale input"
+    )
+    .forEach(input => {
+
+        if(input.id){
+
+            data[input.id] =
+                input.value;
+
+        }
+
+    });
+
+
+    localStorage.setItem(
+        "fc26FinalPhase",
+        JSON.stringify(data)
+    );
+
+}
+
+
+
+function loadFinalPhase(){
+
+    const data =
+        JSON.parse(
+            localStorage.getItem(
+                "fc26FinalPhase"
+            )
+            ||
+            "{}"
+        );
+
+
+    Object.entries(data)
+    .forEach(
+        ([id,value]) => {
+
+            const input =
+                document.getElementById(
+                    id
+                );
+
+
+            if(input){
+
+                input.value =
+                    value;
+
+            }
+
+        }
+    );
+
+
+    knockoutMatches
+    .forEach(
+        updateAggregate
+    );
+
+}
+
+
+
+/* =========================================================
+   ÉVÉNEMENTS
+========================================================= */
+
+document.addEventListener(
+    "input",
+    event => {
+
+
+        /*
+           Scores des poules
+        */
+
+        if(
+            event.target
+            .classList
+            .contains(
+                "group-score"
+            )
+        ){
+
+            if(
+                event.target.value !== ""
+                &&
+                Number(
+                    event.target.value
+                ) < 0
+            ){
+                event.target.value = 0;
+            }
+
+
+            calculateGroup(
+                event.target.dataset.group
+            );
+
+
+            saveGroupScores();
+
+        }
+
+
+
+        /*
+           Phase finale
+        */
+
+        if(
+            event.target
+            .closest("#finale")
+        ){
+
+            if(
+                event.target.type
+                ===
+                "number"
+                &&
+                event.target.value !== ""
+                &&
+                Number(
+                    event.target.value
+                ) < 0
+            ){
+                event.target.value = 0;
+            }
+
+
+            knockoutMatches
+            .forEach(prefix => {
+
+                if(
+                    event.target.id
+                    &&
+                    event.target.id
+                    .startsWith(
+                        prefix + "-"
+                    )
+                ){
+
+                    updateAggregate(
+                        prefix
+                    );
+
+                }
+
+            });
+
+
+            saveFinalPhase();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   CHARGEMENT
+========================================================= */
+
+loadGroupScores();
+
+loadFinalPhase();
 
 </script>
 
