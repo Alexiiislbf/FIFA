@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
 <title>Tournoi FC 26</title>
 
+
 <style>
+
 /* =========================================================
    BASE
 ========================================================= */
@@ -17,21 +26,23 @@
 }
 
 :root{
+
     --bg:#04080d;
     --panel:#08131c;
     --panel2:#0b1822;
+
     --border:#31424f;
 
     --text:#ffffff;
     --muted:#aeb9c2;
 
     --gold:#f5c542;
-    --gold2:#d9a51e;
 
     --blue:#087cff;
     --red:#ef2448;
     --green:#00c968;
     --yellow:#dcae21;
+
 }
 
 html{
@@ -39,15 +50,41 @@ html{
 }
 
 body{
+
     min-height:100vh;
-    font-family:Arial,Helvetica,sans-serif;
-    color:var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color:white;
 
     background:
-        radial-gradient(circle at 50% 0%,#183043 0%,transparent 28%),
-        radial-gradient(circle at 15% 50%,rgba(0,123,255,.06),transparent 25%),
-        radial-gradient(circle at 85% 50%,rgba(255,190,40,.05),transparent 25%),
-        linear-gradient(#050a0f,#020507);
+
+        radial-gradient(
+            circle at 50% 0%,
+            #183043 0%,
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 10% 60%,
+            rgba(0,120,255,.05),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 90% 60%,
+            rgba(245,197,66,.04),
+            transparent 25%
+        ),
+
+        linear-gradient(
+            #050a0f,
+            #020507
+        );
+
 }
 
 button,
@@ -56,9 +93,16 @@ input{
 }
 
 .app{
+
     width:min(1280px,95%);
+
     margin:auto;
-    padding:18px 0 70px;
+
+    padding:
+        18px
+        0
+        70px;
+
 }
 
 
@@ -67,13 +111,22 @@ input{
 ========================================================= */
 
 .tabs{
+
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
 
     max-width:1000px;
-    margin:0 auto 30px;
 
-    border:1px solid #455661;
+    margin:
+        0
+        auto
+        30px;
+
+    border:
+        1px solid #455661;
+
     border-radius:12px;
 
     overflow:hidden;
@@ -82,15 +135,20 @@ input{
 
     box-shadow:
         0 15px 45px rgba(0,0,0,.35);
+
 }
 
 .tab{
+
     min-height:68px;
 
     border:0;
-    border-right:1px solid #455661;
+
+    border-right:
+        1px solid #455661;
 
     background:#07111a;
+
     color:white;
 
     font-size:15px;
@@ -99,6 +157,7 @@ input{
     cursor:pointer;
 
     transition:.2s;
+
 }
 
 .tab:last-child{
@@ -110,22 +169,25 @@ input{
 }
 
 .tab.active{
+
     color:#070707;
 
     background:
+
         linear-gradient(
             135deg,
             #ffe97e,
             #d9a51e
         );
 
-    box-shadow:
-        inset 0 0 20px rgba(255,255,255,.25);
 }
 
 .tab-icon{
+
     font-size:21px;
+
     margin-right:7px;
+
 }
 
 
@@ -138,11 +200,18 @@ input{
 }
 
 .page.active{
+
     display:block;
-    animation:pageIn .25s ease;
+
+    animation:
+        pageIn
+        .25s
+        ease;
+
 }
 
 @keyframes pageIn{
+
     from{
         opacity:0;
         transform:translateY(5px);
@@ -152,52 +221,82 @@ input{
         opacity:1;
         transform:translateY(0);
     }
+
 }
 
 .title{
+
     font-size:40px;
+
     font-weight:1000;
+
     letter-spacing:-1px;
+
     margin-bottom:5px;
+
 }
 
 .subtitle{
+
     color:var(--muted);
 
     font-size:13px;
+
     letter-spacing:3px;
 
     margin-bottom:22px;
+
 }
 
 
 /* =========================================================
-   TIRAGE D'ÉQUIPE
+   TIRAGE
 ========================================================= */
 
 .draw-panel{
+
     padding:28px;
 
-    border:1px solid var(--border);
+    border:
+        1px solid var(--border);
+
     border-radius:15px;
 
     background:
-        radial-gradient(circle at 75% 35%,rgba(13,117,189,.13),transparent 30%),
-        linear-gradient(145deg,#0a1822,#040a0f);
+
+        radial-gradient(
+            circle at 75% 35%,
+            rgba(13,117,189,.13),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            145deg,
+            #0a1822,
+            #040a0f
+        );
 
     box-shadow:
         0 25px 60px rgba(0,0,0,.25);
+
 }
 
 .draw-grid{
+
     display:grid;
-    grid-template-columns:1fr 1.15fr;
+
+    grid-template-columns:
+        1fr
+        1.15fr;
 
     gap:30px;
+
     align-items:center;
+
 }
 
 .draw-button{
+
     width:min(390px,100%);
 
     margin-top:20px;
@@ -205,9 +304,11 @@ input{
     padding:20px;
 
     border:0;
+
     border-radius:12px;
 
     background:
+
         linear-gradient(
             135deg,
             #ffe779,
@@ -217,14 +318,13 @@ input{
     color:#070707;
 
     font-size:19px;
+
     font-weight:1000;
 
     cursor:pointer;
 
-    box-shadow:
-        0 10px 30px rgba(240,180,20,.15);
-
     transition:.15s;
+
 }
 
 .draw-button:hover{
@@ -236,59 +336,65 @@ input{
 }
 
 .draw-button:disabled{
-    opacity:.6;
+    opacity:.55;
 }
 
 
-/* GRAND ÉCRAN DU TIRAGE */
+/* =========================================================
+   ÉCRAN TIRAGE
+========================================================= */
 
 .team-screen{
+
     position:relative;
 
     min-height:270px;
 
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
+
     align-items:center;
 
     text-align:center;
 
-    border:1px solid #405565;
-    border-radius:15px;
-
     overflow:hidden;
 
-    background:
-        radial-gradient(circle,#163b54 0%,#081721 55%,#040a0f 100%);
+    border:
+        1px solid #405565;
 
-    box-shadow:
-        inset 0 0 60px rgba(0,0,0,.45);
-}
-
-.team-screen::before{
-    content:"";
-
-    position:absolute;
-    inset:0;
+    border-radius:15px;
 
     background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.03),
-            transparent
+
+        radial-gradient(
+            circle,
+            #163b54 0%,
+            #081721 55%,
+            #040a0f 100%
         );
 
-    pointer-events:none;
+    box-shadow:
+
+        inset
+        0
+        0
+        60px
+        rgba(0,0,0,.45);
+
 }
 
 .draw-logo-box{
-    width:125px;
-    height:125px;
+
+    width:130px;
+    height:130px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     margin-bottom:18px;
@@ -300,86 +406,130 @@ input{
 
     border:
         1px solid rgba(255,255,255,.12);
+
 }
 
 .draw-logo{
-    width:100px;
-    height:100px;
+
+    width:105px;
+    height:105px;
 
     object-fit:contain;
 
     filter:
-        drop-shadow(0 8px 15px rgba(0,0,0,.5));
+
+        drop-shadow(
+            0
+            8px
+            15px
+            rgba(0,0,0,.5)
+        );
+
 }
 
 .logo-fallback{
+
     display:none;
 
     width:95px;
     height:95px;
 
-    border:2px solid white;
+    border:
+        2px solid white;
+
     border-radius:50%;
 
     align-items:center;
+
     justify-content:center;
 
     font-size:23px;
+
     font-weight:1000;
+
 }
 
 .team-result{
-    padding:0 15px;
+
+    padding:
+        0
+        15px;
 
     font-size:30px;
+
     font-weight:1000;
 
     text-transform:uppercase;
+
 }
 
 .team-screen.rolling .draw-logo{
-    animation:logoSpin .12s linear infinite;
+
+    animation:
+        logoAnimation
+        .10s
+        linear
+        infinite
+        alternate;
+
 }
 
-@keyframes logoSpin{
-    0%{
-        transform:scale(.85) rotate(-4deg);
-        opacity:.6;
+@keyframes logoAnimation{
+
+    from{
+
+        transform:
+            scale(.82)
+            rotate(-3deg);
+
+        opacity:.55;
+
     }
 
-    50%{
-        transform:scale(1) rotate(4deg);
+    to{
+
+        transform:
+            scale(1)
+            rotate(3deg);
+
         opacity:1;
+
     }
 
-    100%{
-        transform:scale(.85) rotate(-4deg);
-        opacity:.6;
-    }
 }
 
 .team-screen.winner{
-    animation:winner .45s ease;
+
+    animation:
+        winner
+        .45s
+        ease;
+
 }
 
 @keyframes winner{
+
     0%{
         transform:scale(.94);
     }
 
     55%{
-        transform:scale(1.025);
+        transform:scale(1.03);
     }
 
     100%{
         transform:scale(1);
     }
+
 }
 
 
-/* LISTE DES 10 CLUBS */
+/* =========================================================
+   LISTE ÉQUIPES
+========================================================= */
 
 .team-list{
+
     display:grid;
 
     grid-template-columns:
@@ -388,38 +538,55 @@ input{
     gap:10px;
 
     margin-top:25px;
+
 }
 
 .team-chip{
+
     min-height:82px;
 
     display:flex;
+
     align-items:center;
 
     gap:10px;
 
     padding:10px;
 
-    border:1px solid #293b47;
+    border:
+        1px solid #293b47;
+
     border-radius:10px;
 
     background:
-        linear-gradient(145deg,#0b1822,#071018);
+
+        linear-gradient(
+            145deg,
+            #0b1822,
+            #071018
+        );
 
     color:#e1e7eb;
 
     font-size:12px;
+
     font-weight:800;
 
     transition:.2s;
+
 }
 
 .team-chip:hover{
+
+    transform:
+        translateY(-2px);
+
     border-color:#627481;
-    transform:translateY(-2px);
+
 }
 
 .club-logo{
+
     width:45px;
     height:45px;
 
@@ -428,7 +595,14 @@ input{
     flex-shrink:0;
 
     filter:
-        drop-shadow(0 4px 7px rgba(0,0,0,.45));
+
+        drop-shadow(
+            0
+            4px
+            7px
+            rgba(0,0,0,.45)
+        );
+
 }
 
 
@@ -437,15 +611,18 @@ input{
 ========================================================= */
 
 .groups{
+
     display:grid;
 
     grid-template-columns:
         repeat(4,1fr);
 
     gap:12px;
+
 }
 
 .group{
+
     --group:var(--blue);
 
     overflow:hidden;
@@ -457,6 +634,7 @@ input{
 
     background:
         rgba(4,11,16,.97);
+
 }
 
 .group-a{
@@ -476,74 +654,112 @@ input{
 }
 
 .group-title{
-    padding:14px 15px;
+
+    padding:
+        14px
+        15px;
 
     font-size:22px;
+
     font-weight:1000;
 
     background:
+
         color-mix(
             in srgb,
             var(--group) 70%,
             #111
         );
+
 }
 
 .players{
-    padding:7px 13px 10px;
+
+    padding:
+        7px
+        13px
+        10px;
 
     border-bottom:
         1px solid #283640;
+
 }
 
 .players-label{
-    margin:5px 0;
+
+    margin:
+        5px
+        0;
 
     font-size:11px;
+
     font-weight:1000;
+
 }
 
 .player{
+
     display:flex;
+
     align-items:center;
 
-    padding:7px 0;
+    padding:
+        7px
+        0;
 
     border-bottom:
         1px solid rgba(255,255,255,.06);
+
 }
 
 .number{
+
     width:28px;
     height:28px;
 
     display:grid;
+
     place-items:center;
 
     margin-right:9px;
 
     border-radius:4px;
 
-    background:var(--group);
+    background:
+        var(--group);
 
     font-weight:1000;
+
 }
 
 .match-section-title{
-    padding:11px 12px 5px;
+
+    padding:
+        11px
+        12px
+        5px;
 
     font-size:12px;
+
     font-weight:1000;
+
 }
 
 .matches{
-    padding:0 9px 9px;
+
+    padding:
+        0
+        9px
+        9px;
+
 }
 
 .match{
+
     display:grid;
 
     grid-template-columns:
+
         minmax(0,1fr)
         38px
         10px
@@ -557,9 +773,12 @@ input{
     min-height:43px;
 
     border-bottom:
-        1px solid rgba(255,255,255,.08);
+
+        1px solid
+        rgba(255,255,255,.08);
 
     font-size:12px;
+
 }
 
 .away{
@@ -567,10 +786,13 @@ input{
 }
 
 .score{
+
     width:38px;
     height:34px;
 
-    border:1px solid #71808b;
+    border:
+        1px solid #71808b;
+
     border-radius:5px;
 
     outline:none;
@@ -582,17 +804,28 @@ input{
     text-align:center;
 
     font-size:17px;
+
     font-weight:bold;
+
 }
 
 .score:focus{
     border-color:var(--group);
 }
 
+
+/* =========================================================
+   CLASSEMENT
+========================================================= */
+
 .standings-title{
-    padding:10px 12px;
+
+    padding:
+        10px
+        12px;
 
     background:
+
         color-mix(
             in srgb,
             var(--group) 53%,
@@ -600,31 +833,44 @@ input{
         );
 
     font-weight:1000;
+
 }
 
 .standings{
+
     width:100%;
 
     border-collapse:collapse;
 
     font-size:11px;
+
 }
 
 .standings th{
-    padding:8px 2px;
+
+    padding:
+        8px
+        2px;
 
     color:#b9c2c9;
 
     font-size:9px;
+
 }
 
 .standings td{
-    padding:8px 2px;
+
+    padding:
+        8px
+        2px;
 
     text-align:center;
 
     border-top:
-        1px solid rgba(255,255,255,.07);
+
+        1px solid
+        rgba(255,255,255,.07);
+
 }
 
 .standings td:nth-child(2){
@@ -632,10 +878,12 @@ input{
 }
 
 .rank{
+
     width:23px;
     height:23px;
 
     display:inline-grid;
+
     place-items:center;
 
     border-radius:4px;
@@ -643,6 +891,7 @@ input{
     background:#27333c;
 
     font-weight:1000;
+
 }
 
 .rank.qual{
@@ -655,45 +904,67 @@ input{
 ========================================================= */
 
 .final-panel{
+
     padding:25px;
 
-    border:1px solid var(--border);
+    border:
+        1px solid var(--border);
+
     border-radius:14px;
 
     background:
-        radial-gradient(circle at 85% 45%,rgba(226,167,29,.10),transparent 25%),
-        linear-gradient(135deg,#08131c,#03080c);
+
+        radial-gradient(
+            circle at 85% 45%,
+            rgba(226,167,29,.10),
+            transparent 25%
+        ),
+
+        linear-gradient(
+            135deg,
+            #08131c,
+            #03080c
+        );
+
 }
 
 .round-title{
+
     text-align:center;
 
     font-size:26px;
+
     font-weight:1000;
 
     margin-bottom:5px;
+
 }
 
 .round-subtitle{
+
     text-align:center;
 
     color:#aeb8c1;
 
     font-size:12px;
 
-    margin-bottom:23px;
+    margin-bottom:24px;
+
 }
 
 .knockout-grid{
+
     display:grid;
 
     grid-template-columns:
         repeat(4,1fr);
 
     gap:14px;
+
 }
 
 .semi-grid{
+
     display:grid;
 
     grid-template-columns:
@@ -701,169 +972,297 @@ input{
 
     gap:18px;
 
-    max-width:850px;
+    max-width:900px;
 
     margin:auto;
+
 }
 
-.bracket-match{
-    --match:var(--gold);
+.ko-card{
 
-    padding:15px;
+    --ko:var(--gold);
 
-    border:1px solid var(--match);
-    border-left:7px solid var(--match);
+    overflow:hidden;
 
-    border-radius:8px;
+    border:
+        1px solid var(--ko);
 
-    background:#08131c;
+    border-radius:9px;
+
+    background:#07121a;
+
+    box-shadow:
+
+        0
+        12px
+        30px
+        rgba(0,0,0,.18);
+
 }
 
-.blue{
-    --match:var(--blue);
+.ko-blue{
+    --ko:var(--blue);
 }
 
-.red{
-    --match:var(--red);
+.ko-red{
+    --ko:var(--red);
 }
 
-.green{
-    --match:var(--green);
+.ko-green{
+    --ko:var(--green);
 }
 
-.gold{
-    --match:var(--yellow);
+.ko-gold{
+    --ko:var(--yellow);
 }
 
-.bracket-title{
-    font-size:17px;
+.ko-bronze{
+    --ko:#cd7f32;
+}
+
+.ko-header{
+
+    padding:
+        13px
+        14px;
+
+    background:
+
+        color-mix(
+            in srgb,
+            var(--ko) 65%,
+            #111
+        );
+
     font-weight:1000;
 
-    margin-bottom:13px;
 }
 
-.player-input{
+.leg{
+
+    padding:14px;
+
+}
+
+.leg + .leg{
+
+    border-top:
+
+        1px solid
+        rgba(255,255,255,.11);
+
+}
+
+.leg-title{
+
+    margin-bottom:8px;
+
+    color:#bfc9d0;
+
+    font-size:11px;
+
+    font-weight:1000;
+
+    letter-spacing:1px;
+
+}
+
+
+/* =========================================================
+   LIGNE JOUEUR + SCORE
+========================================================= */
+
+.ko-player{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1fr)
+        58px;
+
+    gap:9px;
+
+    align-items:center;
+
+    margin-top:7px;
+
+}
+
+.ko-name{
+
     width:100%;
-    height:40px;
 
-    padding:0 10px;
+    height:41px;
 
-    border:1px solid #566775;
+    padding:
+        0
+        10px;
+
+    border:
+        1px solid #4c606e;
+
     border-radius:5px;
 
     outline:none;
 
-    background:#0b1720;
+    background:#0b1821;
 
     color:white;
 
-    font-size:15px;
+    font-size:14px;
+
 }
 
-.player-input:focus{
-    border-color:var(--gold);
+.ko-name:focus{
+    border-color:var(--ko);
 }
 
-.game-label{
-    margin-top:17px;
+.ko-name.mirror{
 
-    text-align:center;
+    color:#dce4e9;
 
-    color:#cbd2d7;
+    background:#08131b;
 
-    font-size:11px;
-    font-weight:1000;
-
-    letter-spacing:1px;
 }
 
-.final-game{
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.ko-score{
 
-    gap:10px;
+    width:58px;
+    height:41px;
 
-    margin-top:8px;
-}
+    border:
+        2px solid #738592;
 
-.final-score{
-    width:65px;
-    height:44px;
-
-    border:1px solid #71808b;
     border-radius:6px;
 
     outline:none;
 
-    background:#061019;
+    background:#030a0f;
 
     color:white;
 
     text-align:center;
 
     font-size:21px;
+
     font-weight:1000;
+
 }
 
-.final-score:focus{
+.ko-score:focus{
+
     border-color:var(--gold);
+
+    box-shadow:
+
+        0
+        0
+        0
+        2px
+        rgba(245,197,66,.12);
+
 }
 
 .aggregate{
-    margin-top:15px;
-    padding-top:12px;
+
+    padding:13px;
 
     border-top:
-        1px solid rgba(255,255,255,.12);
+
+        1px solid
+        rgba(255,255,255,.12);
 
     text-align:center;
 
     color:var(--gold);
 
     font-size:15px;
+
     font-weight:1000;
+
+    background:
+        rgba(0,0,0,.16);
+
 }
+
+
+/* =========================================================
+   SECTIONS FINALES
+========================================================= */
 
 .section-gap{
     margin-top:50px;
 }
 
 .final-wrapper{
-    max-width:550px;
 
-    margin:50px auto 0;
+    max-width:540px;
+
+    margin:
+        50px
+        auto
+        0;
+
+}
+
+.small-final-wrapper{
+
+    max-width:540px;
+
+    margin:
+        65px
+        auto
+        15px;
+
+    padding-top:40px;
+
+    border-top:
+
+        1px solid
+        rgba(255,255,255,.10);
+
 }
 
 .trophy{
+
     text-align:center;
 
     font-size:70px;
 
-    margin-bottom:7px;
+    margin-bottom:8px;
+
 }
 
-.final-box{
-    padding:20px;
+.bronze-trophy{
 
-    border:1px solid #586874;
-    border-radius:10px;
+    text-align:center;
 
-    background:
-        rgba(8,20,29,.93);
+    font-size:60px;
+
+    margin-bottom:8px;
+
 }
 
 .champion{
-    min-height:28px;
 
-    margin-top:18px;
+    min-height:30px;
+
+    padding:15px;
 
     text-align:center;
 
     color:var(--gold);
 
     font-size:19px;
+
     font-weight:1000;
+
+}
+
+.third-place{
+
+    color:#e09a54;
+
 }
 
 
@@ -873,12 +1272,12 @@ input{
 
 @media(max-width:1000px){
 
-    .groups{
-        grid-template-columns:1fr 1fr;
-    }
-
+    .groups,
     .knockout-grid{
-        grid-template-columns:1fr 1fr;
+
+        grid-template-columns:
+            1fr 1fr;
+
     }
 
     .draw-grid{
@@ -886,17 +1285,23 @@ input{
     }
 
     .team-list{
+
         grid-template-columns:
             repeat(2,1fr);
+
     }
+
 }
 
 
 @media(max-width:650px){
 
     .app{
+
         width:94%;
+
         padding-top:12px;
+
     }
 
     .tabs{
@@ -904,19 +1309,28 @@ input{
     }
 
     .tab{
+
         min-height:61px;
 
-        padding:7px 3px;
+        padding:
+            7px
+            3px;
 
         font-size:10px;
+
     }
 
     .tab-icon{
+
         display:block;
 
-        margin:0 0 4px;
+        margin:
+            0
+            0
+            4px;
 
         font-size:19px;
+
     }
 
     .title{
@@ -924,13 +1338,18 @@ input{
     }
 
     .subtitle{
+
         font-size:10px;
+
         letter-spacing:2px;
+
     }
 
     .draw-panel,
     .final-panel{
-        padding:15px;
+
+        padding:14px;
+
     }
 
     .team-result{
@@ -940,82 +1359,112 @@ input{
     .groups,
     .knockout-grid,
     .semi-grid{
+
         grid-template-columns:1fr;
+
     }
 
     .team-list{
-        grid-template-columns:1fr 1fr;
+
+        grid-template-columns:
+            1fr 1fr;
+
     }
 
     .team-chip{
+
         flex-direction:column;
+
+        justify-content:center;
 
         text-align:center;
 
         min-height:105px;
 
-        justify-content:center;
     }
 
     .club-logo{
+
         width:48px;
         height:48px;
+
     }
+
 }
 
 </style>
+
 </head>
 
 
 <body>
 
+
 <div class="app">
 
 
-<!-- =====================================================
+<!-- =========================================================
      NAVIGATION
-===================================================== -->
+========================================================= -->
 
 <nav class="tabs">
 
-    <button
-        class="tab active"
-        data-page="tirage"
-    >
-        <span class="tab-icon">🎲</span>
-        TIRAGE D'ÉQUIPE
-    </button>
+
+<button
+    class="tab active"
+    data-page="tirage"
+>
+
+    <span class="tab-icon">
+        🎲
+    </span>
+
+    TIRAGE D'ÉQUIPE
+
+</button>
 
 
-    <button
-        class="tab"
-        data-page="poules"
-    >
-        <span class="tab-icon">👥</span>
-        PHASE DE POULES
-    </button>
+<button
+    class="tab"
+    data-page="poules"
+>
+
+    <span class="tab-icon">
+        👥
+    </span>
+
+    PHASE DE POULES
+
+</button>
 
 
-    <button
-        class="tab"
-        data-page="finale"
-    >
-        <span class="tab-icon">🏆</span>
-        PHASE FINALE
-    </button>
+<button
+    class="tab"
+    data-page="finale"
+>
+
+    <span class="tab-icon">
+        🏆
+    </span>
+
+    PHASE FINALE
+
+</button>
+
 
 </nav>
 
 
 
-<!-- =====================================================
-     TIRAGE D'ÉQUIPE
-===================================================== -->
+<!-- =========================================================
+     TIRAGE
+========================================================= -->
 
 <section
     id="tirage"
     class="page active"
 >
+
 
 <div class="draw-panel">
 
@@ -1025,20 +1474,30 @@ input{
 
 <div>
 
-    <h1 class="title">
-        TIRAGE D'ÉQUIPE
-    </h1>
 
-    <div class="subtitle">
-        10 ÉQUIPES DISPONIBLES
-    </div>
+<h1 class="title">
 
-    <button
-        id="drawBtn"
-        class="draw-button"
-    >
-        🎲 &nbsp; TIRER UNE ÉQUIPE
-    </button>
+    TIRAGE D'ÉQUIPE
+
+</h1>
+
+
+<div class="subtitle">
+
+    10 ÉQUIPES DISPONIBLES
+
+</div>
+
+
+<button
+    id="drawBtn"
+    class="draw-button"
+>
+
+    🎲 &nbsp; TIRER UNE ÉQUIPE
+
+</button>
+
 
 </div>
 
@@ -1049,29 +1508,23 @@ input{
     class="team-screen"
 >
 
-    <div class="draw-logo-box">
 
-        <img
-            id="drawLogo"
-            class="draw-logo"
-            alt=""
-        >
+<div class="draw-logo-box">
 
-        <div
-            id="drawFallback"
-            class="logo-fallback"
-        >
-            FC
-        </div>
 
-    </div>
+<img
+    id="drawLogo"
+    class="draw-logo"
+    alt=""
+>
 
-    <div
-        id="teamResult"
-        class="team-result"
-    >
-        PRÊT ?
-    </div>
+
+<div
+    id="drawFallback"
+    class="logo-fallback"
+>
+
+    FC
 
 </div>
 
@@ -1079,7 +1532,21 @@ input{
 </div>
 
 
-<!-- LISTE DES ÉQUIPES -->
+<div
+    id="teamResult"
+    class="team-result"
+>
+
+    PRÊT ?
+
+</div>
+
+
+</div>
+
+
+</div>
+
 
 <div
     id="teamList"
@@ -1089,159 +1556,235 @@ input{
 
 </div>
 
+
 </section>
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      PHASE DE POULES
-===================================================== -->
+========================================================= -->
 
 <section
     id="poules"
     class="page"
 >
 
+
 <h1 class="title">
+
     PHASE DE POULES
+
 </h1>
 
+
 <div class="subtitle">
+
     4 POULES DE 3 JOUEURS • MATCHS ALLER / RETOUR
+
 </div>
+
 
 <div
     id="groups"
     class="groups"
 ></div>
 
+
 </section>
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      PHASE FINALE
-===================================================== -->
+========================================================= -->
 
 <section
     id="finale"
     class="page"
 >
 
+
 <h1 class="title">
+
     PHASE FINALE
+
 </h1>
 
+
 <div class="subtitle">
-    QUARTS • DEMI-FINALES • FINALE • MATCHS ALLER / RETOUR
+
+    QUARTS • DEMI-FINALES • FINALE • PETITE FINALE
+
 </div>
+
 
 
 <div class="final-panel">
 
 
-<!-- =====================================================
+
+<!-- =========================================================
      QUARTS
-===================================================== -->
+========================================================= -->
+
 
 <div class="round-title">
+
     QUARTS DE FINALE
+
 </div>
 
+
 <div class="round-subtitle">
-    A1 - A2 &nbsp;•&nbsp;
-    B1 - B2 &nbsp;•&nbsp;
-    C1 - C2 &nbsp;•&nbsp;
+
+    A1 - A2
+    &nbsp;•&nbsp;
+    B1 - B2
+    &nbsp;•&nbsp;
+    C1 - C2
+    &nbsp;•&nbsp;
     D1 - D2
+
 </div>
+
 
 
 <div class="knockout-grid">
 
 
+
 <!-- QUART A -->
 
-<div class="bracket-match blue">
-
-    <div class="bracket-title">
-        QUART A
-    </div>
-
-    <input
-        id="qa-p1"
-        class="player-input save"
-        placeholder="A1 - Joueur"
-    >
-
-    <div style="height:7px"></div>
-
-    <input
-        id="qa-p2"
-        class="player-input save"
-        placeholder="A2 - Joueur"
-    >
+<div class="ko-card ko-blue">
 
 
-    <div class="game-label">
-        MATCH ALLER
-    </div>
+<div class="ko-header">
 
-    <div class="final-game">
+    QUART A — A1 / A2
 
-        <input
-            id="qa-a1"
-            class="final-score save"
-            type="number"
-            min="0"
-            inputmode="numeric"
-        >
-
-        <span>-</span>
-
-        <input
-            id="qa-a2"
-            class="final-score save"
-            type="number"
-            min="0"
-            inputmode="numeric"
-        >
-
-    </div>
+</div>
 
 
-    <div class="game-label">
-        MATCH RETOUR
-    </div>
 
-    <div class="final-game">
-
-        <input
-            id="qa-r2"
-            class="final-score save"
-            type="number"
-            min="0"
-            inputmode="numeric"
-        >
-
-        <span>-</span>
-
-        <input
-            id="qa-r1"
-            class="final-score save"
-            type="number"
-            min="0"
-            inputmode="numeric"
-        >
-
-    </div>
+<div class="leg">
 
 
-    <div
-        id="qa-total"
-        class="aggregate"
-    >
-        Cumul : 0 - 0
-    </div>
+<div class="leg-title">
+
+    MATCH ALLER
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    id="qa-p1"
+    class="ko-name"
+    placeholder="A1 - Joueur"
+>
+
+<input
+    id="qa-a1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    id="qa-p2"
+    class="ko-name"
+    placeholder="A2 - Joueur"
+>
+
+<input
+    id="qa-a2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+</div>
+
+
+
+<div class="leg">
+
+
+<div class="leg-title">
+
+    MATCH RETOUR
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    class="ko-name mirror"
+    data-source="qa-p2"
+    placeholder="A2 - Joueur"
+    readonly
+>
+
+<input
+    id="qa-r2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    class="ko-name mirror"
+    data-source="qa-p1"
+    placeholder="A1 - Joueur"
+    readonly
+>
+
+<input
+    id="qa-r1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+</div>
+
+
+<div
+    id="qa-total"
+    class="aggregate"
+>
+
+    CUMUL : 0 - 0
+
+</div>
+
 
 </div>
 
@@ -1249,83 +1792,134 @@ input{
 
 <!-- QUART B -->
 
-<div class="bracket-match red">
-
-    <div class="bracket-title">
-        QUART B
-    </div>
-
-    <input
-        id="qb-p1"
-        class="player-input save"
-        placeholder="B1 - Joueur"
-    >
-
-    <div style="height:7px"></div>
-
-    <input
-        id="qb-p2"
-        class="player-input save"
-        placeholder="B2 - Joueur"
-    >
+<div class="ko-card ko-red">
 
 
-    <div class="game-label">
-        MATCH ALLER
-    </div>
+<div class="ko-header">
 
-    <div class="final-game">
+    QUART B — B1 / B2
 
-        <input
-            id="qb-a1"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-        <span>-</span>
-
-        <input
-            id="qb-a2"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-    </div>
+</div>
 
 
-    <div class="game-label">
-        MATCH RETOUR
-    </div>
-
-    <div class="final-game">
-
-        <input
-            id="qb-r2"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-        <span>-</span>
-
-        <input
-            id="qb-r1"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-    </div>
+<div class="leg">
 
 
-    <div
-        id="qb-total"
-        class="aggregate"
-    >
-        Cumul : 0 - 0
-    </div>
+<div class="leg-title">
+
+    MATCH ALLER
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    id="qb-p1"
+    class="ko-name"
+    placeholder="B1 - Joueur"
+>
+
+<input
+    id="qb-a1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    id="qb-p2"
+    class="ko-name"
+    placeholder="B2 - Joueur"
+>
+
+<input
+    id="qb-a2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+</div>
+
+
+
+<div class="leg">
+
+
+<div class="leg-title">
+
+    MATCH RETOUR
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    class="ko-name mirror"
+    data-source="qb-p2"
+    placeholder="B2 - Joueur"
+    readonly
+>
+
+<input
+    id="qb-r2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    class="ko-name mirror"
+    data-source="qb-p1"
+    placeholder="B1 - Joueur"
+    readonly
+>
+
+<input
+    id="qb-r1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+</div>
+
+
+<div
+    id="qb-total"
+    class="aggregate"
+>
+
+    CUMUL : 0 - 0
+
+</div>
+
 
 </div>
 
@@ -1333,83 +1927,134 @@ input{
 
 <!-- QUART C -->
 
-<div class="bracket-match green">
-
-    <div class="bracket-title">
-        QUART C
-    </div>
-
-    <input
-        id="qc-p1"
-        class="player-input save"
-        placeholder="C1 - Joueur"
-    >
-
-    <div style="height:7px"></div>
-
-    <input
-        id="qc-p2"
-        class="player-input save"
-        placeholder="C2 - Joueur"
-    >
+<div class="ko-card ko-green">
 
 
-    <div class="game-label">
-        MATCH ALLER
-    </div>
+<div class="ko-header">
 
-    <div class="final-game">
+    QUART C — C1 / C2
 
-        <input
-            id="qc-a1"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-        <span>-</span>
-
-        <input
-            id="qc-a2"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-    </div>
+</div>
 
 
-    <div class="game-label">
-        MATCH RETOUR
-    </div>
-
-    <div class="final-game">
-
-        <input
-            id="qc-r2"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-        <span>-</span>
-
-        <input
-            id="qc-r1"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-    </div>
+<div class="leg">
 
 
-    <div
-        id="qc-total"
-        class="aggregate"
-    >
-        Cumul : 0 - 0
-    </div>
+<div class="leg-title">
+
+    MATCH ALLER
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    id="qc-p1"
+    class="ko-name"
+    placeholder="C1 - Joueur"
+>
+
+<input
+    id="qc-a1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    id="qc-p2"
+    class="ko-name"
+    placeholder="C2 - Joueur"
+>
+
+<input
+    id="qc-a2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+</div>
+
+
+
+<div class="leg">
+
+
+<div class="leg-title">
+
+    MATCH RETOUR
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    class="ko-name mirror"
+    data-source="qc-p2"
+    placeholder="C2 - Joueur"
+    readonly
+>
+
+<input
+    id="qc-r2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    class="ko-name mirror"
+    data-source="qc-p1"
+    placeholder="C1 - Joueur"
+    readonly
+>
+
+<input
+    id="qc-r1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+</div>
+
+
+<div
+    id="qc-total"
+    class="aggregate"
+>
+
+    CUMUL : 0 - 0
+
+</div>
+
 
 </div>
 
@@ -1417,83 +2062,62 @@ input{
 
 <!-- QUART D -->
 
-<div class="bracket-match gold">
-
-    <div class="bracket-title">
-        QUART D
-    </div>
-
-    <input
-        id="qd-p1"
-        class="player-input save"
-        placeholder="D1 - Joueur"
-    >
-
-    <div style="height:7px"></div>
-
-    <input
-        id="qd-p2"
-        class="player-input save"
-        placeholder="D2 - Joueur"
-    >
+<div class="ko-card ko-gold">
 
 
-    <div class="game-label">
-        MATCH ALLER
-    </div>
+<div class="ko-header">
 
-    <div class="final-game">
+    QUART D — D1 / D2
 
-        <input
-            id="qd-a1"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-        <span>-</span>
-
-        <input
-            id="qd-a2"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-    </div>
+</div>
 
 
-    <div class="game-label">
-        MATCH RETOUR
-    </div>
-
-    <div class="final-game">
-
-        <input
-            id="qd-r2"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-        <span>-</span>
-
-        <input
-            id="qd-r1"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-    </div>
+<div class="leg">
 
 
-    <div
-        id="qd-total"
-        class="aggregate"
-    >
-        Cumul : 0 - 0
-    </div>
+<div class="leg-title">
+
+    MATCH ALLER
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    id="qd-p1"
+    class="ko-name"
+    placeholder="D1 - Joueur"
+>
+
+<input
+    id="qd-a1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    id="qd-p2"
+    class="ko-name"
+    placeholder="D2 - Joueur"
+>
+
+<input
+    id="qd-a2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
 
 </div>
 
@@ -1502,303 +2126,755 @@ input{
 
 
 
-<!-- =====================================================
+<div class="leg">
+
+
+<div class="leg-title">
+
+    MATCH RETOUR
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    class="ko-name mirror"
+    data-source="qd-p2"
+    placeholder="D2 - Joueur"
+    readonly
+>
+
+<input
+    id="qd-r2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    class="ko-name mirror"
+    data-source="qd-p1"
+    placeholder="D1 - Joueur"
+    readonly
+>
+
+<input
+    id="qd-r1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+</div>
+
+
+<div
+    id="qd-total"
+    class="aggregate"
+>
+
+    CUMUL : 0 - 0
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
      DEMI-FINALES
-===================================================== -->
+========================================================= -->
+
 
 <div class="section-gap">
 
+
 <div class="round-title">
+
     DEMI-FINALES
+
 </div>
 
+
 <div class="round-subtitle">
-    VAINQUEUR A vs VAINQUEUR C &nbsp;•&nbsp;
-    VAINQUEUR B vs VAINQUEUR D
+
+    VAINQUEUR A - VAINQUEUR C
+    &nbsp;•&nbsp;
+    VAINQUEUR B - VAINQUEUR D
+
 </div>
+
 
 
 <div class="semi-grid">
 
 
-<!-- DEMI A / C -->
 
-<div class="bracket-match blue">
+<!-- DEMI 1 -->
 
-    <div class="bracket-title">
-        DEMI-FINALE A / C
-    </div>
-
-    <input
-        id="sf1-p1"
-        class="player-input save"
-        placeholder="Vainqueur A"
-    >
-
-    <div style="height:7px"></div>
-
-    <input
-        id="sf1-p2"
-        class="player-input save"
-        placeholder="Vainqueur C"
-    >
+<div class="ko-card ko-blue">
 
 
-    <div class="game-label">
-        MATCH ALLER
-    </div>
+<div class="ko-header">
 
-    <div class="final-game">
-
-        <input
-            id="sf1-a1"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-        <span>-</span>
-
-        <input
-            id="sf1-a2"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-    </div>
-
-
-    <div class="game-label">
-        MATCH RETOUR
-    </div>
-
-    <div class="final-game">
-
-        <input
-            id="sf1-r2"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-        <span>-</span>
-
-        <input
-            id="sf1-r1"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-    </div>
-
-
-    <div
-        id="sf1-total"
-        class="aggregate"
-    >
-        Cumul : 0 - 0
-    </div>
+    DEMI-FINALE — A / C
 
 </div>
 
 
-
-<!-- DEMI B / D -->
-
-<div class="bracket-match gold">
-
-    <div class="bracket-title">
-        DEMI-FINALE B / D
-    </div>
-
-    <input
-        id="sf2-p1"
-        class="player-input save"
-        placeholder="Vainqueur B"
-    >
-
-    <div style="height:7px"></div>
-
-    <input
-        id="sf2-p2"
-        class="player-input save"
-        placeholder="Vainqueur D"
-    >
+<div class="leg">
 
 
-    <div class="game-label">
-        MATCH ALLER
-    </div>
+<div class="leg-title">
 
-    <div class="final-game">
+    MATCH ALLER
 
-        <input
-            id="sf2-a1"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-        <span>-</span>
-
-        <input
-            id="sf2-a2"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-    </div>
+</div>
 
 
-    <div class="game-label">
-        MATCH RETOUR
-    </div>
+<div class="ko-player">
 
-    <div class="final-game">
+<input
+    id="sf1-p1"
+    class="ko-name"
+    placeholder="Vainqueur A"
+>
 
-        <input
-            id="sf2-r2"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
+<input
+    id="sf1-a1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
 
-        <span>-</span>
-
-        <input
-            id="sf2-r1"
-            class="final-score save"
-            type="number"
-            min="0"
-        >
-
-    </div>
+</div>
 
 
-    <div
-        id="sf2-total"
-        class="aggregate"
-    >
-        Cumul : 0 - 0
-    </div>
+<div class="ko-player">
+
+<input
+    id="sf1-p2"
+    class="ko-name"
+    placeholder="Vainqueur C"
+>
+
+<input
+    id="sf1-a2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
 
 </div>
 
 
 </div>
 
+
+
+<div class="leg">
+
+
+<div class="leg-title">
+
+    MATCH RETOUR
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    class="ko-name mirror"
+    data-source="sf1-p2"
+    placeholder="Vainqueur C"
+    readonly
+>
+
+<input
+    id="sf1-r2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    class="ko-name mirror"
+    data-source="sf1-p1"
+    placeholder="Vainqueur A"
+    readonly
+>
+
+<input
+    id="sf1-r1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+</div>
+
+
+<div
+    id="sf1-total"
+    class="aggregate"
+>
+
+    CUMUL : 0 - 0
+
+</div>
+
+
 </div>
 
 
 
-<!-- =====================================================
-     FINALE
-===================================================== -->
+<!-- DEMI 2 -->
+
+<div class="ko-card ko-gold">
+
+
+<div class="ko-header">
+
+    DEMI-FINALE — B / D
+
+</div>
+
+
+<div class="leg">
+
+
+<div class="leg-title">
+
+    MATCH ALLER
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    id="sf2-p1"
+    class="ko-name"
+    placeholder="Vainqueur B"
+>
+
+<input
+    id="sf2-a1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    id="sf2-p2"
+    class="ko-name"
+    placeholder="Vainqueur D"
+>
+
+<input
+    id="sf2-a2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+</div>
+
+
+
+<div class="leg">
+
+
+<div class="leg-title">
+
+    MATCH RETOUR
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    class="ko-name mirror"
+    data-source="sf2-p2"
+    placeholder="Vainqueur D"
+    readonly
+>
+
+<input
+    id="sf2-r2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    class="ko-name mirror"
+    data-source="sf2-p1"
+    placeholder="Vainqueur B"
+    readonly
+>
+
+<input
+    id="sf2-r1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+</div>
+
+
+<div
+    id="sf2-total"
+    class="aggregate"
+>
+
+    CUMUL : 0 - 0
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     GRANDE FINALE
+========================================================= -->
+
 
 <div class="final-wrapper">
 
-    <div class="trophy">
-        🏆
-    </div>
 
-    <div class="round-title">
-        FINALE
-    </div>
+<div class="trophy">
 
-    <div class="round-subtitle">
-        MATCH ALLER / RETOUR
-    </div>
+    🏆
+
+</div>
 
 
-    <div class="final-box">
+<div class="round-title">
 
-        <input
-            id="final-p1"
-            class="player-input save"
-            placeholder="Finaliste 1"
-        >
+    FINALE
 
-        <div style="height:7px"></div>
-
-        <input
-            id="final-p2"
-            class="player-input save"
-            placeholder="Finaliste 2"
-        >
+</div>
 
 
-        <div class="game-label">
-            MATCH ALLER
-        </div>
+<div class="round-subtitle">
 
-        <div class="final-game">
+    VAINQUEURS DES DEMI-FINALES
+    <br><br>
+    MATCH ALLER / RETOUR
 
-            <input
-                id="final-a1"
-                class="final-score save"
-                type="number"
-                min="0"
-            >
-
-            <span>-</span>
-
-            <input
-                id="final-a2"
-                class="final-score save"
-                type="number"
-                min="0"
-            >
-
-        </div>
+</div>
 
 
-        <div class="game-label">
-            MATCH RETOUR
-        </div>
 
-        <div class="final-game">
-
-            <input
-                id="final-r2"
-                class="final-score save"
-                type="number"
-                min="0"
-            >
-
-            <span>-</span>
-
-            <input
-                id="final-r1"
-                class="final-score save"
-                type="number"
-                min="0"
-            >
-
-        </div>
+<div class="ko-card ko-gold">
 
 
-        <div
-            id="final-total"
-            class="aggregate"
-        >
-            Cumul : 0 - 0
-        </div>
+<div class="ko-header">
+
+    🏆 GRANDE FINALE
+
+</div>
 
 
-        <div
-            id="champion"
-            class="champion"
-        ></div>
 
-    </div>
+<div class="leg">
+
+
+<div class="leg-title">
+
+    MATCH ALLER
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    id="final-p1"
+    class="ko-name"
+    placeholder="Finaliste 1"
+>
+
+<input
+    id="final-a1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    id="final-p2"
+    class="ko-name"
+    placeholder="Finaliste 2"
+>
+
+<input
+    id="final-a2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
 
 </div>
 
 
 </div>
+
+
+
+<div class="leg">
+
+
+<div class="leg-title">
+
+    MATCH RETOUR
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    class="ko-name mirror"
+    data-source="final-p2"
+    placeholder="Finaliste 2"
+    readonly
+>
+
+<input
+    id="final-r2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+<div class="ko-player">
+
+<input
+    class="ko-name mirror"
+    data-source="final-p1"
+    placeholder="Finaliste 1"
+    readonly
+>
+
+<input
+    id="final-r1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+</div>
+
+
+</div>
+
+
+
+<div
+    id="final-total"
+    class="aggregate"
+>
+
+    CUMUL : 0 - 0
+
+</div>
+
+
+<div
+    id="champion"
+    class="champion"
+></div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     FINALE DES PERDANTS
+========================================================= -->
+
+
+<div class="small-final-wrapper">
+
+
+<div class="bronze-trophy">
+
+    🥉
+
+</div>
+
+
+<div class="round-title">
+
+    FINALE DES PERDANTS
+
+</div>
+
+
+<div class="round-subtitle">
+
+    PERDANTS DES DEMI-FINALES
+    <br><br>
+    MATCH ALLER / RETOUR
+
+</div>
+
+
+
+<div class="ko-card ko-bronze">
+
+
+<div class="ko-header">
+
+    🥉 PETITE FINALE
+
+</div>
+
+
+
+<!-- ALLER -->
+
+<div class="leg">
+
+
+<div class="leg-title">
+
+    MATCH ALLER
+
+</div>
+
+
+<div class="ko-player">
+
+
+<input
+    id="third-p1"
+    class="ko-name"
+    placeholder="Perdant demi-finale A / C"
+>
+
+
+<input
+    id="third-a1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+
+</div>
+
+
+
+<div class="ko-player">
+
+
+<input
+    id="third-p2"
+    class="ko-name"
+    placeholder="Perdant demi-finale B / D"
+>
+
+
+<input
+    id="third-a2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- RETOUR -->
+
+<div class="leg">
+
+
+<div class="leg-title">
+
+    MATCH RETOUR
+
+</div>
+
+
+<div class="ko-player">
+
+
+<input
+    class="ko-name mirror"
+    data-source="third-p2"
+    placeholder="Perdant demi-finale B / D"
+    readonly
+>
+
+
+<input
+    id="third-r2"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+
+</div>
+
+
+
+<div class="ko-player">
+
+
+<input
+    class="ko-name mirror"
+    data-source="third-p1"
+    placeholder="Perdant demi-finale A / C"
+    readonly
+>
+
+
+<input
+    id="third-r1"
+    class="ko-score"
+    type="number"
+    min="0"
+    inputmode="numeric"
+    placeholder="0"
+>
+
+
+</div>
+
+
+</div>
+
+
+
+<div
+    id="third-total"
+    class="aggregate"
+>
+
+    CUMUL : 0 - 0
+
+</div>
+
+
+
+<div
+    id="third-winner"
+    class="champion third-place"
+></div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
 
 </section>
 
@@ -1826,26 +2902,42 @@ tabs.forEach(tab => {
         "click",
         () => {
 
-            tabs.forEach(t =>
-                t.classList.remove("active")
+            tabs.forEach(
+                t =>
+                    t.classList.remove(
+                        "active"
+                    )
             );
 
-            pages.forEach(p =>
-                p.classList.remove("active")
+            pages.forEach(
+                p =>
+                    p.classList.remove(
+                        "active"
+                    )
             );
 
-            tab.classList.add("active");
+
+            tab.classList.add(
+                "active"
+            );
+
 
             document
                 .getElementById(
                     tab.dataset.page
                 )
                 .classList
-                .add("active");
+                .add(
+                    "active"
+                );
+
 
             window.scrollTo({
+
                 top:0,
+
                 behavior:"smooth"
+
             });
 
         }
@@ -1856,75 +2948,148 @@ tabs.forEach(tab => {
 
 
 /* =========================================================
-   ÉQUIPES + LOGOS
+   ÉQUIPES
 ========================================================= */
-
-/*
-   Les logos sont récupérés automatiquement
-   depuis le domaine officiel de chaque club
-   via Logo.dev.
-*/
 
 const teams = [
 
     {
-        name:"Manchester City",
-        short:"MCI",
-        logo:"https://img.logo.dev/mancity.com?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+
+        name:
+            "Manchester City",
+
+        short:
+            "MCI",
+
+        logo:
+            "https://img.logo.dev/mancity.com"
+
     },
 
-    {
-        name:"Real Madrid",
-        short:"RMA",
-        logo:"https://img.logo.dev/realmadrid.com?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
-    },
 
     {
-        name:"Bayern Munich",
-        short:"FCB",
-        logo:"https://img.logo.dev/fcbayern.com?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+
+        name:
+            "Real Madrid",
+
+        short:
+            "RMA",
+
+        logo:
+            "https://img.logo.dev/realmadrid.com"
+
     },
 
-    {
-        name:"Bayer Leverkusen",
-        short:"B04",
-        logo:"https://img.logo.dev/bayer04.de?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
-    },
 
     {
-        name:"Paris Saint-Germain",
-        short:"PSG",
-        logo:"https://img.logo.dev/psg.fr?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+
+        name:
+            "Bayern Munich",
+
+        short:
+            "FCB",
+
+        logo:
+            "https://img.logo.dev/fcbayern.com"
+
     },
 
-    {
-        name:"Arsenal",
-        short:"ARS",
-        logo:"https://img.logo.dev/arsenal.com?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
-    },
 
     {
-        name:"FC Barcelone",
-        short:"BAR",
-        logo:"https://img.logo.dev/fcbarcelona.com?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+
+        name:
+            "Bayer Leverkusen",
+
+        short:
+            "B04",
+
+        logo:
+            "https://img.logo.dev/bayer04.de"
+
     },
 
-    {
-        name:"Atlético de Madrid",
-        short:"ATM",
-        logo:"https://img.logo.dev/atleticodemadrid.com?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
-    },
 
     {
-        name:"Liverpool",
-        short:"LFC",
-        logo:"https://img.logo.dev/liverpoolfc.com?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+
+        name:
+            "Paris Saint-Germain",
+
+        short:
+            "PSG",
+
+        logo:
+            "https://img.logo.dev/psg.fr"
+
     },
 
+
     {
-        name:"Borussia Dortmund",
-        short:"BVB",
-        logo:"https://img.logo.dev/bvb.de?token=pk_X-1ZO13GSgeOoUrIuJ6GMQ"
+
+        name:
+            "Arsenal",
+
+        short:
+            "ARS",
+
+        logo:
+            "https://img.logo.dev/arsenal.com"
+
+    },
+
+
+    {
+
+        name:
+            "FC Barcelone",
+
+        short:
+            "BAR",
+
+        logo:
+            "https://img.logo.dev/fcbarcelona.com"
+
+    },
+
+
+    {
+
+        name:
+            "Atlético de Madrid",
+
+        short:
+            "ATM",
+
+        logo:
+            "https://img.logo.dev/atleticodemadrid.com"
+
+    },
+
+
+    {
+
+        name:
+            "Liverpool",
+
+        short:
+            "LFC",
+
+        logo:
+            "https://img.logo.dev/liverpoolfc.com"
+
+    },
+
+
+    {
+
+        name:
+            "Borussia Dortmund",
+
+        short:
+            "BVB",
+
+        logo:
+            "https://img.logo.dev/bvb.de"
+
     }
 
 ];
@@ -1932,46 +3097,69 @@ const teams = [
 
 
 /* =========================================================
-   AFFICHAGE DES 10 ÉQUIPES
+   LISTE DES ÉQUIPES
 ========================================================= */
 
 const teamList =
-    document.getElementById("teamList");
+    document.getElementById(
+        "teamList"
+    );
 
 
 teams.forEach(team => {
 
+
     const card =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     card.className =
         "team-chip";
 
 
     const img =
-        document.createElement("img");
+        document.createElement(
+            "img"
+        );
+
 
     img.className =
         "club-logo";
 
+
     img.src =
         team.logo;
+
 
     img.alt =
         team.name;
 
 
     const name =
-        document.createElement("span");
+        document.createElement(
+            "span"
+        );
+
 
     name.textContent =
         team.name;
 
 
-    card.appendChild(img);
-    card.appendChild(name);
+    card.appendChild(
+        img
+    );
 
-    teamList.appendChild(card);
+
+    card.appendChild(
+        name
+    );
+
+
+    teamList.appendChild(
+        card
+    );
 
 });
 
@@ -1982,63 +3170,87 @@ teams.forEach(team => {
 ========================================================= */
 
 const drawBtn =
-    document.getElementById("drawBtn");
+    document.getElementById(
+        "drawBtn"
+    );
+
 
 const teamScreen =
-    document.getElementById("teamScreen");
+    document.getElementById(
+        "teamScreen"
+    );
+
 
 const teamResult =
-    document.getElementById("teamResult");
+    document.getElementById(
+        "teamResult"
+    );
+
 
 const drawLogo =
-    document.getElementById("drawLogo");
+    document.getElementById(
+        "drawLogo"
+    );
+
 
 const drawFallback =
-    document.getElementById("drawFallback");
+    document.getElementById(
+        "drawFallback"
+    );
 
 
-let drawing = false;
+let drawing =
+    false;
 
 
-function displayTeam(team){
-
-    teamResult.textContent =
-        team.name;
-
-    drawFallback.textContent =
-        team.short;
-
-    drawFallback.style.display =
-        "none";
-
-    drawLogo.style.display =
-        "block";
-
-    drawLogo.src =
-        team.logo;
-
-    drawLogo.onerror = function(){
-
-        drawLogo.style.display =
-            "none";
-
-        drawFallback.style.display =
-            "flex";
-
-    };
-
-}
-
-
-/*
-   Affichage initial
-*/
 
 drawLogo.style.display =
     "none";
 
+
 drawFallback.style.display =
     "flex";
+
+
+
+function displayTeam(team){
+
+
+    teamResult.textContent =
+        team.name;
+
+
+    drawFallback.textContent =
+        team.short;
+
+
+    drawFallback.style.display =
+        "none";
+
+
+    drawLogo.style.display =
+        "block";
+
+
+    drawLogo.src =
+        team.logo;
+
+
+    drawLogo.onerror =
+        function(){
+
+
+            drawLogo.style.display =
+                "none";
+
+
+            drawFallback.style.display =
+                "flex";
+
+
+        };
+
+}
 
 
 
@@ -2046,99 +3258,131 @@ drawBtn.addEventListener(
     "click",
     () => {
 
+
         if(drawing){
             return;
         }
 
-        drawing = true;
+
+        drawing =
+            true;
+
 
         drawBtn.disabled =
             true;
 
-        teamScreen
-            .classList
-            .remove("winner");
 
         teamScreen
             .classList
-            .add("rolling");
+            .remove(
+                "winner"
+            );
 
 
-        let count = 0;
+        teamScreen
+            .classList
+            .add(
+                "rolling"
+            );
 
 
-        /*
-           Animation rapide :
-           changement toutes les 50 ms
-        */
+        let count =
+            0;
+
+
 
         const roulette =
-            setInterval(() => {
-
-                const randomTeam =
-                    teams[
-                        Math.floor(
-                            Math.random()
-                            *
-                            teams.length
-                        )
-                    ];
-
-                displayTeam(
-                    randomTeam
-                );
-
-                count++;
+            setInterval(
+                () => {
 
 
-                if(count >= 20){
+                    const randomTeam =
 
-                    clearInterval(
-                        roulette
-                    );
-
-
-                    const winner =
                         teams[
+
                             Math.floor(
+
                                 Math.random()
                                 *
                                 teams.length
+
                             )
+
                         ];
 
 
                     displayTeam(
-                        winner
+                        randomTeam
                     );
 
 
-                    teamScreen
-                        .classList
-                        .remove(
-                            "rolling"
+                    count++;
+
+
+
+                    if(
+                        count >= 18
+                    ){
+
+
+                        clearInterval(
+                            roulette
                         );
 
 
-                    void teamScreen.offsetWidth;
+                        const winner =
+
+                            teams[
+
+                                Math.floor(
+
+                                    Math.random()
+                                    *
+                                    teams.length
+
+                                )
+
+                            ];
 
 
-                    teamScreen
-                        .classList
-                        .add(
-                            "winner"
+                        displayTeam(
+                            winner
                         );
 
 
-                    drawBtn.disabled =
-                        false;
+                        teamScreen
+                            .classList
+                            .remove(
+                                "rolling"
+                            );
 
-                    drawing =
-                        false;
 
-                }
+                        void
+                            teamScreen
+                            .offsetWidth;
 
-            },50);
+
+                        teamScreen
+                            .classList
+                            .add(
+                                "winner"
+                            );
+
+
+                        drawBtn.disabled =
+                            false;
+
+
+                        drawing =
+                            false;
+
+
+                    }
+
+
+                },
+                50
+            );
 
     }
 );
@@ -2146,99 +3390,157 @@ drawBtn.addEventListener(
 
 
 /* =========================================================
-   JOUEURS
+   DONNÉES DES POULES
 ========================================================= */
 
 const groupData = {
 
+
     A:{
+
         players:[
+
             "Alexis",
             "Antoine",
             "Louis"
+
         ]
+
     },
 
+
     B:{
+
         players:[
+
             "Arnaud",
             "Victor",
             "Raph"
+
         ]
+
     },
 
+
     C:{
+
         players:[
+
             "Didier",
             "Maxence",
             "Martin"
+
         ]
+
     },
 
+
     D:{
+
         players:[
+
             "Julien",
             "Yanis",
             "Quentin"
+
         ]
+
     }
+
 
 };
 
 
 
 /* =========================================================
-   MATCHS DE POULE
+   MATCHS ALLER / RETOUR
 ========================================================= */
 
 function createMatches(players){
 
-    const [p1,p2,p3] =
-        players;
+
+    const [
+        p1,
+        p2,
+        p3
+    ] = players;
 
 
     return [
 
+
         /* ALLER */
 
+
         {
+
             home:p1,
+
             away:p2,
+
             type:"aller"
+
         },
 
+
         {
+
             home:p1,
+
             away:p3,
+
             type:"aller"
+
         },
 
+
         {
+
             home:p2,
+
             away:p3,
+
             type:"aller"
+
         },
+
 
 
         /* RETOUR */
 
+
         {
+
             home:p2,
+
             away:p1,
+
             type:"retour"
+
         },
 
-        {
-            home:p3,
-            away:p1,
-            type:"retour"
-        },
 
         {
+
             home:p3,
+
+            away:p1,
+
+            type:"retour"
+
+        },
+
+
+        {
+
+            home:p3,
+
             away:p2,
+
             type:"retour"
+
         }
+
 
     ];
 
@@ -2247,326 +3549,523 @@ function createMatches(players){
 
 
 /* =========================================================
-   CRÉATION DES POULES
+   CRÉATION VISUELLE DES POULES
 ========================================================= */
 
 const groupsContainer =
-    document.getElementById("groups");
+    document.getElementById(
+        "groups"
+    );
 
 
-Object.entries(groupData)
-.forEach(([letter,data]) => {
+
+Object
+.entries(groupData)
+.forEach(
+    ([letter,data]) => {
 
 
-    data.matches =
-        createMatches(
+        data.matches =
+            createMatches(
+                data.players
+            );
+
+
+        const group =
+            document.createElement(
+                "div"
+            );
+
+
+        group.className =
+
+            "group group-"
+            +
+            letter.toLowerCase();
+
+
+
+        const playersHTML =
+
             data.players
-        );
+
+            .map(
+                (player,index) => `
 
 
-    const group =
-        document.createElement("div");
+                <div class="player">
 
 
-    group.className =
-        "group group-"
-        +
-        letter.toLowerCase();
+                    <span class="number">
+
+                        ${index + 1}
+
+                    </span>
+
+
+                    ${player}
+
+
+                </div>
+
+
+                `
+            )
+
+            .join("");
 
 
 
-    const playersHTML =
-        data.players
-        .map(
-            (player,index) => `
+        function matchesHTML(type){
 
-            <div class="player">
 
-                <span class="number">
-                    ${index + 1}
-                </span>
+            return data.matches
 
-                ${player}
+
+            .map(
+                (match,index) => ({
+
+                    match,
+                    index
+
+                })
+            )
+
+
+            .filter(
+                item =>
+
+                    item.match.type
+                    ===
+                    type
+            )
+
+
+            .map(
+                ({match,index}) => `
+
+
+                <div class="match">
+
+
+                    <span>
+
+                        ${match.home}
+
+                    </span>
+
+
+                    <input
+
+                        class="score group-score"
+
+                        type="number"
+
+                        min="0"
+
+                        inputmode="numeric"
+
+                        data-group="${letter}"
+
+                        data-match="${index}"
+
+                        data-side="home"
+
+                    >
+
+
+                    <span>
+
+                        -
+
+                    </span>
+
+
+                    <input
+
+                        class="score group-score"
+
+                        type="number"
+
+                        min="0"
+
+                        inputmode="numeric"
+
+                        data-group="${letter}"
+
+                        data-match="${index}"
+
+                        data-side="away"
+
+                    >
+
+
+                    <span class="away">
+
+                        ${match.away}
+
+                    </span>
+
+
+                </div>
+
+
+                `
+            )
+
+
+            .join("");
+
+        }
+
+
+
+        group.innerHTML = `
+
+
+            <div class="group-title">
+
+                POULE ${letter}
 
             </div>
 
-        `
-        )
-        .join("");
 
 
+            <div class="players">
 
-    function matchesHTML(type){
 
-        return data.matches
+                <div class="players-label">
 
-        .map(
-            (match,index) => ({
-                match,
-                index
-            })
-        )
+                    JOUEURS
 
-        .filter(
-            item =>
-                item.match.type
-                ===
-                type
-        )
+                </div>
 
-        .map(
-            ({match,index}) => `
 
-            <div class="match">
+                ${playersHTML}
 
-                <span>
-                    ${match.home}
-                </span>
-
-                <input
-                    class="score group-score"
-                    type="number"
-                    inputmode="numeric"
-                    min="0"
-
-                    data-group="${letter}"
-                    data-match="${index}"
-                    data-side="home"
-                >
-
-                <span>-</span>
-
-                <input
-                    class="score group-score"
-                    type="number"
-                    inputmode="numeric"
-                    min="0"
-
-                    data-group="${letter}"
-                    data-match="${index}"
-                    data-side="away"
-                >
-
-                <span class="away">
-                    ${match.away}
-                </span>
 
             </div>
 
-        `
-        )
-        .join("");
+
+
+            <div class="match-section-title">
+
+                MATCHS ALLER
+
+            </div>
+
+
+            <div class="matches">
+
+                ${matchesHTML("aller")}
+
+            </div>
+
+
+
+            <div class="match-section-title">
+
+                MATCHS RETOUR
+
+            </div>
+
+
+            <div class="matches">
+
+                ${matchesHTML("retour")}
+
+            </div>
+
+
+
+            <div class="standings-title">
+
+                CLASSEMENT
+
+            </div>
+
+
+
+            <table class="standings">
+
+
+                <thead>
+
+
+                    <tr>
+
+
+                        <th>#</th>
+
+                        <th>JOUEUR</th>
+
+                        <th>J</th>
+
+                        <th>V</th>
+
+                        <th>N</th>
+
+                        <th>D</th>
+
+                        <th>BP</th>
+
+                        <th>BC</th>
+
+                        <th>+/-</th>
+
+                        <th>PTS</th>
+
+
+                    </tr>
+
+
+                </thead>
+
+
+
+                <tbody
+                    id="standing-${letter}"
+                ></tbody>
+
+
+            </table>
+
+
+        `;
+
+
+        groupsContainer
+            .appendChild(
+                group
+            );
+
 
     }
-
-
-
-    group.innerHTML = `
-
-        <div class="group-title">
-            POULE ${letter}
-        </div>
-
-
-        <div class="players">
-
-            <div class="players-label">
-                JOUEURS
-            </div>
-
-            ${playersHTML}
-
-        </div>
-
-
-        <div class="match-section-title">
-            MATCHS ALLER
-        </div>
-
-        <div class="matches">
-            ${matchesHTML("aller")}
-        </div>
-
-
-        <div class="match-section-title">
-            MATCHS RETOUR
-        </div>
-
-        <div class="matches">
-            ${matchesHTML("retour")}
-        </div>
-
-
-        <div class="standings-title">
-            CLASSEMENT
-        </div>
-
-
-        <table class="standings">
-
-            <thead>
-
-                <tr>
-
-                    <th>#</th>
-                    <th>JOUEUR</th>
-
-                    <th>J</th>
-                    <th>V</th>
-                    <th>N</th>
-                    <th>D</th>
-
-                    <th>BP</th>
-                    <th>BC</th>
-
-                    <th>+/-</th>
-
-                    <th>PTS</th>
-
-                </tr>
-
-            </thead>
-
-
-            <tbody
-                id="standing-${letter}"
-            ></tbody>
-
-        </table>
-
-    `;
-
-
-    groupsContainer
-        .appendChild(group);
-
-});
+);
 
 
 
 /* =========================================================
-   CLASSEMENT AUTOMATIQUE
+   CALCUL DES CLASSEMENTS
 ========================================================= */
 
 function calculateGroup(letter){
 
+
     const data =
         groupData[letter];
 
-    const stats = {};
 
-
-    data.players.forEach(player => {
-
-        stats[player] = {
-
-            player,
-
-            played:0,
-
-            win:0,
-            draw:0,
-            loss:0,
-
-            gf:0,
-            ga:0,
-
-            points:0
-
-        };
-
-    });
+    const stats =
+        {};
 
 
 
-    data.matches.forEach(
+    data.players
+    .forEach(
+        player => {
+
+
+            stats[player] = {
+
+
+                player,
+
+
+                played:0,
+
+
+                win:0,
+
+                draw:0,
+
+                loss:0,
+
+
+                gf:0,
+
+                ga:0,
+
+
+                points:0
+
+
+            };
+
+
+        }
+    );
+
+
+
+    data.matches
+    .forEach(
         (match,index) => {
 
 
+
             const homeInput =
+
                 document.querySelector(
+
                     `[data-group="${letter}"][data-match="${index}"][data-side="home"]`
+
                 );
+
 
 
             const awayInput =
+
                 document.querySelector(
+
                     `[data-group="${letter}"][data-match="${index}"][data-side="away"]`
+
                 );
+
 
 
             if(
+
                 homeInput.value === ""
+
                 ||
+
                 awayInput.value === ""
+
             ){
+
                 return;
+
             }
 
 
-            const hs =
+
+            const homeScore =
+
                 Math.max(
+
                     0,
+
                     parseInt(
                         homeInput.value
-                    ) || 0
+                    )
+                    ||
+                    0
+
                 );
 
 
-            const as =
+
+            const awayScore =
+
                 Math.max(
+
                     0,
+
                     parseInt(
                         awayInput.value
-                    ) || 0
+                    )
+                    ||
+                    0
+
                 );
+
 
 
             const home =
-                stats[match.home];
+                stats[
+                    match.home
+                ];
+
 
             const away =
-                stats[match.away];
+                stats[
+                    match.away
+                ];
+
 
 
             home.played++;
+
             away.played++;
 
 
-            home.gf += hs;
-            home.ga += as;
 
-            away.gf += as;
-            away.ga += hs;
+            home.gf +=
+                homeScore;
 
 
-            if(hs > as){
+            home.ga +=
+                awayScore;
+
+
+
+            away.gf +=
+                awayScore;
+
+
+            away.ga +=
+                homeScore;
+
+
+
+            if(
+                homeScore
+                >
+                awayScore
+            ){
+
 
                 home.win++;
+
+
                 away.loss++;
 
-                home.points += 3;
+
+                home.points +=
+                    3;
+
 
             }
 
-            else if(hs < as){
+
+            else if(
+                homeScore
+                <
+                awayScore
+            ){
+
 
                 away.win++;
+
+
                 home.loss++;
 
-                away.points += 3;
+
+                away.points +=
+                    3;
+
 
             }
+
 
             else{
 
+
                 home.draw++;
+
+
                 away.draw++;
 
+
                 home.points++;
+
+
                 away.points++;
 
+
             }
+
 
         }
     );
@@ -2574,79 +4073,127 @@ function calculateGroup(letter){
 
 
     const ranking =
-        Object.values(stats)
-        .sort((a,b) => {
+
+        Object
+        .values(stats)
+        .sort(
+            (a,b) => {
 
 
-            if(
-                b.points !== a.points
-            ){
-                return (
+
+                if(
                     b.points
-                    -
+                    !==
                     a.points
-                );
-            }
+                ){
+
+                    return (
+
+                        b.points
+                        -
+                        a.points
+
+                    );
+
+                }
 
 
-            const diffA =
-                a.gf - a.ga;
 
-            const diffB =
-                b.gf - b.ga;
-
-
-            if(diffB !== diffA){
-
-                return (
-                    diffB
+                const diffA =
+                    a.gf
                     -
-                    diffA
-                );
-
-            }
+                    a.ga;
 
 
-            if(b.gf !== a.gf){
-
-                return (
+                const diffB =
                     b.gf
                     -
+                    b.ga;
+
+
+
+                if(
+                    diffB
+                    !==
+                    diffA
+                ){
+
+                    return (
+
+                        diffB
+                        -
+                        diffA
+
+                    );
+
+                }
+
+
+
+                if(
+                    b.gf
+                    !==
                     a.gf
-                );
+                ){
+
+                    return (
+
+                        b.gf
+                        -
+                        a.gf
+
+                    );
+
+                }
+
+
+
+                return a.player
+                    .localeCompare(
+                        b.player
+                    );
+
 
             }
-
-
-            return a.player.localeCompare(
-                b.player
-            );
-
-        });
+        );
 
 
 
     const tbody =
+
         document.getElementById(
+
             `standing-${letter}`
+
         );
 
 
+
     tbody.innerHTML =
+
         ranking
+
         .map(
             (p,index) => {
 
 
+
                 const diff =
-                    p.gf - p.ga;
+
+                    p.gf
+                    -
+                    p.ga;
+
 
 
                 return `
 
+
                 <tr>
 
+
                     <td>
+
 
                         <span
                             class="rank ${
@@ -2657,287 +4204,288 @@ function calculateGroup(letter){
                                 ""
                             }"
                         >
+
                             ${index + 1}
+
                         </span>
 
+
                     </td>
 
 
+
                     <td>
+
                         ${p.player}
+
                     </td>
 
 
+
                     <td>
+
                         ${p.played}
+
                     </td>
 
+
                     <td>
+
                         ${p.win}
+
                     </td>
 
+
                     <td>
+
                         ${p.draw}
+
                     </td>
 
+
                     <td>
+
                         ${p.loss}
+
                     </td>
 
 
+
                     <td>
+
                         ${p.gf}
+
                     </td>
 
+
                     <td>
+
                         ${p.ga}
+
                     </td>
 
 
+
                     <td>
+
                         ${
                             diff > 0
                             ?
                             "+"
                             :
                             ""
-                        }${diff}
+                        }
+
+                        ${diff}
+
                     </td>
+
 
 
                     <td>
+
+
                         <strong>
+
                             ${p.points}
+
                         </strong>
+
+
                     </td>
+
 
                 </tr>
 
+
                 `;
+
 
             }
         )
+
+
         .join("");
 
 }
 
 
-/*
-   Classements initiaux
-*/
-
-Object.keys(groupData)
-.forEach(
-    calculateGroup
-);
-
-
 
 /* =========================================================
-   SAUVEGARDE DES SCORES DE POULE
-========================================================= */
-
-function saveGroupScores(){
-
-    const scores = {};
-
-
-    document
-    .querySelectorAll(
-        ".group-score"
-    )
-    .forEach(input => {
-
-        const key =
-            input.dataset.group
-            +
-            "-"
-            +
-            input.dataset.match
-            +
-            "-"
-            +
-            input.dataset.side;
-
-
-        scores[key] =
-            input.value;
-
-    });
-
-
-    localStorage.setItem(
-        "fc26GroupScores",
-        JSON.stringify(scores)
-    );
-
-}
-
-
-
-function loadGroupScores(){
-
-    const saved =
-        JSON.parse(
-            localStorage.getItem(
-                "fc26GroupScores"
-            )
-            ||
-            "{}"
-        );
-
-
-    document
-    .querySelectorAll(
-        ".group-score"
-    )
-    .forEach(input => {
-
-        const key =
-            input.dataset.group
-            +
-            "-"
-            +
-            input.dataset.match
-            +
-            "-"
-            +
-            input.dataset.side;
-
-
-        if(
-            saved[key]
-            !==
-            undefined
-        ){
-            input.value =
-                saved[key];
-        }
-
-    });
-
-
-    Object.keys(groupData)
-    .forEach(
-        calculateGroup
-    );
-
-}
-
-
-
-/* =========================================================
-   SCORES PHASE FINALE
+   PHASE FINALE
 ========================================================= */
 
 const knockoutMatches = [
 
+
     "qa",
+
     "qb",
+
     "qc",
+
     "qd",
 
+
     "sf1",
+
     "sf2",
 
-    "final"
+
+    "final",
+
+
+    "third"
+
 
 ];
 
 
+
 function getScore(id){
 
-    const element =
-        document.getElementById(id);
+
+    const input =
+        document.getElementById(
+            id
+        );
 
 
     if(
-        !element
+
+        !input
+
         ||
-        element.value === ""
+
+        input.value === ""
+
     ){
+
         return 0;
+
     }
 
 
     return Math.max(
+
         0,
+
         parseInt(
-            element.value
+            input.value
         )
         ||
         0
+
     );
 
 }
 
 
 
+/* =========================================================
+   CUMUL DES MATCHS
+========================================================= */
+
 function updateAggregate(prefix){
 
-    /*
-       ALLER :
-       joueur 1 vs joueur 2
 
-       RETOUR :
-       joueur 2 vs joueur 1
+    /*
+        JOUEUR 1
+
+        score aller
+        +
+        score retour
     */
 
+    const player1Total =
 
-    const total1 =
         getScore(
             prefix + "-a1"
         )
+
         +
+
         getScore(
             prefix + "-r1"
         );
 
 
-    const total2 =
+
+    /*
+        JOUEUR 2
+
+        score aller
+        +
+        score retour
+    */
+
+    const player2Total =
+
         getScore(
             prefix + "-a2"
         )
+
         +
+
         getScore(
             prefix + "-r2"
         );
 
 
+
     const display =
+
         document.getElementById(
+
             prefix + "-total"
+
         );
+
 
 
     if(display){
 
+
         display.textContent =
-            "Cumul : "
+
+            "CUMUL : "
+
             +
-            total1
+
+            player1Total
+
             +
+
             " - "
+
             +
-            total2;
+
+            player2Total;
+
 
     }
 
 
 
-    /*
-       Champion de la finale
-    */
+    /* =====================================================
+       CHAMPION
+    ===================================================== */
 
-    if(prefix === "final"){
+    if(
+        prefix === "final"
+    ){
+
 
         const champion =
+
             document.getElementById(
                 "champion"
             );
 
 
-        const p1 =
+
+        const player1 =
+
             document
             .getElementById(
                 "final-p1"
@@ -2946,7 +4494,9 @@ function updateAggregate(prefix){
             .trim();
 
 
-        const p2 =
+
+        const player2 =
+
             document
             .getElementById(
                 "final-p2"
@@ -2955,106 +4505,451 @@ function updateAggregate(prefix){
             .trim();
 
 
-        if(total1 > total2){
+
+        if(
+            player1Total
+            >
+            player2Total
+        ){
+
 
             champion.textContent =
-                p1
-                ?
-                "🏆 CHAMPION : " + p1
-                :
-                "🏆 FINALISTE 1 VAINQUEUR";
+
+                "🏆 CHAMPION : "
+
+                +
+
+                (
+                    player1
+                    ||
+                    "FINALISTE 1"
+                );
+
 
         }
 
-        else if(total2 > total1){
+
+        else if(
+            player2Total
+            >
+            player1Total
+        ){
+
 
             champion.textContent =
-                p2
-                ?
-                "🏆 CHAMPION : " + p2
-                :
-                "🏆 FINALISTE 2 VAINQUEUR";
+
+                "🏆 CHAMPION : "
+
+                +
+
+                (
+                    player2
+                    ||
+                    "FINALISTE 2"
+                );
+
 
         }
+
 
         else{
+
 
             champion.textContent =
                 "";
 
+
         }
 
+
     }
+
+
+
+    /* =====================================================
+       TROISIÈME PLACE
+    ===================================================== */
+
+    if(
+        prefix === "third"
+    ){
+
+
+        const thirdWinner =
+
+            document.getElementById(
+                "third-winner"
+            );
+
+
+
+        const player1 =
+
+            document
+            .getElementById(
+                "third-p1"
+            )
+            .value
+            .trim();
+
+
+
+        const player2 =
+
+            document
+            .getElementById(
+                "third-p2"
+            )
+            .value
+            .trim();
+
+
+
+        if(
+            player1Total
+            >
+            player2Total
+        ){
+
+
+            thirdWinner.textContent =
+
+                "🥉 3E PLACE : "
+
+                +
+
+                (
+                    player1
+                    ||
+                    "JOUEUR 1"
+                );
+
+
+        }
+
+
+        else if(
+            player2Total
+            >
+            player1Total
+        ){
+
+
+            thirdWinner.textContent =
+
+                "🥉 3E PLACE : "
+
+                +
+
+                (
+                    player2
+                    ||
+                    "JOUEUR 2"
+                );
+
+
+        }
+
+
+        else{
+
+
+            thirdWinner.textContent =
+                "";
+
+
+        }
+
+
+    }
+
 
 }
 
 
 
 /* =========================================================
-   SAUVEGARDE PHASE FINALE
+   NOMS AUTOMATIQUES AU MATCH RETOUR
 ========================================================= */
 
-function saveFinalPhase(){
-
-    const data = {};
+function updateMirrors(){
 
 
     document
     .querySelectorAll(
-        "#finale input"
+        ".mirror"
     )
-    .forEach(input => {
+    .forEach(
+        input => {
 
-        if(input.id){
 
-            data[input.id] =
-                input.value;
+            const source =
+
+                document.getElementById(
+
+                    input.dataset.source
+
+                );
+
+
+            if(source){
+
+
+                input.value =
+                    source.value;
+
+
+            }
+
 
         }
-
-    });
-
-
-    localStorage.setItem(
-        "fc26FinalPhase",
-        JSON.stringify(data)
     );
 
 }
 
 
 
-function loadFinalPhase(){
+/* =========================================================
+   SAUVEGARDE LOCALE
+========================================================= */
+
+function saveEverything(){
+
 
     const data =
-        JSON.parse(
-            localStorage.getItem(
-                "fc26FinalPhase"
-            )
-            ||
-            "{}"
-        );
+        {};
 
 
-    Object.entries(data)
+
+    document
+    .querySelectorAll(
+        "input"
+    )
     .forEach(
-        ([id,value]) => {
-
-            const input =
-                document.getElementById(
-                    id
-                );
+        input => {
 
 
-            if(input){
 
-                input.value =
-                    value;
+            /*
+               Les champs miroir ne sont
+               pas sauvegardés car ils
+               sont recréés automatiquement.
+            */
+
+            if(
+                input.classList
+                .contains(
+                    "mirror"
+                )
+            ){
+
+                return;
 
             }
 
+
+
+            let key =
+                input.id;
+
+
+
+            if(
+
+                !key
+
+                &&
+
+                input.dataset.group
+
+            ){
+
+
+                key =
+
+                    "group-"
+
+                    +
+
+                    input.dataset.group
+
+                    +
+
+                    "-"
+
+                    +
+
+                    input.dataset.match
+
+                    +
+
+                    "-"
+
+                    +
+
+                    input.dataset.side;
+
+
+            }
+
+
+
+            if(key){
+
+
+                data[key] =
+                    input.value;
+
+
+            }
+
+
         }
     );
+
+
+
+    localStorage.setItem(
+
+        "FC26_TOURNAMENT",
+
+        JSON.stringify(
+            data
+        )
+
+    );
+
+}
+
+
+
+/* =========================================================
+   CHARGEMENT SAUVEGARDE
+========================================================= */
+
+function loadEverything(){
+
+
+    const data =
+
+        JSON.parse(
+
+            localStorage.getItem(
+
+                "FC26_TOURNAMENT"
+
+            )
+
+            ||
+
+            "{}"
+
+        );
+
+
+
+    document
+    .querySelectorAll(
+        "input"
+    )
+    .forEach(
+        input => {
+
+
+
+            if(
+                input.classList
+                .contains(
+                    "mirror"
+                )
+            ){
+
+                return;
+
+            }
+
+
+
+            let key =
+                input.id;
+
+
+
+            if(
+
+                !key
+
+                &&
+
+                input.dataset.group
+
+            ){
+
+
+                key =
+
+                    "group-"
+
+                    +
+
+                    input.dataset.group
+
+                    +
+
+                    "-"
+
+                    +
+
+                    input.dataset.match
+
+                    +
+
+                    "-"
+
+                    +
+
+                    input.dataset.side;
+
+
+            }
+
+
+
+            if(
+
+                key
+
+                &&
+
+                data[key]
+                !==
+                undefined
+
+            ){
+
+
+                input.value =
+                    data[key];
+
+
+            }
+
+
+        }
+    );
+
+
+
+    updateMirrors();
+
+
+
+    Object
+    .keys(groupData)
+    .forEach(
+        calculateGroup
+    );
+
 
 
     knockoutMatches
@@ -3075,88 +4970,95 @@ document.addEventListener(
     event => {
 
 
-        /*
-           Scores des poules
-        */
+
+        /* -----------------------------------------
+           INTERDIRE SCORES NÉGATIFS
+        ----------------------------------------- */
 
         if(
+
+            event.target.type
+            ===
+            "number"
+
+            &&
+
+            event.target.value
+            !==
+            ""
+
+            &&
+
+            Number(
+                event.target.value
+            )
+            <
+            0
+
+        ){
+
+
+            event.target.value =
+                0;
+
+
+        }
+
+
+
+        /* -----------------------------------------
+           CLASSEMENT DES POULES
+        ----------------------------------------- */
+
+        if(
+
             event.target
             .classList
             .contains(
                 "group-score"
             )
-        ){
 
-            if(
-                event.target.value !== ""
-                &&
-                Number(
-                    event.target.value
-                ) < 0
-            ){
-                event.target.value = 0;
-            }
+        ){
 
 
             calculateGroup(
-                event.target.dataset.group
+
+                event.target
+                .dataset
+                .group
+
             );
 
 
-            saveGroupScores();
-
         }
 
 
 
-        /*
-           Phase finale
-        */
+        /* -----------------------------------------
+           RECOPIER LES NOMS AU RETOUR
+        ----------------------------------------- */
 
-        if(
-            event.target
-            .closest("#finale")
-        ){
-
-            if(
-                event.target.type
-                ===
-                "number"
-                &&
-                event.target.value !== ""
-                &&
-                Number(
-                    event.target.value
-                ) < 0
-            ){
-                event.target.value = 0;
-            }
+        updateMirrors();
 
 
-            knockoutMatches
-            .forEach(prefix => {
 
-                if(
-                    event.target.id
-                    &&
-                    event.target.id
-                    .startsWith(
-                        prefix + "-"
-                    )
-                ){
+        /* -----------------------------------------
+           METTRE À JOUR TOUS LES CUMULS
+        ----------------------------------------- */
 
-                    updateAggregate(
-                        prefix
-                    );
-
-                }
-
-            });
+        knockoutMatches
+        .forEach(
+            updateAggregate
+        );
 
 
-            saveFinalPhase();
 
-        }
+        /* -----------------------------------------
+           SAUVEGARDE
+        ----------------------------------------- */
+
+        saveEverything();
+
 
     }
 );
@@ -3164,14 +5066,22 @@ document.addEventListener(
 
 
 /* =========================================================
-   CHARGEMENT
+   INITIALISATION
 ========================================================= */
 
-loadGroupScores();
+Object
+.keys(groupData)
+.forEach(
+    calculateGroup
+);
 
-loadFinalPhase();
+
+loadEverything();
+
 
 </script>
 
+
 </body>
+
 </html>
