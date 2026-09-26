@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#04080d">
 <title>Tournoi FC 26</title>
 
 <style>
@@ -36,10 +37,12 @@ button,input{font-family:inherit}
 .app{
   width:min(1280px,95%);
   margin:auto;
-  padding:18px 0 70px;
+  padding:18px 0 75px;
 }
 
-/* NAVIGATION */
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
 .tabs{
   display:grid;
@@ -57,7 +60,7 @@ button,input{font-family:inherit}
   border:0;
   border-right:1px solid #455661;
   background:#07111a;
-  color:white;
+  color:#fff;
   font-size:15px;
   font-weight:900;
   cursor:pointer;
@@ -91,7 +94,9 @@ button,input{font-family:inherit}
   margin-bottom:22px;
 }
 
-/* FIREBASE */
+/* =====================================================
+   FIREBASE STATUS
+===================================================== */
 
 .sync-status{
   position:fixed;
@@ -105,6 +110,7 @@ button,input{font-family:inherit}
   border:1px solid #344752;
   border-radius:30px;
   background:rgba(4,12,18,.94);
+  backdrop-filter:blur(8px);
   color:#aebbc3;
   font-size:10px;
   font-weight:900;
@@ -125,13 +131,17 @@ button,input{font-family:inherit}
 .sync-status.error .sync-dot{background:#ef2448}
 .sync-status.saving .sync-dot{background:#f5c542}
 
-/* TIRAGE */
+/* =====================================================
+   TIRAGE
+===================================================== */
 
 .draw-panel{
   padding:28px;
   border:1px solid var(--border);
   border-radius:15px;
-  background:linear-gradient(145deg,#0a1822,#040a0f);
+  background:
+    radial-gradient(circle at 80% 30%,rgba(0,126,255,.12),transparent 28%),
+    linear-gradient(145deg,#0a1822,#040a0f);
 }
 
 .draw-grid{
@@ -141,9 +151,33 @@ button,input{font-family:inherit}
   align-items:center;
 }
 
+.draw-info{
+  color:#b7c2ca;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.selected-counter{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-top:15px;
+  padding:8px 12px;
+  border:1px solid #43545f;
+  border-radius:30px;
+  background:#07111a;
+  color:#d8e0e5;
+  font-size:12px;
+  font-weight:900;
+}
+
+.selected-counter strong{
+  color:var(--gold);
+}
+
 .draw-button{
   width:min(390px,100%);
-  margin-top:20px;
+  margin-top:15px;
   padding:20px;
   border:0;
   border-radius:12px;
@@ -152,9 +186,15 @@ button,input{font-family:inherit}
   font-size:19px;
   font-weight:1000;
   cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
 
-.draw-button:disabled{opacity:.55}
+.draw-button:active{transform:scale(.98)}
+
+.draw-button:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
 
 .team-screen{
   min-height:270px;
@@ -181,13 +221,14 @@ button,input{font-family:inherit}
   width:105px;
   height:105px;
   object-fit:contain;
+  filter:drop-shadow(0 8px 15px rgba(0,0,0,.5));
 }
 
 .logo-fallback{
   display:none;
   width:95px;
   height:95px;
-  border:2px solid white;
+  border:2px solid #fff;
   border-radius:50%;
   align-items:center;
   justify-content:center;
@@ -196,41 +237,120 @@ button,input{font-family:inherit}
 }
 
 .team-result{
-  padding:0 12px;
+  padding:0 15px;
   font-size:30px;
   font-weight:1000;
+}
+
+.selection-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-top:28px;
+  margin-bottom:12px;
+}
+
+.selection-title{
+  font-size:15px;
+  font-weight:1000;
+}
+
+.selection-actions{
+  display:flex;
+  gap:8px;
+}
+
+.selection-btn{
+  padding:8px 11px;
+  border:1px solid #465864;
+  border-radius:7px;
+  background:#0a1720;
+  color:#dce4e9;
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.selection-btn:hover{
+  border-color:var(--gold);
 }
 
 .team-list{
   display:grid;
   grid-template-columns:repeat(7,1fr);
   gap:10px;
-  margin-top:25px;
 }
 
 .team-chip{
-  min-height:95px;
+  position:relative;
+  min-height:130px;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  text-align:center;
   gap:8px;
-  padding:10px;
+  padding:13px 8px;
   border:1px solid #293b47;
-  border-radius:10px;
+  border-radius:11px;
   background:#071018;
-  font-size:11px;
-  font-weight:800;
+  text-align:center;
+  cursor:pointer;
+  transition:.15s ease;
+  user-select:none;
+}
+
+.team-chip:hover{
+  border-color:#657784;
+}
+
+.team-chip.selected{
+  border-color:var(--gold);
+  background:
+    radial-gradient(circle at 50% 0%,rgba(245,197,66,.13),transparent 60%),
+    #071018;
+  box-shadow:inset 0 0 0 1px rgba(245,197,66,.18);
+}
+
+.team-chip:not(.selected){
+  opacity:.55;
 }
 
 .club-logo{
-  width:45px;
-  height:45px;
+  width:48px;
+  height:48px;
   object-fit:contain;
 }
 
-/* POULES */
+.team-name{
+  min-height:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:900;
+}
+
+.team-checkbox-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  color:#aeb9c2;
+  font-size:10px;
+  font-weight:900;
+}
+
+.team-checkbox{
+  width:19px;
+  height:19px;
+  accent-color:var(--gold);
+  cursor:pointer;
+}
+
+/* =====================================================
+   POULES
+===================================================== */
 
 .groups{
   display:grid;
@@ -313,13 +433,15 @@ button,input{font-family:inherit}
   border:1px solid #71808b;
   border-radius:5px;
   background:#07111a;
-  color:white;
+  color:#fff;
   text-align:center;
   font-size:17px;
   font-weight:bold;
 }
 
-/* CLASSEMENT */
+/* =====================================================
+   CLASSEMENTS
+===================================================== */
 
 .standings-title{
   padding:10px 12px;
@@ -359,7 +481,9 @@ button,input{font-family:inherit}
 
 .rank.qual{background:var(--group)}
 
-/* PHASE FINALE */
+/* =====================================================
+   PHASE FINALE
+===================================================== */
 
 .final-panel{
   padding:25px;
@@ -445,7 +569,7 @@ button,input{font-family:inherit}
   border:1px solid #4c606e;
   border-radius:5px;
   background:#0b1821;
-  color:white;
+  color:#fff;
   font-size:14px;
 }
 
@@ -460,7 +584,7 @@ button,input{font-family:inherit}
   border:2px solid #738592;
   border-radius:6px;
   background:#030a0f;
-  color:white;
+  color:#fff;
   text-align:center;
   font-size:21px;
   font-weight:1000;
@@ -505,7 +629,9 @@ button,input{font-family:inherit}
 
 .third-place{color:#e09a54}
 
-/* RESPONSIVE */
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media(max-width:1100px){
   .team-list{grid-template-columns:repeat(4,1fr)}
@@ -517,6 +643,7 @@ button,input{font-family:inherit}
 }
 
 @media(max-width:650px){
+
   .app{width:94%;padding-top:12px}
 
   .tab{
@@ -546,6 +673,23 @@ button,input{font-family:inherit}
   .team-list{
     grid-template-columns:1fr 1fr;
   }
+
+  .team-chip{
+    min-height:125px;
+  }
+
+  .selection-header{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .selection-actions{
+    width:100%;
+  }
+
+  .selection-btn{
+    flex:1;
+  }
 }
 </style>
 </head>
@@ -557,21 +701,26 @@ button,input{font-family:inherit}
 <nav class="tabs">
 
 <button class="tab active" data-page="tirage">
-<span class="tab-icon">🎲</span>TIRAGE D'ÉQUIPE
+<span class="tab-icon">🎲</span>
+TIRAGE D'ÉQUIPE
 </button>
 
 <button class="tab" data-page="poules">
-<span class="tab-icon">👥</span>PHASE DE POULES
+<span class="tab-icon">👥</span>
+PHASE DE POULES
 </button>
 
 <button class="tab" data-page="finale">
-<span class="tab-icon">🏆</span>PHASE FINALE
+<span class="tab-icon">🏆</span>
+PHASE FINALE
 </button>
 
 </nav>
 
 
-<!-- ==================== TIRAGE ==================== -->
+<!-- =====================================================
+     TIRAGE
+===================================================== -->
 
 <section id="tirage" class="page active">
 
@@ -580,22 +729,47 @@ button,input{font-family:inherit}
 <div class="draw-grid">
 
 <div>
+
 <h1 class="title">TIRAGE D'ÉQUIPE</h1>
 
 <div class="subtitle">
-14 ÉQUIPES DISPONIBLES
+SÉLECTION PERSONNALISÉE
 </div>
+
+<div class="draw-info">
+Coche uniquement les clubs que tu veux inclure dans le tirage.
+La roulette choisira exclusivement parmi les équipes sélectionnées.
+</div>
+
+<div class="selected-counter">
+🎯 <strong id="selectedCount">14</strong> équipe(s) dans le tirage
+</div>
+
+<br>
 
 <button id="drawBtn" class="draw-button">
 🎲 TIRER UNE ÉQUIPE
 </button>
+
 </div>
+
 
 <div id="teamScreen" class="team-screen">
 
 <div class="draw-logo-box">
-<img id="drawLogo" class="draw-logo" alt="">
-<div id="drawFallback" class="logo-fallback">FC</div>
+
+<img
+id="drawLogo"
+class="draw-logo"
+alt=""
+>
+
+<div
+id="drawFallback"
+class="logo-fallback">
+FC
+</div>
+
 </div>
 
 <div id="teamResult" class="team-result">
@@ -603,6 +777,34 @@ PRÊT ?
 </div>
 
 </div>
+
+</div>
+
+
+<div class="selection-header">
+
+<div class="selection-title">
+ÉQUIPES DISPONIBLES
+</div>
+
+<div class="selection-actions">
+
+<button
+id="selectAllBtn"
+class="selection-btn"
+type="button">
+✓ TOUT SÉLECTIONNER
+</button>
+
+<button
+id="unselectAllBtn"
+class="selection-btn"
+type="button">
+✕ TOUT DÉCOCHER
+</button>
+
+</div>
+
 </div>
 
 <div id="teamList" class="team-list"></div>
@@ -612,11 +814,15 @@ PRÊT ?
 </section>
 
 
-<!-- ==================== POULES ==================== -->
+<!-- =====================================================
+     POULES
+===================================================== -->
 
 <section id="poules" class="page">
 
-<h1 class="title">PHASE DE POULES</h1>
+<h1 class="title">
+PHASE DE POULES
+</h1>
 
 <div class="subtitle">
 4 POULES DE 3 JOUEURS • MATCHS ALLER / RETOUR
@@ -627,11 +833,15 @@ PRÊT ?
 </section>
 
 
-<!-- ==================== PHASE FINALE ==================== -->
+<!-- =====================================================
+     PHASE FINALE
+===================================================== -->
 
 <section id="finale" class="page">
 
-<h1 class="title">PHASE FINALE</h1>
+<h1 class="title">
+PHASE FINALE
+</h1>
 
 <div class="subtitle">
 QUARTS • DEMI-FINALES • FINALE • PETITE FINALE
@@ -663,37 +873,94 @@ QUART 1 — A1 / B2
 
 <div class="leg">
 
-<div class="leg-title">MATCH ALLER</div>
-
-<div class="ko-player">
-<input id="qa-p1" class="ko-name" placeholder="A1 - Joueur">
-<input id="qa-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+<div class="leg-title">
+MATCH ALLER
 </div>
 
 <div class="ko-player">
-<input id="qa-p2" class="ko-name" placeholder="B2 - Joueur">
-<input id="qa-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+
+<input
+id="qa-p1"
+class="ko-name"
+placeholder="A1 - Joueur">
+
+<input
+id="qa-a1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+<div class="ko-player">
+
+<input
+id="qa-p2"
+class="ko-name"
+placeholder="B2 - Joueur">
+
+<input
+id="qa-a2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
 </div>
 
 </div>
+
 
 <div class="leg">
 
-<div class="leg-title">MATCH RETOUR</div>
-
-<div class="ko-player">
-<input class="ko-name mirror" data-source="qa-p2" placeholder="B2 - Joueur" readonly>
-<input id="qa-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+<div class="leg-title">
+MATCH RETOUR
 </div>
 
 <div class="ko-player">
-<input class="ko-name mirror" data-source="qa-p1" placeholder="A1 - Joueur" readonly>
-<input id="qa-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
-</div>
+
+<input
+class="ko-name mirror"
+data-source="qa-p2"
+placeholder="B2 - Joueur"
+readonly>
+
+<input
+id="qa-r2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
 
 </div>
 
-<div id="qa-total" class="aggregate">CUMUL : 0 - 0</div>
+<div class="ko-player">
+
+<input
+class="ko-name mirror"
+data-source="qa-p1"
+placeholder="A1 - Joueur"
+readonly>
+
+<input
+id="qa-r1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+</div>
+
+<div id="qa-total" class="aggregate">
+CUMUL : 0 - 0
+</div>
 
 </div>
 
@@ -708,37 +975,94 @@ QUART 2 — B1 / A2
 
 <div class="leg">
 
-<div class="leg-title">MATCH ALLER</div>
-
-<div class="ko-player">
-<input id="qb-p1" class="ko-name" placeholder="B1 - Joueur">
-<input id="qb-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+<div class="leg-title">
+MATCH ALLER
 </div>
 
 <div class="ko-player">
-<input id="qb-p2" class="ko-name" placeholder="A2 - Joueur">
-<input id="qb-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+
+<input
+id="qb-p1"
+class="ko-name"
+placeholder="B1 - Joueur">
+
+<input
+id="qb-a1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+<div class="ko-player">
+
+<input
+id="qb-p2"
+class="ko-name"
+placeholder="A2 - Joueur">
+
+<input
+id="qb-a2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
 </div>
 
 </div>
+
 
 <div class="leg">
 
-<div class="leg-title">MATCH RETOUR</div>
-
-<div class="ko-player">
-<input class="ko-name mirror" data-source="qb-p2" placeholder="A2 - Joueur" readonly>
-<input id="qb-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+<div class="leg-title">
+MATCH RETOUR
 </div>
 
 <div class="ko-player">
-<input class="ko-name mirror" data-source="qb-p1" placeholder="B1 - Joueur" readonly>
-<input id="qb-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
-</div>
+
+<input
+class="ko-name mirror"
+data-source="qb-p2"
+placeholder="A2 - Joueur"
+readonly>
+
+<input
+id="qb-r2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
 
 </div>
 
-<div id="qb-total" class="aggregate">CUMUL : 0 - 0</div>
+<div class="ko-player">
+
+<input
+class="ko-name mirror"
+data-source="qb-p1"
+placeholder="B1 - Joueur"
+readonly>
+
+<input
+id="qb-r1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+</div>
+
+<div id="qb-total" class="aggregate">
+CUMUL : 0 - 0
+</div>
 
 </div>
 
@@ -753,37 +1077,94 @@ QUART 3 — C1 / D2
 
 <div class="leg">
 
-<div class="leg-title">MATCH ALLER</div>
-
-<div class="ko-player">
-<input id="qc-p1" class="ko-name" placeholder="C1 - Joueur">
-<input id="qc-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+<div class="leg-title">
+MATCH ALLER
 </div>
 
 <div class="ko-player">
-<input id="qc-p2" class="ko-name" placeholder="D2 - Joueur">
-<input id="qc-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+
+<input
+id="qc-p1"
+class="ko-name"
+placeholder="C1 - Joueur">
+
+<input
+id="qc-a1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+<div class="ko-player">
+
+<input
+id="qc-p2"
+class="ko-name"
+placeholder="D2 - Joueur">
+
+<input
+id="qc-a2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
 </div>
 
 </div>
+
 
 <div class="leg">
 
-<div class="leg-title">MATCH RETOUR</div>
-
-<div class="ko-player">
-<input class="ko-name mirror" data-source="qc-p2" placeholder="D2 - Joueur" readonly>
-<input id="qc-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+<div class="leg-title">
+MATCH RETOUR
 </div>
 
 <div class="ko-player">
-<input class="ko-name mirror" data-source="qc-p1" placeholder="C1 - Joueur" readonly>
-<input id="qc-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
-</div>
+
+<input
+class="ko-name mirror"
+data-source="qc-p2"
+placeholder="D2 - Joueur"
+readonly>
+
+<input
+id="qc-r2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
 
 </div>
 
-<div id="qc-total" class="aggregate">CUMUL : 0 - 0</div>
+<div class="ko-player">
+
+<input
+class="ko-name mirror"
+data-source="qc-p1"
+placeholder="C1 - Joueur"
+readonly>
+
+<input
+id="qc-r1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+</div>
+
+<div id="qc-total" class="aggregate">
+CUMUL : 0 - 0
+</div>
 
 </div>
 
@@ -798,37 +1179,94 @@ QUART 4 — D1 / C2
 
 <div class="leg">
 
-<div class="leg-title">MATCH ALLER</div>
-
-<div class="ko-player">
-<input id="qd-p1" class="ko-name" placeholder="D1 - Joueur">
-<input id="qd-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+<div class="leg-title">
+MATCH ALLER
 </div>
 
 <div class="ko-player">
-<input id="qd-p2" class="ko-name" placeholder="C2 - Joueur">
-<input id="qd-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+
+<input
+id="qd-p1"
+class="ko-name"
+placeholder="D1 - Joueur">
+
+<input
+id="qd-a1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+<div class="ko-player">
+
+<input
+id="qd-p2"
+class="ko-name"
+placeholder="C2 - Joueur">
+
+<input
+id="qd-a2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
 </div>
 
 </div>
+
 
 <div class="leg">
 
-<div class="leg-title">MATCH RETOUR</div>
-
-<div class="ko-player">
-<input class="ko-name mirror" data-source="qd-p2" placeholder="C2 - Joueur" readonly>
-<input id="qd-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+<div class="leg-title">
+MATCH RETOUR
 </div>
 
 <div class="ko-player">
-<input class="ko-name mirror" data-source="qd-p1" placeholder="D1 - Joueur" readonly>
-<input id="qd-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
-</div>
+
+<input
+class="ko-name mirror"
+data-source="qd-p2"
+placeholder="C2 - Joueur"
+readonly>
+
+<input
+id="qd-r2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
 
 </div>
 
-<div id="qd-total" class="aggregate">CUMUL : 0 - 0</div>
+<div class="ko-player">
+
+<input
+class="ko-name mirror"
+data-source="qd-p1"
+placeholder="D1 - Joueur"
+readonly>
+
+<input
+id="qd-r1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+</div>
+
+<div id="qd-total" class="aggregate">
+CUMUL : 0 - 0
+</div>
 
 </div>
 
@@ -839,10 +1277,12 @@ QUART 4 — D1 / C2
 
 <div class="section-gap">
 
-<div class="round-title">DEMI-FINALES</div>
+<div class="round-title">
+DEMI-FINALES
+</div>
 
 <div class="round-subtitle">
-VAINQUEUR QUART 1 - VAINQUEUR QUART 3 • VAINQUEUR QUART 2 - VAINQUEUR QUART 4
+VAINQUEUR QF1 - VAINQUEUR QF3 • VAINQUEUR QF2 - VAINQUEUR QF4
 </div>
 
 <div class="semi-grid">
@@ -856,37 +1296,94 @@ DEMI-FINALE 1 — QF1 / QF3
 
 <div class="leg">
 
-<div class="leg-title">MATCH ALLER</div>
-
-<div class="ko-player">
-<input id="sf1-p1" class="ko-name" placeholder="Vainqueur QF1">
-<input id="sf1-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+<div class="leg-title">
+MATCH ALLER
 </div>
 
 <div class="ko-player">
-<input id="sf1-p2" class="ko-name" placeholder="Vainqueur QF3">
-<input id="sf1-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+
+<input
+id="sf1-p1"
+class="ko-name"
+placeholder="Vainqueur QF1">
+
+<input
+id="sf1-a1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+<div class="ko-player">
+
+<input
+id="sf1-p2"
+class="ko-name"
+placeholder="Vainqueur QF3">
+
+<input
+id="sf1-a2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
 </div>
 
 </div>
+
 
 <div class="leg">
 
-<div class="leg-title">MATCH RETOUR</div>
-
-<div class="ko-player">
-<input class="ko-name mirror" data-source="sf1-p2" readonly>
-<input id="sf1-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+<div class="leg-title">
+MATCH RETOUR
 </div>
 
 <div class="ko-player">
-<input class="ko-name mirror" data-source="sf1-p1" readonly>
-<input id="sf1-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
-</div>
+
+<input
+class="ko-name mirror"
+data-source="sf1-p2"
+placeholder="Vainqueur QF3"
+readonly>
+
+<input
+id="sf1-r2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
 
 </div>
 
-<div id="sf1-total" class="aggregate">CUMUL : 0 - 0</div>
+<div class="ko-player">
+
+<input
+class="ko-name mirror"
+data-source="sf1-p1"
+placeholder="Vainqueur QF1"
+readonly>
+
+<input
+id="sf1-r1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+</div>
+
+<div id="sf1-total" class="aggregate">
+CUMUL : 0 - 0
+</div>
 
 </div>
 
@@ -899,37 +1396,94 @@ DEMI-FINALE 2 — QF2 / QF4
 
 <div class="leg">
 
-<div class="leg-title">MATCH ALLER</div>
-
-<div class="ko-player">
-<input id="sf2-p1" class="ko-name" placeholder="Vainqueur QF2">
-<input id="sf2-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+<div class="leg-title">
+MATCH ALLER
 </div>
 
 <div class="ko-player">
-<input id="sf2-p2" class="ko-name" placeholder="Vainqueur QF4">
-<input id="sf2-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+
+<input
+id="sf2-p1"
+class="ko-name"
+placeholder="Vainqueur QF2">
+
+<input
+id="sf2-a1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+<div class="ko-player">
+
+<input
+id="sf2-p2"
+class="ko-name"
+placeholder="Vainqueur QF4">
+
+<input
+id="sf2-a2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
 </div>
 
 </div>
+
 
 <div class="leg">
 
-<div class="leg-title">MATCH RETOUR</div>
-
-<div class="ko-player">
-<input class="ko-name mirror" data-source="sf2-p2" readonly>
-<input id="sf2-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+<div class="leg-title">
+MATCH RETOUR
 </div>
 
 <div class="ko-player">
-<input class="ko-name mirror" data-source="sf2-p1" readonly>
-<input id="sf2-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
-</div>
+
+<input
+class="ko-name mirror"
+data-source="sf2-p2"
+placeholder="Vainqueur QF4"
+readonly>
+
+<input
+id="sf2-r2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
 
 </div>
 
-<div id="sf2-total" class="aggregate">CUMUL : 0 - 0</div>
+<div class="ko-player">
+
+<input
+class="ko-name mirror"
+data-source="sf2-p1"
+placeholder="Vainqueur QF2"
+readonly>
+
+<input
+id="sf2-r1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+</div>
+
+<div id="sf2-total" class="aggregate">
+CUMUL : 0 - 0
+</div>
 
 </div>
 
@@ -941,9 +1495,13 @@ DEMI-FINALE 2 — QF2 / QF4
 
 <div class="final-wrapper">
 
-<div class="trophy">🏆</div>
+<div class="trophy">
+🏆
+</div>
 
-<div class="round-title">FINALE</div>
+<div class="round-title">
+FINALE
+</div>
 
 <div class="round-subtitle">
 VAINQUEURS DES DEMI-FINALES • ALLER / RETOUR
@@ -951,45 +1509,105 @@ VAINQUEURS DES DEMI-FINALES • ALLER / RETOUR
 
 <div class="ko-card ko-gold">
 
-<div class="ko-header">🏆 GRANDE FINALE</div>
-
-<div class="leg">
-
-<div class="leg-title">MATCH ALLER</div>
-
-<div class="ko-player">
-<input id="final-p1" class="ko-name" placeholder="Finaliste 1">
-<input id="final-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
-</div>
-
-<div class="ko-player">
-<input id="final-p2" class="ko-name" placeholder="Finaliste 2">
-<input id="final-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
-</div>
-
+<div class="ko-header">
+🏆 GRANDE FINALE
 </div>
 
 <div class="leg">
 
-<div class="leg-title">MATCH RETOUR</div>
-
-<div class="ko-player">
-<input class="ko-name mirror" data-source="final-p2" readonly>
-<input id="final-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+<div class="leg-title">
+MATCH ALLER
 </div>
 
 <div class="ko-player">
-<input class="ko-name mirror" data-source="final-p1" readonly>
-<input id="final-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
-</div>
+
+<input
+id="final-p1"
+class="ko-name"
+placeholder="Finaliste 1">
+
+<input
+id="final-a1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
 
 </div>
 
-<div id="final-total" class="aggregate">CUMUL : 0 - 0</div>
+<div class="ko-player">
+
+<input
+id="final-p2"
+class="ko-name"
+placeholder="Finaliste 2">
+
+<input
+id="final-a2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+</div>
+
+
+<div class="leg">
+
+<div class="leg-title">
+MATCH RETOUR
+</div>
+
+<div class="ko-player">
+
+<input
+class="ko-name mirror"
+data-source="final-p2"
+placeholder="Finaliste 2"
+readonly>
+
+<input
+id="final-r2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+<div class="ko-player">
+
+<input
+class="ko-name mirror"
+data-source="final-p1"
+placeholder="Finaliste 1"
+readonly>
+
+<input
+id="final-r1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+</div>
+
+<div id="final-total" class="aggregate">
+CUMUL : 0 - 0
+</div>
 
 <div id="champion" class="champion"></div>
 
 </div>
+
 </div>
 
 
@@ -997,9 +1615,13 @@ VAINQUEURS DES DEMI-FINALES • ALLER / RETOUR
 
 <div class="small-final-wrapper">
 
-<div class="bronze-trophy">🥉</div>
+<div class="bronze-trophy">
+🥉
+</div>
 
-<div class="round-title">FINALE DES PERDANTS</div>
+<div class="round-title">
+FINALE DES PERDANTS
+</div>
 
 <div class="round-subtitle">
 PERDANTS DES DEMI-FINALES • ALLER / RETOUR
@@ -1007,56 +1629,127 @@ PERDANTS DES DEMI-FINALES • ALLER / RETOUR
 
 <div class="ko-card ko-bronze">
 
-<div class="ko-header">🥉 PETITE FINALE</div>
-
-<div class="leg">
-
-<div class="leg-title">MATCH ALLER</div>
-
-<div class="ko-player">
-<input id="third-p1" class="ko-name" placeholder="Perdant demi 1">
-<input id="third-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
-</div>
-
-<div class="ko-player">
-<input id="third-p2" class="ko-name" placeholder="Perdant demi 2">
-<input id="third-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
-</div>
-
+<div class="ko-header">
+🥉 PETITE FINALE
 </div>
 
 <div class="leg">
 
-<div class="leg-title">MATCH RETOUR</div>
-
-<div class="ko-player">
-<input class="ko-name mirror" data-source="third-p2" readonly>
-<input id="third-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+<div class="leg-title">
+MATCH ALLER
 </div>
 
 <div class="ko-player">
-<input class="ko-name mirror" data-source="third-p1" readonly>
-<input id="third-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
+
+<input
+id="third-p1"
+class="ko-name"
+placeholder="Perdant demi 1">
+
+<input
+id="third-a1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+<div class="ko-player">
+
+<input
+id="third-p2"
+class="ko-name"
+placeholder="Perdant demi 2">
+
+<input
+id="third-a2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+</div>
+
+
+<div class="leg">
+
+<div class="leg-title">
+MATCH RETOUR
+</div>
+
+<div class="ko-player">
+
+<input
+class="ko-name mirror"
+data-source="third-p2"
+placeholder="Perdant demi 2"
+readonly>
+
+<input
+id="third-r2"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+<div class="ko-player">
+
+<input
+class="ko-name mirror"
+data-source="third-p1"
+placeholder="Perdant demi 1"
+readonly>
+
+<input
+id="third-r1"
+class="ko-score"
+type="number"
+min="0"
+inputmode="numeric"
+placeholder="0">
+
+</div>
+
+</div>
+
+<div id="third-total" class="aggregate">
+CUMUL : 0 - 0
+</div>
+
+<div
+id="third-winner"
+class="champion third-place">
 </div>
 
 </div>
 
-<div id="third-total" class="aggregate">CUMUL : 0 - 0</div>
-
-<div id="third-winner" class="champion third-place"></div>
-
-</div>
 </div>
 
 </div>
+
 </section>
 
 </div>
 
 
+<!-- FIREBASE STATUS -->
+
 <div id="syncStatus" class="sync-status">
+
 <span class="sync-dot"></span>
-<span id="syncText">CONNEXION...</span>
+
+<span id="syncText">
+CONNEXION...
+</span>
+
 </div>
 
 
@@ -1066,43 +1759,73 @@ PERDANTS DES DEMI-FINALES • ALLER / RETOUR
    FIREBASE
 ===================================================== */
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 
 import {
   getDatabase,
   ref,
   set,
   onValue
-}
-from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
 
 
 const firebaseConfig = {
-  apiKey:"AIzaSyDdKtb0FoQG_ViZXo1WCFR75zwbAVmGNu0",
-  authDomain:"tournoi-fc26-28fca.firebaseapp.com",
-  databaseURL:"https://tournoi-fc26-28fca-default-rtdb.firebaseio.com/",
-  projectId:"tournoi-fc26-28fca",
-  storageBucket:"tournoi-fc26-28fca.firebasestorage.app",
-  messagingSenderId:"551846980178",
-  appId:"1:551846980178:web:95d419ccaa42604514cd8b"
+
+  apiKey:
+  "AIzaSyDdKtb0FoQG_ViZXo1WCFR75zwbAVmGNu0",
+
+  authDomain:
+  "tournoi-fc26-28fca.firebaseapp.com",
+
+  databaseURL:
+  "https://tournoi-fc26-28fca-default-rtdb.firebaseio.com/",
+
+  projectId:
+  "tournoi-fc26-28fca",
+
+  storageBucket:
+  "tournoi-fc26-28fca.firebasestorage.app",
+
+  messagingSenderId:
+  "551846980178",
+
+  appId:
+  "1:551846980178:web:95d419ccaa42604514cd8b"
+
 };
 
-const app=initializeApp(firebaseConfig);
-const db=getDatabase(app);
-const tournamentRef=ref(db,"tournoiFC26");
+
+const app =
+  initializeApp(firebaseConfig);
+
+const db =
+  getDatabase(app);
+
+const tournamentRef =
+  ref(db,"tournoiFC26");
 
 
 /* =====================================================
-   SYNCHRO
+   FIREBASE STATUS
 ===================================================== */
 
-const syncStatus=document.getElementById("syncStatus");
-const syncText=document.getElementById("syncText");
+const syncStatus =
+  document.getElementById("syncStatus");
+
+const syncText =
+  document.getElementById("syncText");
+
 
 function status(type,text){
-  syncStatus.className="sync-status "+type;
-  syncText.textContent=text;
+
+  syncStatus.className =
+    "sync-status "+type;
+
+  syncText.textContent =
+    text;
+
 }
 
 
@@ -1110,119 +1833,144 @@ function status(type,text){
    NAVIGATION
 ===================================================== */
 
-document.querySelectorAll(".tab").forEach(tab=>{
+document
+.querySelectorAll(".tab")
+.forEach(tab=>{
 
-  tab.addEventListener("click",()=>{
+  tab.addEventListener(
+    "click",
+    ()=>{
 
-    document.querySelectorAll(".tab")
-    .forEach(x=>x.classList.remove("active"));
+      document
+      .querySelectorAll(".tab")
+      .forEach(x=>
+        x.classList.remove("active")
+      );
 
-    document.querySelectorAll(".page")
-    .forEach(x=>x.classList.remove("active"));
+      document
+      .querySelectorAll(".page")
+      .forEach(x=>
+        x.classList.remove("active")
+      );
 
-    tab.classList.add("active");
+      tab.classList.add("active");
 
-    document
-    .getElementById(tab.dataset.page)
-    .classList.add("active");
+      document
+      .getElementById(
+        tab.dataset.page
+      )
+      .classList.add("active");
 
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
 
-  });
+    }
+  );
 
 });
 
 
 /* =====================================================
-   14 CLUBS
+   CLUBS
 ===================================================== */
 
-const teams=[
+const teams = [
 
 {
+  id:"manchester-city",
   name:"Manchester City",
   short:"MCI",
   logo:"https://img.logo.dev/mancity.com"
 },
 
 {
+  id:"real-madrid",
   name:"Real Madrid",
   short:"RMA",
   logo:"https://img.logo.dev/realmadrid.com"
 },
 
 {
+  id:"bayern",
   name:"Bayern Munich",
   short:"FCB",
   logo:"https://img.logo.dev/fcbayern.com"
 },
 
 {
+  id:"leverkusen",
   name:"Bayer Leverkusen",
   short:"B04",
   logo:"https://img.logo.dev/bayer04.de"
 },
 
 {
+  id:"psg",
   name:"Paris Saint-Germain",
   short:"PSG",
   logo:"https://img.logo.dev/psg.fr"
 },
 
 {
+  id:"arsenal",
   name:"Arsenal",
   short:"ARS",
   logo:"https://img.logo.dev/arsenal.com"
 },
 
 {
+  id:"barcelone",
   name:"FC Barcelone",
   short:"BAR",
   logo:"https://img.logo.dev/fcbarcelona.com"
 },
 
 {
+  id:"atletico",
   name:"Atlético de Madrid",
   short:"ATM",
   logo:"https://img.logo.dev/atleticodemadrid.com"
 },
 
 {
+  id:"liverpool",
   name:"Liverpool",
   short:"LFC",
   logo:"https://img.logo.dev/liverpoolfc.com"
 },
 
 {
+  id:"dortmund",
   name:"Borussia Dortmund",
   short:"BVB",
   logo:"https://img.logo.dev/bvb.de"
 },
 
-/* NOUVEAUX CLUBS */
-
 {
+  id:"chelsea",
   name:"Chelsea",
   short:"CHE",
   logo:"https://img.logo.dev/chelseafc.com"
 },
 
 {
+  id:"manchester-united",
   name:"Manchester United",
   short:"MUN",
   logo:"https://img.logo.dev/manutd.com"
 },
 
 {
+  id:"naples",
   name:"Naples",
   short:"NAP",
   logo:"https://img.logo.dev/sscnapoli.it"
 },
 
 {
+  id:"newcastle",
   name:"Newcastle United",
   short:"NEW",
   logo:"https://img.logo.dev/newcastleunited.com"
@@ -1232,122 +1980,483 @@ const teams=[
 
 
 /* =====================================================
-   LISTE DES CLUBS
+   SÉLECTION DES CLUBS
 ===================================================== */
 
-const teamList=document.getElementById("teamList");
+const teamList =
+  document.getElementById("teamList");
 
-teams.forEach(team=>{
+const selectedCount =
+  document.getElementById("selectedCount");
 
-  const card=document.createElement("div");
-  card.className="team-chip";
+const drawBtn =
+  document.getElementById("drawBtn");
 
-  const img=document.createElement("img");
-  img.className="club-logo";
-  img.src=team.logo;
-  img.alt=team.name;
+const selectAllBtn =
+  document.getElementById("selectAllBtn");
 
-  img.onerror=()=>{
-    img.style.display="none";
-  };
+const unselectAllBtn =
+  document.getElementById("unselectAllBtn");
 
-  const name=document.createElement("span");
-  name.textContent=team.name;
+const TEAM_SELECTION_KEY =
+  "FC26_TEAM_SELECTION";
 
-  card.appendChild(img);
-  card.appendChild(name);
 
-  teamList.appendChild(card);
+function loadTeamSelection(){
 
-});
+  try{
+
+    const saved =
+      JSON.parse(
+        localStorage.getItem(
+          TEAM_SELECTION_KEY
+        )
+      );
+
+    if(Array.isArray(saved)){
+
+      return new Set(saved);
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Sélection clubs :",
+      error
+    );
+
+  }
+
+  return new Set(
+    teams.map(team=>team.id)
+  );
+
+}
+
+
+let selectedTeams =
+  loadTeamSelection();
+
+
+function saveTeamSelection(){
+
+  localStorage.setItem(
+    TEAM_SELECTION_KEY,
+    JSON.stringify(
+      [...selectedTeams]
+    )
+  );
+
+}
+
+
+function getSelectedTeams(){
+
+  return teams.filter(
+    team=>
+      selectedTeams.has(team.id)
+  );
+
+}
+
+
+function updateSelectionUI(){
+
+  document
+  .querySelectorAll(".team-chip")
+  .forEach(card=>{
+
+    const id =
+      card.dataset.teamId;
+
+    const checkbox =
+      card.querySelector(
+        ".team-checkbox"
+      );
+
+    const selected =
+      selectedTeams.has(id);
+
+    checkbox.checked =
+      selected;
+
+    card.classList.toggle(
+      "selected",
+      selected
+    );
+
+  });
+
+
+  const number =
+    selectedTeams.size;
+
+  selectedCount.textContent =
+    number;
+
+
+  drawBtn.disabled =
+    number === 0;
+
+
+  if(number===0){
+
+    drawBtn.textContent =
+      "⚠️ SÉLECTIONNE UNE ÉQUIPE";
+
+  }else{
+
+    drawBtn.textContent =
+      "🎲 TIRER UNE ÉQUIPE";
+
+  }
+
+
+  saveTeamSelection();
+
+}
+
+
+function renderTeams(){
+
+  teamList.innerHTML="";
+
+
+  teams.forEach(team=>{
+
+    const card =
+      document.createElement("label");
+
+    card.className =
+      "team-chip";
+
+    card.dataset.teamId =
+      team.id;
+
+
+    const img =
+      document.createElement("img");
+
+    img.className =
+      "club-logo";
+
+    img.src =
+      team.logo;
+
+    img.alt =
+      team.name;
+
+    img.onerror=()=>{
+
+      img.style.display =
+        "none";
+
+    };
+
+
+    const name =
+      document.createElement("div");
+
+    name.className =
+      "team-name";
+
+    name.textContent =
+      team.name;
+
+
+    const checkboxRow =
+      document.createElement("div");
+
+    checkboxRow.className =
+      "team-checkbox-row";
+
+
+    const checkbox =
+      document.createElement("input");
+
+    checkbox.type =
+      "checkbox";
+
+    checkbox.className =
+      "team-checkbox";
+
+    checkbox.checked =
+      selectedTeams.has(team.id);
+
+
+    const checkboxText =
+      document.createElement("span");
+
+    checkboxText.textContent =
+      "DANS LE TIRAGE";
+
+
+    checkbox.addEventListener(
+      "change",
+      ()=>{
+
+        if(checkbox.checked){
+
+          selectedTeams.add(
+            team.id
+          );
+
+        }else{
+
+          selectedTeams.delete(
+            team.id
+          );
+
+        }
+
+        updateSelectionUI();
+
+      }
+    );
+
+
+    checkboxRow.appendChild(
+      checkbox
+    );
+
+    checkboxRow.appendChild(
+      checkboxText
+    );
+
+
+    card.appendChild(img);
+    card.appendChild(name);
+    card.appendChild(checkboxRow);
+
+    teamList.appendChild(card);
+
+  });
+
+
+  updateSelectionUI();
+
+}
+
+
+selectAllBtn.addEventListener(
+  "click",
+  ()=>{
+
+    selectedTeams =
+      new Set(
+        teams.map(team=>team.id)
+      );
+
+    updateSelectionUI();
+
+  }
+);
+
+
+unselectAllBtn.addEventListener(
+  "click",
+  ()=>{
+
+    selectedTeams =
+      new Set();
+
+    updateSelectionUI();
+
+  }
+);
+
+
+renderTeams();
 
 
 /* =====================================================
    ROULETTE
 ===================================================== */
 
-const drawBtn=document.getElementById("drawBtn");
-const drawLogo=document.getElementById("drawLogo");
-const drawFallback=document.getElementById("drawFallback");
-const teamResult=document.getElementById("teamResult");
+const drawLogo =
+  document.getElementById(
+    "drawLogo"
+  );
 
-drawLogo.style.display="none";
-drawFallback.style.display="flex";
+const drawFallback =
+  document.getElementById(
+    "drawFallback"
+  );
+
+const teamResult =
+  document.getElementById(
+    "teamResult"
+  );
+
+
+drawLogo.style.display =
+  "none";
+
+drawFallback.style.display =
+  "flex";
+
 
 let drawing=false;
 
+
 function showTeam(team){
 
-  teamResult.textContent=team.name;
-  drawFallback.textContent=team.short;
+  teamResult.textContent =
+    team.name;
 
-  drawLogo.src=team.logo;
-  drawLogo.style.display="block";
-  drawFallback.style.display="none";
+  drawFallback.textContent =
+    team.short;
+
+  drawLogo.src =
+    team.logo;
+
+  drawLogo.style.display =
+    "block";
+
+  drawFallback.style.display =
+    "none";
+
 
   drawLogo.onerror=()=>{
 
-    drawLogo.style.display="none";
-    drawFallback.style.display="flex";
+    drawLogo.style.display =
+      "none";
+
+    drawFallback.style.display =
+      "flex";
 
   };
 
 }
 
-drawBtn.addEventListener("click",()=>{
 
-  if(drawing)return;
+drawBtn.addEventListener(
+  "click",
+  ()=>{
 
-  drawing=true;
-  drawBtn.disabled=true;
+    if(drawing){
+      return;
+    }
 
-  let i=0;
 
-  const timer=setInterval(()=>{
+    const availableTeams =
+      getSelectedTeams();
 
-    const randomTeam=
-      teams[Math.floor(Math.random()*teams.length)];
 
-    showTeam(randomTeam);
+    if(
+      availableTeams.length===0
+    ){
 
-    i++;
+      teamResult.textContent =
+        "SÉLECTIONNE AU MOINS 1 ÉQUIPE";
 
-    if(i>=20){
-
-      clearInterval(timer);
-
-      const winner=
-        teams[Math.floor(Math.random()*teams.length)];
-
-      showTeam(winner);
-
-      drawBtn.disabled=false;
-      drawing=false;
+      return;
 
     }
 
-  },50);
 
-});
+    drawing=true;
+
+    drawBtn.disabled=true;
+
+
+    let i=0;
+
+
+    const roulette =
+      setInterval(
+        ()=>{
+
+          const randomTeam =
+            availableTeams[
+              Math.floor(
+                Math.random()
+                *
+                availableTeams.length
+              )
+            ];
+
+
+          showTeam(
+            randomTeam
+          );
+
+
+          i++;
+
+
+          if(i>=20){
+
+            clearInterval(
+              roulette
+            );
+
+
+            const winner =
+              availableTeams[
+                Math.floor(
+                  Math.random()
+                  *
+                  availableTeams.length
+                )
+              ];
+
+
+            showTeam(
+              winner
+            );
+
+
+            drawing=false;
+
+            updateSelectionUI();
+
+          }
+
+        },
+        50
+      );
+
+  }
+);
 
 
 /* =====================================================
    POULES
 ===================================================== */
 
-const groupData={
+const groupData = {
 
-A:["Alexis","Antoine","Louis"],
+A:[
+  "Alexis",
+  "Antoine",
+  "Louis"
+],
 
-B:["Arnaud","Victor","Raph"],
+B:[
+  "Arnaud",
+  "Victor",
+  "Raph"
+],
 
-C:["Didier","Maxence","Martin"],
+C:[
+  "Didier",
+  "Maxence",
+  "Martin"
+],
 
-D:["Julien","Yanis","Quentin"]
+D:[
+  "Julien",
+  "Yanis",
+  "Quentin"
+]
 
 };
 
+
 const matchData={};
+
 
 function createMatches(p){
 
@@ -1365,143 +2474,180 @@ function createMatches(p){
 
 }
 
-const groups=document.getElementById("groups");
 
-Object.entries(groupData).forEach(([letter,players])=>{
-
-  const matches=createMatches(players);
-
-  matchData[letter]=matches;
-
-  const group=document.createElement("div");
-
-  group.className=
-    "group group-"+letter.toLowerCase();
+const groups =
+  document.getElementById(
+    "groups"
+  );
 
 
-  function matchHTML(type){
-
-    return matches
-
-    .map((m,index)=>({m,index}))
-
-    .filter(x=>x.m[2]===type)
-
-    .map(x=>`
-
-      <div class="match">
-
-        <span>${x.m[0]}</span>
-
-        <input
-          class="score group-score"
-          type="number"
-          min="0"
-          inputmode="numeric"
-          data-group="${letter}"
-          data-match="${x.index}"
-          data-side="home"
-        >
-
-        <span>-</span>
-
-        <input
-          class="score group-score"
-          type="number"
-          min="0"
-          inputmode="numeric"
-          data-group="${letter}"
-          data-match="${x.index}"
-          data-side="away"
-        >
-
-        <span class="away">
-          ${x.m[1]}
-        </span>
-
-      </div>
-
-    `).join("");
-
-  }
+Object
+.entries(groupData)
+.forEach(
+  ([letter,players])=>{
 
 
-  group.innerHTML=`
+    const matches =
+      createMatches(players);
 
-    <div class="group-title">
-      POULE ${letter}
-    </div>
 
-    <div class="players">
+    matchData[letter] =
+      matches;
 
-      <div class="players-label">
-        JOUEURS
-      </div>
 
-      ${players.map((p,i)=>`
+    const group =
+      document.createElement(
+        "div"
+      );
 
-        <div class="player">
 
-          <span class="number">
-            ${i+1}
+    group.className =
+      "group group-"
+      +
+      letter.toLowerCase();
+
+
+    function matchHTML(type){
+
+      return matches
+
+      .map(
+        (m,index)=>({
+          m,
+          index
+        })
+      )
+
+      .filter(
+        x=>x.m[2]===type
+      )
+
+      .map(x=>`
+
+        <div class="match">
+
+          <span>
+            ${x.m[0]}
           </span>
 
-          ${p}
+          <input
+            class="score group-score"
+            type="number"
+            min="0"
+            inputmode="numeric"
+            data-group="${letter}"
+            data-match="${x.index}"
+            data-side="home"
+          >
+
+          <span>-</span>
+
+          <input
+            class="score group-score"
+            type="number"
+            min="0"
+            inputmode="numeric"
+            data-group="${letter}"
+            data-match="${x.index}"
+            data-side="away"
+          >
+
+          <span class="away">
+            ${x.m[1]}
+          </span>
 
         </div>
 
-      `).join("")}
+      `)
+      .join("");
 
-    </div>
+    }
 
-    <div class="match-section-title">
-      MATCHS ALLER
-    </div>
 
-    <div class="matches">
-      ${matchHTML("aller")}
-    </div>
+    group.innerHTML=`
 
-    <div class="match-section-title">
-      MATCHS RETOUR
-    </div>
+      <div class="group-title">
+        POULE ${letter}
+      </div>
 
-    <div class="matches">
-      ${matchHTML("retour")}
-    </div>
+      <div class="players">
 
-    <div class="standings-title">
-      CLASSEMENT
-    </div>
+        <div class="players-label">
+          JOUEURS
+        </div>
 
-    <table class="standings">
+        ${players.map(
+          (p,i)=>`
 
-      <thead>
+            <div class="player">
 
-        <tr>
-          <th>#</th>
-          <th>JOUEUR</th>
-          <th>J</th>
-          <th>V</th>
-          <th>N</th>
-          <th>D</th>
-          <th>BP</th>
-          <th>BC</th>
-          <th>+/-</th>
-          <th>PTS</th>
-        </tr>
+              <span class="number">
+                ${i+1}
+              </span>
 
-      </thead>
+              ${p}
 
-      <tbody id="standing-${letter}"></tbody>
+            </div>
 
-    </table>
+          `
+        ).join("")}
 
-  `;
+      </div>
 
-  groups.appendChild(group);
+      <div class="match-section-title">
+        MATCHS ALLER
+      </div>
 
-});
+      <div class="matches">
+        ${matchHTML("aller")}
+      </div>
+
+      <div class="match-section-title">
+        MATCHS RETOUR
+      </div>
+
+      <div class="matches">
+        ${matchHTML("retour")}
+      </div>
+
+      <div class="standings-title">
+        CLASSEMENT
+      </div>
+
+      <table class="standings">
+
+        <thead>
+
+          <tr>
+            <th>#</th>
+            <th>JOUEUR</th>
+            <th>J</th>
+            <th>V</th>
+            <th>N</th>
+            <th>D</th>
+            <th>BP</th>
+            <th>BC</th>
+            <th>+/-</th>
+            <th>PTS</th>
+          </tr>
+
+        </thead>
+
+        <tbody
+          id="standing-${letter}">
+        </tbody>
+
+      </table>
+
+    `;
+
+
+    groups.appendChild(
+      group
+    );
+
+  }
+);
 
 
 /* =====================================================
@@ -1510,178 +2656,252 @@ Object.entries(groupData).forEach(([letter,players])=>{
 
 function calculateGroup(letter){
 
-  const players=groupData[letter];
-  const matches=matchData[letter];
+  const players =
+    groupData[letter];
+
+  const matches =
+    matchData[letter];
+
 
   const stats={};
+
 
   players.forEach(p=>{
 
     stats[p]={
+
       player:p,
+
       j:0,
       v:0,
       n:0,
       d:0,
+
       bp:0,
       bc:0,
+
       pts:0
+
     };
 
   });
 
 
-  matches.forEach((m,index)=>{
-
-    const homeInput=
-      document.querySelector(
-        `[data-group="${letter}"][data-match="${index}"][data-side="home"]`
-      );
-
-    const awayInput=
-      document.querySelector(
-        `[data-group="${letter}"][data-match="${index}"][data-side="away"]`
-      );
+  matches.forEach(
+    (m,index)=>{
 
 
-    if(
-      homeInput.value===""
-      ||
-      awayInput.value===""
-    ){
-      return;
+      const homeInput =
+        document.querySelector(
+          `[data-group="${letter}"][data-match="${index}"][data-side="home"]`
+        );
+
+
+      const awayInput =
+        document.querySelector(
+          `[data-group="${letter}"][data-match="${index}"][data-side="away"]`
+        );
+
+
+      if(
+        homeInput.value===""
+        ||
+        awayInput.value===""
+      ){
+
+        return;
+
+      }
+
+
+      const hs =
+        Math.max(
+          0,
+          parseInt(
+            homeInput.value
+          )||0
+        );
+
+
+      const as =
+        Math.max(
+          0,
+          parseInt(
+            awayInput.value
+          )||0
+        );
+
+
+      const home =
+        stats[m[0]];
+
+      const away =
+        stats[m[1]];
+
+
+      home.j++;
+      away.j++;
+
+
+      home.bp+=hs;
+      home.bc+=as;
+
+      away.bp+=as;
+      away.bc+=hs;
+
+
+      if(hs>as){
+
+        home.v++;
+        away.d++;
+
+        home.pts+=3;
+
+      }
+
+      else if(as>hs){
+
+        away.v++;
+        home.d++;
+
+        away.pts+=3;
+
+      }
+
+      else{
+
+        home.n++;
+        away.n++;
+
+        home.pts++;
+        away.pts++;
+
+      }
+
     }
+  );
 
 
-    const hs=Math.max(
-      0,
-      parseInt(homeInput.value)||0
-    );
+  const ranking =
+    Object
+    .values(stats)
+    .sort(
+      (a,b)=>
 
-    const as=Math.max(
-      0,
-      parseInt(awayInput.value)||0
-    );
+        b.pts-a.pts
 
+        ||
 
-    const home=stats[m[0]];
-    const away=stats[m[1]];
+        (b.bp-b.bc)
+        -
+        (a.bp-a.bc)
 
+        ||
 
-    home.j++;
-    away.j++;
+        b.bp-a.bp
 
-    home.bp+=hs;
-    home.bc+=as;
+        ||
 
-    away.bp+=as;
-    away.bc+=hs;
-
-
-    if(hs>as){
-
-      home.v++;
-      away.d++;
-
-      home.pts+=3;
-
-    }
-
-    else if(as>hs){
-
-      away.v++;
-      home.d++;
-
-      away.pts+=3;
-
-    }
-
-    else{
-
-      home.n++;
-      away.n++;
-
-      home.pts++;
-      away.pts++;
-
-    }
-
-  });
-
-
-  const ranking=
-    Object.values(stats)
-    .sort((a,b)=>
-
-      b.pts-a.pts
-      ||
-      (b.bp-b.bc)-(a.bp-a.bc)
-      ||
-      b.bp-a.bp
-      ||
-      a.player.localeCompare(b.player)
+        a.player.localeCompare(
+          b.player
+        )
 
     );
 
 
   document
-  .getElementById("standing-"+letter)
-  .innerHTML=
+  .getElementById(
+    "standing-"+letter
+  )
+  .innerHTML =
 
-  ranking.map((p,i)=>`
+    ranking
 
-    <tr>
+    .map(
+      (p,i)=>`
 
-      <td>
+        <tr>
 
-        <span class="rank ${i<2?"qual":""}">
-          ${i+1}
-        </span>
+          <td>
 
-      </td>
+            <span
+              class="rank ${
+                i<2
+                ?
+                "qual"
+                :
+                ""
+              }">
 
-      <td>${p.player}</td>
+              ${i+1}
 
-      <td>${p.j}</td>
-      <td>${p.v}</td>
-      <td>${p.n}</td>
-      <td>${p.d}</td>
+            </span>
 
-      <td>${p.bp}</td>
-      <td>${p.bc}</td>
+          </td>
 
-      <td>
-        ${(p.bp-p.bc)>0?"+":""}${p.bp-p.bc}
-      </td>
+          <td>${p.player}</td>
 
-      <td>
-        <strong>${p.pts}</strong>
-      </td>
+          <td>${p.j}</td>
+          <td>${p.v}</td>
+          <td>${p.n}</td>
+          <td>${p.d}</td>
 
-    </tr>
+          <td>${p.bp}</td>
+          <td>${p.bc}</td>
 
-  `).join("");
+          <td>
+
+            ${
+              (p.bp-p.bc)>0
+              ?
+              "+"
+              :
+              ""
+            }
+
+            ${p.bp-p.bc}
+
+          </td>
+
+          <td>
+            <strong>
+              ${p.pts}
+            </strong>
+          </td>
+
+        </tr>
+
+      `
+    )
+    .join("");
 
 }
 
 
 /* =====================================================
-   MATCHS RETOUR
+   MIROIRS
 ===================================================== */
 
 function updateMirrors(){
 
   document
-  .querySelectorAll(".mirror")
+  .querySelectorAll(
+    ".mirror"
+  )
   .forEach(input=>{
 
-    const source=
+
+    const source =
       document.getElementById(
         input.dataset.source
       );
 
+
     if(source){
-      input.value=source.value;
+
+      input.value =
+        source.value;
+
     }
 
   });
@@ -1690,28 +2910,42 @@ function updateMirrors(){
 
 
 /* =====================================================
-   CUMULS
+   PHASE FINALE
 ===================================================== */
 
 const knockout=[
+
   "qa",
   "qb",
   "qc",
   "qd",
+
   "sf1",
   "sf2",
+
   "final",
+
   "third"
+
 ];
 
 
 function score(id){
 
-  const el=document.getElementById(id);
+  const el =
+    document.getElementById(id);
 
-  if(!el || el.value===""){
+
+  if(
+    !el
+    ||
+    el.value===""
+  ){
+
     return 0;
+
   }
+
 
   return Math.max(
     0,
@@ -1724,12 +2958,17 @@ function score(id){
 function completed(prefix){
 
   return[
+
     prefix+"-a1",
     prefix+"-a2",
     prefix+"-r1",
     prefix+"-r2"
-  ].every(id=>
-    document.getElementById(id)?.value!==""
+
+  ].every(
+    id=>
+      document
+      .getElementById(id)
+      ?.value!==""
   );
 
 }
@@ -1737,30 +2976,41 @@ function completed(prefix){
 
 function aggregate(prefix){
 
-  const p1=
+  const p1 =
     score(prefix+"-a1")
     +
     score(prefix+"-r1");
 
-  const p2=
+
+  const p2 =
     score(prefix+"-a2")
     +
     score(prefix+"-r2");
 
 
   document
-  .getElementById(prefix+"-total")
-  .textContent=
+  .getElementById(
+    prefix+"-total"
+  )
+  .textContent =
     `CUMUL : ${p1} - ${p2}`;
 
 
-  if(prefix==="final"){
+  /* CHAMPION */
 
-    const champion=
-      document.getElementById("champion");
+  if(
+    prefix==="final"
+  ){
+
+    const champion =
+      document.getElementById(
+        "champion"
+      );
 
 
-    if(!completed(prefix)){
+    if(
+      !completed(prefix)
+    ){
 
       champion.textContent="";
 
@@ -1768,12 +3018,14 @@ function aggregate(prefix){
 
     else if(p1>p2){
 
-      champion.textContent=
+      champion.textContent =
         "🏆 CHAMPION : "
         +
         (
           document
-          .getElementById("final-p1")
+          .getElementById(
+            "final-p1"
+          )
           .value
           ||
           "FINALISTE 1"
@@ -1783,12 +3035,14 @@ function aggregate(prefix){
 
     else if(p2>p1){
 
-      champion.textContent=
+      champion.textContent =
         "🏆 CHAMPION : "
         +
         (
           document
-          .getElementById("final-p2")
+          .getElementById(
+            "final-p2"
+          )
           .value
           ||
           "FINALISTE 2"
@@ -1798,7 +3052,7 @@ function aggregate(prefix){
 
     else{
 
-      champion.textContent=
+      champion.textContent =
         "⚖️ ÉGALITÉ AU CUMUL";
 
     }
@@ -1806,15 +3060,21 @@ function aggregate(prefix){
   }
 
 
-  if(prefix==="third"){
+  /* TROISIÈME PLACE */
 
-    const third=
+  if(
+    prefix==="third"
+  ){
+
+    const third =
       document.getElementById(
         "third-winner"
       );
 
 
-    if(!completed(prefix)){
+    if(
+      !completed(prefix)
+    ){
 
       third.textContent="";
 
@@ -1822,12 +3082,14 @@ function aggregate(prefix){
 
     else if(p1>p2){
 
-      third.textContent=
+      third.textContent =
         "🥉 3E PLACE : "
         +
         (
           document
-          .getElementById("third-p1")
+          .getElementById(
+            "third-p1"
+          )
           .value
           ||
           "JOUEUR 1"
@@ -1837,12 +3099,14 @@ function aggregate(prefix){
 
     else if(p2>p1){
 
-      third.textContent=
+      third.textContent =
         "🥉 3E PLACE : "
         +
         (
           document
-          .getElementById("third-p2")
+          .getElementById(
+            "third-p2"
+          )
           .value
           ||
           "JOUEUR 2"
@@ -1852,7 +3116,7 @@ function aggregate(prefix){
 
     else{
 
-      third.textContent=
+      third.textContent =
         "⚖️ ÉGALITÉ AU CUMUL";
 
     }
@@ -1863,26 +3127,52 @@ function aggregate(prefix){
 
 
 /* =====================================================
-   FIREBASE - IDENTIFIANTS
+   FIREBASE KEYS
 ===================================================== */
 
 function keyFor(input){
 
+  /*
+  Les cases à cocher des clubs
+  restent locales à l'appareil
+  et ne sont PAS envoyées à Firebase.
+  */
+
   if(
-    input.classList.contains("mirror")
+    input.classList.contains(
+      "team-checkbox"
+    )
   ){
+
     return null;
+
+  }
+
+
+  if(
+    input.classList.contains(
+      "mirror"
+    )
+  ){
+
+    return null;
+
   }
 
 
   if(input.id){
+
     return input.id;
+
   }
 
 
-  if(input.dataset.group){
+  if(
+    input.dataset.group
+  ){
 
     return (
+
       "group-"
       +
       input.dataset.group
@@ -1894,6 +3184,7 @@ function keyFor(input){
       "-"
       +
       input.dataset.side
+
     );
 
   }
@@ -1905,7 +3196,7 @@ function keyFor(input){
 
 
 /* =====================================================
-   COLLECTER LES DONNÉES
+   COLLECTE FIREBASE
 ===================================================== */
 
 function collect(){
@@ -1917,10 +3208,16 @@ function collect(){
   .querySelectorAll("input")
   .forEach(input=>{
 
-    const key=keyFor(input);
+
+    const key =
+      keyFor(input);
+
 
     if(key){
-      data[key]=input.value;
+
+      data[key] =
+        input.value;
+
     }
 
   });
@@ -1946,20 +3243,32 @@ function apply(data){
   .querySelectorAll("input")
   .forEach(input=>{
 
-    const key=keyFor(input);
+
+    const key =
+      keyFor(input);
 
 
     if(
       key
+
       &&
+
       Object.prototype
       .hasOwnProperty
-      .call(data,key)
+      .call(
+        data,
+        key
+      )
+
       &&
-      document.activeElement!==input
+
+      document.activeElement
+      !==
+      input
     ){
 
-      input.value=data[key];
+      input.value =
+        data[key];
 
     }
 
@@ -1968,12 +3277,18 @@ function apply(data){
 
   updateMirrors();
 
+
   Object
   .keys(groupData)
-  .forEach(calculateGroup);
+  .forEach(
+    calculateGroup
+  );
+
 
   knockout
-  .forEach(aggregate);
+  .forEach(
+    aggregate
+  );
 
 }
 
@@ -1982,7 +3297,7 @@ function apply(data){
    SAUVEGARDE FIREBASE
 ===================================================== */
 
-let timer=null;
+let firebaseTimer=null;
 
 
 async function saveFirebase(){
@@ -1993,7 +3308,8 @@ async function saveFirebase(){
   );
 
 
-  const data=collect();
+  const data =
+    collect();
 
 
   localStorage.setItem(
@@ -2009,6 +3325,7 @@ async function saveFirebase(){
       data
     );
 
+
     status(
       "online",
       "SYNCHRONISÉ"
@@ -2018,7 +3335,10 @@ async function saveFirebase(){
 
   catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     status(
       "error",
@@ -2032,18 +3352,22 @@ async function saveFirebase(){
 
 function scheduleSave(){
 
-  clearTimeout(timer);
-
-  timer=setTimeout(
-    saveFirebase,
-    250
+  clearTimeout(
+    firebaseTimer
   );
+
+
+  firebaseTimer =
+    setTimeout(
+      saveFirebase,
+      250
+    );
 
 }
 
 
 /* =====================================================
-   SYNCHRONISATION TEMPS RÉEL
+   FIREBASE TEMPS RÉEL
 ===================================================== */
 
 onValue(
@@ -2052,11 +3376,17 @@ onValue(
 
   snapshot=>{
 
-    const data=snapshot.val();
+
+    const data =
+      snapshot.val();
+
 
     if(data){
+
       apply(data);
+
     }
+
 
     status(
       "online",
@@ -2065,9 +3395,14 @@ onValue(
 
   },
 
+
   error=>{
 
-    console.error(error);
+
+    console.error(
+      error
+    );
+
 
     status(
       "error",
@@ -2088,12 +3423,42 @@ document.addEventListener(
   event=>{
 
 
+    /*
+    Les checkboxes des clubs
+    ne déclenchent pas Firebase.
+    */
+
     if(
-      event.target.type==="number"
+      event.target
+      .classList
+      .contains(
+        "team-checkbox"
+      )
+    ){
+
+      return;
+
+    }
+
+
+    if(
+      event.target.type
+      ===
+      "number"
+
       &&
-      event.target.value!==""
+
+      event.target.value
+      !==
+      ""
+
       &&
-      Number(event.target.value)<0
+
+      Number(
+        event.target.value
+      )
+      <
+      0
     ){
 
       event.target.value=0;
@@ -2104,7 +3469,9 @@ document.addEventListener(
     if(
       event.target
       .classList
-      .contains("group-score")
+      .contains(
+        "group-score"
+      )
     ){
 
       calculateGroup(
@@ -2117,7 +3484,8 @@ document.addEventListener(
     updateMirrors();
 
 
-    knockout.forEach(
+    knockout
+    .forEach(
       aggregate
     );
 
@@ -2134,14 +3502,18 @@ document.addEventListener(
 
 Object
 .keys(groupData)
-.forEach(calculateGroup);
+.forEach(
+  calculateGroup
+);
 
 
 updateMirrors();
 
 
 knockout
-.forEach(aggregate);
+.forEach(
+  aggregate
+);
 
 </script>
 
