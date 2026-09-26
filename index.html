@@ -154,6 +154,8 @@ button,input{font-family:inherit}
   cursor:pointer;
 }
 
+.draw-button:disabled{opacity:.55}
+
 .team-screen{
   min-height:270px;
   display:flex;
@@ -194,27 +196,31 @@ button,input{font-family:inherit}
 }
 
 .team-result{
+  padding:0 12px;
   font-size:30px;
   font-weight:1000;
 }
 
 .team-list{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns:repeat(7,1fr);
   gap:10px;
   margin-top:25px;
 }
 
 .team-chip{
-  min-height:82px;
+  min-height:95px;
   display:flex;
+  flex-direction:column;
+  justify-content:center;
   align-items:center;
-  gap:10px;
+  text-align:center;
+  gap:8px;
   padding:10px;
   border:1px solid #293b47;
   border-radius:10px;
   background:#071018;
-  font-size:12px;
+  font-size:11px;
   font-weight:800;
 }
 
@@ -353,7 +359,7 @@ button,input{font-family:inherit}
 
 .rank.qual{background:var(--group)}
 
-/* FINALE */
+/* PHASE FINALE */
 
 .final-panel{
   padding:25px;
@@ -499,12 +505,15 @@ button,input{font-family:inherit}
 
 .third-place{color:#e09a54}
 
-/* MOBILE */
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+  .team-list{grid-template-columns:repeat(4,1fr)}
+}
 
 @media(max-width:1000px){
   .groups,.knockout-grid{grid-template-columns:1fr 1fr}
   .draw-grid{grid-template-columns:1fr}
-  .team-list{grid-template-columns:repeat(2,1fr)}
 }
 
 @media(max-width:650px){
@@ -534,7 +543,9 @@ button,input{font-family:inherit}
     grid-template-columns:1fr;
   }
 
-  .team-list{grid-template-columns:1fr 1fr}
+  .team-list{
+    grid-template-columns:1fr 1fr;
+  }
 }
 </style>
 </head>
@@ -544,6 +555,7 @@ button,input{font-family:inherit}
 <div class="app">
 
 <nav class="tabs">
+
 <button class="tab active" data-page="tirage">
 <span class="tab-icon">🎲</span>TIRAGE D'ÉQUIPE
 </button>
@@ -555,9 +567,11 @@ button,input{font-family:inherit}
 <button class="tab" data-page="finale">
 <span class="tab-icon">🏆</span>PHASE FINALE
 </button>
+
 </nav>
 
-<!-- TIRAGE -->
+
+<!-- ==================== TIRAGE ==================== -->
 
 <section id="tirage" class="page active">
 
@@ -567,7 +581,10 @@ button,input{font-family:inherit}
 
 <div>
 <h1 class="title">TIRAGE D'ÉQUIPE</h1>
-<div class="subtitle">10 ÉQUIPES DISPONIBLES</div>
+
+<div class="subtitle">
+14 ÉQUIPES DISPONIBLES
+</div>
 
 <button id="drawBtn" class="draw-button">
 🎲 TIRER UNE ÉQUIPE
@@ -577,7 +594,7 @@ button,input{font-family:inherit}
 <div id="teamScreen" class="team-screen">
 
 <div class="draw-logo-box">
-<img id="drawLogo" class="draw-logo">
+<img id="drawLogo" class="draw-logo" alt="">
 <div id="drawFallback" class="logo-fallback">FC</div>
 </div>
 
@@ -591,9 +608,11 @@ PRÊT ?
 <div id="teamList" class="team-list"></div>
 
 </div>
+
 </section>
 
-<!-- POULES -->
+
+<!-- ==================== POULES ==================== -->
 
 <section id="poules" class="page">
 
@@ -607,7 +626,8 @@ PRÊT ?
 
 </section>
 
-<!-- PHASE FINALE -->
+
+<!-- ==================== PHASE FINALE ==================== -->
 
 <section id="finale" class="page">
 
@@ -618,6 +638,7 @@ QUARTS • DEMI-FINALES • FINALE • PETITE FINALE
 </div>
 
 <div class="final-panel">
+
 
 <!-- QUARTS -->
 
@@ -631,7 +652,8 @@ A1 - B2 • B1 - A2 • C1 - D2 • D1 - C2
 
 <div class="knockout-grid">
 
-<!-- QUART 1 : A1 vs B2 -->
+
+<!-- QUART 1 -->
 
 <div class="ko-card ko-blue">
 
@@ -645,12 +667,12 @@ QUART 1 — A1 / B2
 
 <div class="ko-player">
 <input id="qa-p1" class="ko-name" placeholder="A1 - Joueur">
-<input id="qa-a1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qa-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input id="qa-p2" class="ko-name" placeholder="B2 - Joueur">
-<input id="qa-a2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qa-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
@@ -661,23 +683,22 @@ QUART 1 — A1 / B2
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="qa-p2" placeholder="B2 - Joueur" readonly>
-<input id="qa-r2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qa-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="qa-p1" placeholder="A1 - Joueur" readonly>
-<input id="qa-r1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qa-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
 
-<div id="qa-total" class="aggregate">
-CUMUL : 0 - 0
-</div>
+<div id="qa-total" class="aggregate">CUMUL : 0 - 0</div>
 
 </div>
 
-<!-- QUART 2 : B1 vs A2 -->
+
+<!-- QUART 2 -->
 
 <div class="ko-card ko-red">
 
@@ -691,12 +712,12 @@ QUART 2 — B1 / A2
 
 <div class="ko-player">
 <input id="qb-p1" class="ko-name" placeholder="B1 - Joueur">
-<input id="qb-a1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qb-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input id="qb-p2" class="ko-name" placeholder="A2 - Joueur">
-<input id="qb-a2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qb-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
@@ -707,23 +728,22 @@ QUART 2 — B1 / A2
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="qb-p2" placeholder="A2 - Joueur" readonly>
-<input id="qb-r2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qb-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="qb-p1" placeholder="B1 - Joueur" readonly>
-<input id="qb-r1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qb-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
 
-<div id="qb-total" class="aggregate">
-CUMUL : 0 - 0
-</div>
+<div id="qb-total" class="aggregate">CUMUL : 0 - 0</div>
 
 </div>
 
-<!-- QUART 3 : C1 vs D2 -->
+
+<!-- QUART 3 -->
 
 <div class="ko-card ko-green">
 
@@ -737,12 +757,12 @@ QUART 3 — C1 / D2
 
 <div class="ko-player">
 <input id="qc-p1" class="ko-name" placeholder="C1 - Joueur">
-<input id="qc-a1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qc-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input id="qc-p2" class="ko-name" placeholder="D2 - Joueur">
-<input id="qc-a2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qc-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
@@ -753,23 +773,22 @@ QUART 3 — C1 / D2
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="qc-p2" placeholder="D2 - Joueur" readonly>
-<input id="qc-r2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qc-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="qc-p1" placeholder="C1 - Joueur" readonly>
-<input id="qc-r1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qc-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
 
-<div id="qc-total" class="aggregate">
-CUMUL : 0 - 0
-</div>
+<div id="qc-total" class="aggregate">CUMUL : 0 - 0</div>
 
 </div>
 
-<!-- QUART 4 : D1 vs C2 -->
+
+<!-- QUART 4 -->
 
 <div class="ko-card ko-gold">
 
@@ -783,12 +802,12 @@ QUART 4 — D1 / C2
 
 <div class="ko-player">
 <input id="qd-p1" class="ko-name" placeholder="D1 - Joueur">
-<input id="qd-a1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qd-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input id="qd-p2" class="ko-name" placeholder="C2 - Joueur">
-<input id="qd-a2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qd-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
@@ -799,31 +818,28 @@ QUART 4 — D1 / C2
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="qd-p2" placeholder="C2 - Joueur" readonly>
-<input id="qd-r2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qd-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="qd-p1" placeholder="D1 - Joueur" readonly>
-<input id="qd-r1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="qd-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
 
-<div id="qd-total" class="aggregate">
-CUMUL : 0 - 0
-</div>
+<div id="qd-total" class="aggregate">CUMUL : 0 - 0</div>
 
 </div>
 
 </div>
+
 
 <!-- DEMI-FINALES -->
 
 <div class="section-gap">
 
-<div class="round-title">
-DEMI-FINALES
-</div>
+<div class="round-title">DEMI-FINALES</div>
 
 <div class="round-subtitle">
 VAINQUEUR QUART 1 - VAINQUEUR QUART 3 • VAINQUEUR QUART 2 - VAINQUEUR QUART 4
@@ -831,7 +847,6 @@ VAINQUEUR QUART 1 - VAINQUEUR QUART 3 • VAINQUEUR QUART 2 - VAINQUEUR QUART 4
 
 <div class="semi-grid">
 
-<!-- DEMI 1 -->
 
 <div class="ko-card ko-blue">
 
@@ -845,12 +860,12 @@ DEMI-FINALE 1 — QF1 / QF3
 
 <div class="ko-player">
 <input id="sf1-p1" class="ko-name" placeholder="Vainqueur QF1">
-<input id="sf1-a1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="sf1-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input id="sf1-p2" class="ko-name" placeholder="Vainqueur QF3">
-<input id="sf1-a2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="sf1-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
@@ -861,23 +876,20 @@ DEMI-FINALE 1 — QF1 / QF3
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="sf1-p2" readonly>
-<input id="sf1-r2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="sf1-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="sf1-p1" readonly>
-<input id="sf1-r1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="sf1-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
 
-<div id="sf1-total" class="aggregate">
-CUMUL : 0 - 0
-</div>
+<div id="sf1-total" class="aggregate">CUMUL : 0 - 0</div>
 
 </div>
 
-<!-- DEMI 2 -->
 
 <div class="ko-card ko-gold">
 
@@ -891,12 +903,12 @@ DEMI-FINALE 2 — QF2 / QF4
 
 <div class="ko-player">
 <input id="sf2-p1" class="ko-name" placeholder="Vainqueur QF2">
-<input id="sf2-a1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="sf2-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input id="sf2-p2" class="ko-name" placeholder="Vainqueur QF4">
-<input id="sf2-a2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="sf2-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
@@ -907,24 +919,23 @@ DEMI-FINALE 2 — QF2 / QF4
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="sf2-p2" readonly>
-<input id="sf2-r2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="sf2-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="sf2-p1" readonly>
-<input id="sf2-r1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="sf2-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
 
-<div id="sf2-total" class="aggregate">
-CUMUL : 0 - 0
-</div>
+<div id="sf2-total" class="aggregate">CUMUL : 0 - 0</div>
 
 </div>
 
 </div>
 </div>
+
 
 <!-- FINALE -->
 
@@ -940,9 +951,7 @@ VAINQUEURS DES DEMI-FINALES • ALLER / RETOUR
 
 <div class="ko-card ko-gold">
 
-<div class="ko-header">
-🏆 GRANDE FINALE
-</div>
+<div class="ko-header">🏆 GRANDE FINALE</div>
 
 <div class="leg">
 
@@ -950,12 +959,12 @@ VAINQUEURS DES DEMI-FINALES • ALLER / RETOUR
 
 <div class="ko-player">
 <input id="final-p1" class="ko-name" placeholder="Finaliste 1">
-<input id="final-a1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="final-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input id="final-p2" class="ko-name" placeholder="Finaliste 2">
-<input id="final-a2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="final-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
@@ -966,24 +975,23 @@ VAINQUEURS DES DEMI-FINALES • ALLER / RETOUR
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="final-p2" readonly>
-<input id="final-r2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="final-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="final-p1" readonly>
-<input id="final-r1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="final-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
 
-<div id="final-total" class="aggregate">
-CUMUL : 0 - 0
-</div>
+<div id="final-total" class="aggregate">CUMUL : 0 - 0</div>
 
 <div id="champion" class="champion"></div>
 
 </div>
 </div>
+
 
 <!-- PETITE FINALE -->
 
@@ -991,9 +999,7 @@ CUMUL : 0 - 0
 
 <div class="bronze-trophy">🥉</div>
 
-<div class="round-title">
-FINALE DES PERDANTS
-</div>
+<div class="round-title">FINALE DES PERDANTS</div>
 
 <div class="round-subtitle">
 PERDANTS DES DEMI-FINALES • ALLER / RETOUR
@@ -1001,9 +1007,7 @@ PERDANTS DES DEMI-FINALES • ALLER / RETOUR
 
 <div class="ko-card ko-bronze">
 
-<div class="ko-header">
-🥉 PETITE FINALE
-</div>
+<div class="ko-header">🥉 PETITE FINALE</div>
 
 <div class="leg">
 
@@ -1011,12 +1015,12 @@ PERDANTS DES DEMI-FINALES • ALLER / RETOUR
 
 <div class="ko-player">
 <input id="third-p1" class="ko-name" placeholder="Perdant demi 1">
-<input id="third-a1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="third-a1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input id="third-p2" class="ko-name" placeholder="Perdant demi 2">
-<input id="third-a2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="third-a2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
@@ -1027,19 +1031,17 @@ PERDANTS DES DEMI-FINALES • ALLER / RETOUR
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="third-p2" readonly>
-<input id="third-r2" class="ko-score" type="number" min="0" placeholder="0">
+<input id="third-r2" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 <div class="ko-player">
 <input class="ko-name mirror" data-source="third-p1" readonly>
-<input id="third-r1" class="ko-score" type="number" min="0" placeholder="0">
+<input id="third-r1" class="ko-score" type="number" min="0" inputmode="numeric" placeholder="0">
 </div>
 
 </div>
 
-<div id="third-total" class="aggregate">
-CUMUL : 0 - 0
-</div>
+<div id="third-total" class="aggregate">CUMUL : 0 - 0</div>
 
 <div id="third-winner" class="champion third-place"></div>
 
@@ -1048,16 +1050,21 @@ CUMUL : 0 - 0
 
 </div>
 </section>
+
 </div>
+
 
 <div id="syncStatus" class="sync-status">
 <span class="sync-dot"></span>
 <span id="syncText">CONNEXION...</span>
 </div>
 
+
 <script type="module">
 
-/* FIREBASE */
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
@@ -1069,6 +1076,7 @@ import {
   onValue
 }
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+
 
 const firebaseConfig = {
   apiKey:"AIzaSyDdKtb0FoQG_ViZXo1WCFR75zwbAVmGNu0",
@@ -1084,6 +1092,11 @@ const app=initializeApp(firebaseConfig);
 const db=getDatabase(app);
 const tournamentRef=ref(db,"tournoiFC26");
 
+
+/* =====================================================
+   SYNCHRO
+===================================================== */
+
 const syncStatus=document.getElementById("syncStatus");
 const syncText=document.getElementById("syncText");
 
@@ -1092,42 +1105,166 @@ function status(type,text){
   syncText.textContent=text;
 }
 
-/* NAVIGATION */
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
 document.querySelectorAll(".tab").forEach(tab=>{
+
   tab.addEventListener("click",()=>{
-    document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
-    document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+
+    document.querySelectorAll(".tab")
+    .forEach(x=>x.classList.remove("active"));
+
+    document.querySelectorAll(".page")
+    .forEach(x=>x.classList.remove("active"));
 
     tab.classList.add("active");
-    document.getElementById(tab.dataset.page).classList.add("active");
+
+    document
+    .getElementById(tab.dataset.page)
+    .classList.add("active");
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
   });
+
 });
 
-/* ÉQUIPES */
+
+/* =====================================================
+   14 CLUBS
+===================================================== */
 
 const teams=[
-["Manchester City","MCI","https://img.logo.dev/mancity.com"],
-["Real Madrid","RMA","https://img.logo.dev/realmadrid.com"],
-["Bayern Munich","FCB","https://img.logo.dev/fcbayern.com"],
-["Bayer Leverkusen","B04","https://img.logo.dev/bayer04.de"],
-["Paris Saint-Germain","PSG","https://img.logo.dev/psg.fr"],
-["Arsenal","ARS","https://img.logo.dev/arsenal.com"],
-["FC Barcelone","BAR","https://img.logo.dev/fcbarcelona.com"],
-["Atlético de Madrid","ATM","https://img.logo.dev/atleticodemadrid.com"],
-["Liverpool","LFC","https://img.logo.dev/liverpoolfc.com"],
-["Borussia Dortmund","BVB","https://img.logo.dev/bvb.de"]
+
+{
+  name:"Manchester City",
+  short:"MCI",
+  logo:"https://img.logo.dev/mancity.com"
+},
+
+{
+  name:"Real Madrid",
+  short:"RMA",
+  logo:"https://img.logo.dev/realmadrid.com"
+},
+
+{
+  name:"Bayern Munich",
+  short:"FCB",
+  logo:"https://img.logo.dev/fcbayern.com"
+},
+
+{
+  name:"Bayer Leverkusen",
+  short:"B04",
+  logo:"https://img.logo.dev/bayer04.de"
+},
+
+{
+  name:"Paris Saint-Germain",
+  short:"PSG",
+  logo:"https://img.logo.dev/psg.fr"
+},
+
+{
+  name:"Arsenal",
+  short:"ARS",
+  logo:"https://img.logo.dev/arsenal.com"
+},
+
+{
+  name:"FC Barcelone",
+  short:"BAR",
+  logo:"https://img.logo.dev/fcbarcelona.com"
+},
+
+{
+  name:"Atlético de Madrid",
+  short:"ATM",
+  logo:"https://img.logo.dev/atleticodemadrid.com"
+},
+
+{
+  name:"Liverpool",
+  short:"LFC",
+  logo:"https://img.logo.dev/liverpoolfc.com"
+},
+
+{
+  name:"Borussia Dortmund",
+  short:"BVB",
+  logo:"https://img.logo.dev/bvb.de"
+},
+
+/* NOUVEAUX CLUBS */
+
+{
+  name:"Chelsea",
+  short:"CHE",
+  logo:"https://img.logo.dev/chelseafc.com"
+},
+
+{
+  name:"Manchester United",
+  short:"MUN",
+  logo:"https://img.logo.dev/manutd.com"
+},
+
+{
+  name:"Naples",
+  short:"NAP",
+  logo:"https://img.logo.dev/sscnapoli.it"
+},
+
+{
+  name:"Newcastle United",
+  short:"NEW",
+  logo:"https://img.logo.dev/newcastleunited.com"
+}
+
 ];
+
+
+/* =====================================================
+   LISTE DES CLUBS
+===================================================== */
 
 const teamList=document.getElementById("teamList");
 
 teams.forEach(team=>{
-  teamList.innerHTML+=`
-  <div class="team-chip">
-  <img class="club-logo" src="${team[2]}">
-  ${team[0]}
-  </div>`;
+
+  const card=document.createElement("div");
+  card.className="team-chip";
+
+  const img=document.createElement("img");
+  img.className="club-logo";
+  img.src=team.logo;
+  img.alt=team.name;
+
+  img.onerror=()=>{
+    img.style.display="none";
+  };
+
+  const name=document.createElement("span");
+  name.textContent=team.name;
+
+  card.appendChild(img);
+  card.appendChild(name);
+
+  teamList.appendChild(card);
+
 });
+
+
+/* =====================================================
+   ROULETTE
+===================================================== */
 
 const drawBtn=document.getElementById("drawBtn");
 const drawLogo=document.getElementById("drawLogo");
@@ -1137,31 +1274,41 @@ const teamResult=document.getElementById("teamResult");
 drawLogo.style.display="none";
 drawFallback.style.display="flex";
 
-function showTeam(team){
-  teamResult.textContent=team[0];
-  drawFallback.textContent=team[1];
+let drawing=false;
 
-  drawLogo.src=team[2];
+function showTeam(team){
+
+  teamResult.textContent=team.name;
+  drawFallback.textContent=team.short;
+
+  drawLogo.src=team.logo;
   drawLogo.style.display="block";
   drawFallback.style.display="none";
 
   drawLogo.onerror=()=>{
+
     drawLogo.style.display="none";
     drawFallback.style.display="flex";
+
   };
+
 }
 
 drawBtn.addEventListener("click",()=>{
 
+  if(drawing)return;
+
+  drawing=true;
   drawBtn.disabled=true;
 
   let i=0;
 
   const timer=setInterval(()=>{
 
-    showTeam(
-      teams[Math.floor(Math.random()*teams.length)]
-    );
+    const randomTeam=
+      teams[Math.floor(Math.random()*teams.length)];
+
+    showTeam(randomTeam);
 
     i++;
 
@@ -1169,37 +1316,53 @@ drawBtn.addEventListener("click",()=>{
 
       clearInterval(timer);
 
-      showTeam(
-        teams[Math.floor(Math.random()*teams.length)]
-      );
+      const winner=
+        teams[Math.floor(Math.random()*teams.length)];
+
+      showTeam(winner);
 
       drawBtn.disabled=false;
+      drawing=false;
+
     }
 
   },50);
 
 });
 
-/* POULES */
+
+/* =====================================================
+   POULES
+===================================================== */
 
 const groupData={
+
 A:["Alexis","Antoine","Louis"],
+
 B:["Arnaud","Victor","Raph"],
+
 C:["Didier","Maxence","Martin"],
+
 D:["Julien","Yanis","Quentin"]
+
 };
 
 const matchData={};
 
 function createMatches(p){
+
   return[
+
     [p[0],p[1],"aller"],
     [p[0],p[2],"aller"],
     [p[1],p[2],"aller"],
+
     [p[1],p[0],"retour"],
     [p[2],p[0],"retour"],
     [p[2],p[1],"retour"]
+
   ];
+
 }
 
 const groups=document.getElementById("groups");
@@ -1207,111 +1370,143 @@ const groups=document.getElementById("groups");
 Object.entries(groupData).forEach(([letter,players])=>{
 
   const matches=createMatches(players);
+
   matchData[letter]=matches;
 
   const group=document.createElement("div");
-  group.className="group group-"+letter.toLowerCase();
+
+  group.className=
+    "group group-"+letter.toLowerCase();
+
 
   function matchHTML(type){
 
-    return matches.map((m,index)=>({m,index}))
+    return matches
+
+    .map((m,index)=>({m,index}))
+
     .filter(x=>x.m[2]===type)
+
     .map(x=>`
 
-    <div class="match">
+      <div class="match">
 
-    <span>${x.m[0]}</span>
+        <span>${x.m[0]}</span>
 
-    <input
-    class="score group-score"
-    type="number"
-    min="0"
-    data-group="${letter}"
-    data-match="${x.index}"
-    data-side="home">
+        <input
+          class="score group-score"
+          type="number"
+          min="0"
+          inputmode="numeric"
+          data-group="${letter}"
+          data-match="${x.index}"
+          data-side="home"
+        >
 
-    <span>-</span>
+        <span>-</span>
 
-    <input
-    class="score group-score"
-    type="number"
-    min="0"
-    data-group="${letter}"
-    data-match="${x.index}"
-    data-side="away">
+        <input
+          class="score group-score"
+          type="number"
+          min="0"
+          inputmode="numeric"
+          data-group="${letter}"
+          data-match="${x.index}"
+          data-side="away"
+        >
 
-    <span class="away">${x.m[1]}</span>
+        <span class="away">
+          ${x.m[1]}
+        </span>
 
-    </div>
+      </div>
 
     `).join("");
+
   }
+
 
   group.innerHTML=`
 
-  <div class="group-title">
-  POULE ${letter}
-  </div>
+    <div class="group-title">
+      POULE ${letter}
+    </div>
 
-  <div class="players">
+    <div class="players">
 
-  <div class="players-label">JOUEURS</div>
+      <div class="players-label">
+        JOUEURS
+      </div>
 
-  ${players.map((p,i)=>`
-  <div class="player">
-  <span class="number">${i+1}</span>
-  ${p}
-  </div>
-  `).join("")}
+      ${players.map((p,i)=>`
 
-  </div>
+        <div class="player">
 
-  <div class="match-section-title">
-  MATCHS ALLER
-  </div>
+          <span class="number">
+            ${i+1}
+          </span>
 
-  <div class="matches">
-  ${matchHTML("aller")}
-  </div>
+          ${p}
 
-  <div class="match-section-title">
-  MATCHS RETOUR
-  </div>
+        </div>
 
-  <div class="matches">
-  ${matchHTML("retour")}
-  </div>
+      `).join("")}
 
-  <div class="standings-title">
-  CLASSEMENT
-  </div>
+    </div>
 
-  <table class="standings">
+    <div class="match-section-title">
+      MATCHS ALLER
+    </div>
 
-  <thead>
-  <tr>
-  <th>#</th>
-  <th>JOUEUR</th>
-  <th>J</th>
-  <th>V</th>
-  <th>N</th>
-  <th>D</th>
-  <th>BP</th>
-  <th>BC</th>
-  <th>+/-</th>
-  <th>PTS</th>
-  </tr>
-  </thead>
+    <div class="matches">
+      ${matchHTML("aller")}
+    </div>
 
-  <tbody id="standing-${letter}"></tbody>
+    <div class="match-section-title">
+      MATCHS RETOUR
+    </div>
 
-  </table>
+    <div class="matches">
+      ${matchHTML("retour")}
+    </div>
+
+    <div class="standings-title">
+      CLASSEMENT
+    </div>
+
+    <table class="standings">
+
+      <thead>
+
+        <tr>
+          <th>#</th>
+          <th>JOUEUR</th>
+          <th>J</th>
+          <th>V</th>
+          <th>N</th>
+          <th>D</th>
+          <th>BP</th>
+          <th>BC</th>
+          <th>+/-</th>
+          <th>PTS</th>
+        </tr>
+
+      </thead>
+
+      <tbody id="standing-${letter}"></tbody>
+
+    </table>
+
   `;
 
   groups.appendChild(group);
+
 });
 
-/* CLASSEMENT */
+
+/* =====================================================
+   CLASSEMENTS
+===================================================== */
 
 function calculateGroup(letter){
 
@@ -1321,30 +1516,57 @@ function calculateGroup(letter){
   const stats={};
 
   players.forEach(p=>{
+
     stats[p]={
       player:p,
-      j:0,v:0,n:0,d:0,
-      bp:0,bc:0,pts:0
+      j:0,
+      v:0,
+      n:0,
+      d:0,
+      bp:0,
+      bc:0,
+      pts:0
     };
+
   });
+
 
   matches.forEach((m,index)=>{
 
-    const h=document.querySelector(
-      `[data-group="${letter}"][data-match="${index}"][data-side="home"]`
+    const homeInput=
+      document.querySelector(
+        `[data-group="${letter}"][data-match="${index}"][data-side="home"]`
+      );
+
+    const awayInput=
+      document.querySelector(
+        `[data-group="${letter}"][data-match="${index}"][data-side="away"]`
+      );
+
+
+    if(
+      homeInput.value===""
+      ||
+      awayInput.value===""
+    ){
+      return;
+    }
+
+
+    const hs=Math.max(
+      0,
+      parseInt(homeInput.value)||0
     );
 
-    const a=document.querySelector(
-      `[data-group="${letter}"][data-match="${index}"][data-side="away"]`
+    const as=Math.max(
+      0,
+      parseInt(awayInput.value)||0
     );
 
-    if(h.value==="" || a.value==="")return;
-
-    const hs=parseInt(h.value)||0;
-    const as=parseInt(a.value)||0;
 
     const home=stats[m[0]];
     const away=stats[m[1]];
+
 
     home.j++;
     away.j++;
@@ -1355,71 +1577,108 @@ function calculateGroup(letter){
     away.bp+=as;
     away.bc+=hs;
 
+
     if(hs>as){
+
       home.v++;
       away.d++;
+
       home.pts+=3;
+
     }
 
     else if(as>hs){
+
       away.v++;
       home.d++;
+
       away.pts+=3;
+
     }
 
     else{
+
       home.n++;
       away.n++;
+
       home.pts++;
       away.pts++;
+
     }
 
   });
 
-  const ranking=Object.values(stats).sort((a,b)=>
-    b.pts-a.pts ||
-    (b.bp-b.bc)-(a.bp-a.bc) ||
-    b.bp-a.bp ||
-    a.player.localeCompare(b.player)
-  );
 
-  document.getElementById("standing-"+letter).innerHTML=
+  const ranking=
+    Object.values(stats)
+    .sort((a,b)=>
+
+      b.pts-a.pts
+      ||
+      (b.bp-b.bc)-(a.bp-a.bc)
+      ||
+      b.bp-a.bp
+      ||
+      a.player.localeCompare(b.player)
+
+    );
+
+
+  document
+  .getElementById("standing-"+letter)
+  .innerHTML=
+
   ranking.map((p,i)=>`
 
-  <tr>
+    <tr>
 
-  <td>
-  <span class="rank ${i<2?"qual":""}">
-  ${i+1}
-  </span>
-  </td>
+      <td>
 
-  <td>${p.player}</td>
-  <td>${p.j}</td>
-  <td>${p.v}</td>
-  <td>${p.n}</td>
-  <td>${p.d}</td>
-  <td>${p.bp}</td>
-  <td>${p.bc}</td>
+        <span class="rank ${i<2?"qual":""}">
+          ${i+1}
+        </span>
 
-  <td>
-  ${(p.bp-p.bc)>0?"+":""}${p.bp-p.bc}
-  </td>
+      </td>
 
-  <td><strong>${p.pts}</strong></td>
+      <td>${p.player}</td>
 
-  </tr>
+      <td>${p.j}</td>
+      <td>${p.v}</td>
+      <td>${p.n}</td>
+      <td>${p.d}</td>
+
+      <td>${p.bp}</td>
+      <td>${p.bc}</td>
+
+      <td>
+        ${(p.bp-p.bc)>0?"+":""}${p.bp-p.bc}
+      </td>
+
+      <td>
+        <strong>${p.pts}</strong>
+      </td>
+
+    </tr>
 
   `).join("");
+
 }
 
-/* RETOURS */
+
+/* =====================================================
+   MATCHS RETOUR
+===================================================== */
 
 function updateMirrors(){
 
-  document.querySelectorAll(".mirror").forEach(input=>{
+  document
+  .querySelectorAll(".mirror")
+  .forEach(input=>{
 
-    const source=document.getElementById(input.dataset.source);
+    const source=
+      document.getElementById(
+        input.dataset.source
+      );
 
     if(source){
       input.value=source.value;
@@ -1429,22 +1688,38 @@ function updateMirrors(){
 
 }
 
-/* CUMULS */
+
+/* =====================================================
+   CUMULS
+===================================================== */
 
 const knockout=[
-"qa","qb","qc","qd",
-"sf1","sf2",
-"final","third"
+  "qa",
+  "qb",
+  "qc",
+  "qd",
+  "sf1",
+  "sf2",
+  "final",
+  "third"
 ];
+
 
 function score(id){
 
   const el=document.getElementById(id);
 
-  if(!el || el.value==="")return 0;
+  if(!el || el.value===""){
+    return 0;
+  }
 
-  return Math.max(0,parseInt(el.value)||0);
+  return Math.max(
+    0,
+    parseInt(el.value)||0
+  );
+
 }
+
 
 function completed(prefix){
 
@@ -1453,8 +1728,12 @@ function completed(prefix){
     prefix+"-a2",
     prefix+"-r1",
     prefix+"-r2"
-  ].every(id=>document.getElementById(id)?.value!=="");
+  ].every(id=>
+    document.getElementById(id)?.value!==""
+  );
+
 }
+
 
 function aggregate(prefix){
 
@@ -1468,85 +1747,175 @@ function aggregate(prefix){
     +
     score(prefix+"-r2");
 
-  document.getElementById(prefix+"-total").textContent=
-  `CUMUL : ${p1} - ${p2}`;
+
+  document
+  .getElementById(prefix+"-total")
+  .textContent=
+    `CUMUL : ${p1} - ${p2}`;
+
 
   if(prefix==="final"){
 
-    const champion=document.getElementById("champion");
+    const champion=
+      document.getElementById("champion");
+
 
     if(!completed(prefix)){
+
       champion.textContent="";
+
     }
 
     else if(p1>p2){
+
       champion.textContent=
-      "🏆 CHAMPION : "+
-      (document.getElementById("final-p1").value||"FINALISTE 1");
+        "🏆 CHAMPION : "
+        +
+        (
+          document
+          .getElementById("final-p1")
+          .value
+          ||
+          "FINALISTE 1"
+        );
+
     }
 
     else if(p2>p1){
+
       champion.textContent=
-      "🏆 CHAMPION : "+
-      (document.getElementById("final-p2").value||"FINALISTE 2");
+        "🏆 CHAMPION : "
+        +
+        (
+          document
+          .getElementById("final-p2")
+          .value
+          ||
+          "FINALISTE 2"
+        );
+
     }
 
     else{
-      champion.textContent="⚖️ ÉGALITÉ AU CUMUL";
+
+      champion.textContent=
+        "⚖️ ÉGALITÉ AU CUMUL";
+
     }
 
   }
+
 
   if(prefix==="third"){
 
-    const third=document.getElementById("third-winner");
+    const third=
+      document.getElementById(
+        "third-winner"
+      );
+
 
     if(!completed(prefix)){
+
       third.textContent="";
+
     }
 
     else if(p1>p2){
+
       third.textContent=
-      "🥉 3E PLACE : "+
-      (document.getElementById("third-p1").value||"JOUEUR 1");
+        "🥉 3E PLACE : "
+        +
+        (
+          document
+          .getElementById("third-p1")
+          .value
+          ||
+          "JOUEUR 1"
+        );
+
     }
 
     else if(p2>p1){
+
       third.textContent=
-      "🥉 3E PLACE : "+
-      (document.getElementById("third-p2").value||"JOUEUR 2");
+        "🥉 3E PLACE : "
+        +
+        (
+          document
+          .getElementById("third-p2")
+          .value
+          ||
+          "JOUEUR 2"
+        );
+
     }
 
     else{
-      third.textContent="⚖️ ÉGALITÉ AU CUMUL";
+
+      third.textContent=
+        "⚖️ ÉGALITÉ AU CUMUL";
+
     }
 
   }
 
 }
 
-/* FIREBASE KEYS */
+
+/* =====================================================
+   FIREBASE - IDENTIFIANTS
+===================================================== */
 
 function keyFor(input){
 
-  if(input.classList.contains("mirror"))return null;
+  if(
+    input.classList.contains("mirror")
+  ){
+    return null;
+  }
 
-  if(input.id)return input.id;
+
+  if(input.id){
+    return input.id;
+  }
+
 
   if(input.dataset.group){
 
-    return `group-${input.dataset.group}-${input.dataset.match}-${input.dataset.side}`;
+    return (
+      "group-"
+      +
+      input.dataset.group
+      +
+      "-"
+      +
+      input.dataset.match
+      +
+      "-"
+      +
+      input.dataset.side
+    );
 
   }
 
+
   return null;
+
 }
+
+
+/* =====================================================
+   COLLECTER LES DONNÉES
+===================================================== */
 
 function collect(){
 
   const data={};
 
-  document.querySelectorAll("input").forEach(input=>{
+
+  document
+  .querySelectorAll("input")
+  .forEach(input=>{
 
     const key=keyFor(input);
 
@@ -1556,64 +1925,110 @@ function collect(){
 
   });
 
+
   return data;
+
 }
+
+
+/* =====================================================
+   APPLIQUER FIREBASE
+===================================================== */
 
 function apply(data){
 
-  if(!data)return;
+  if(!data){
+    return;
+  }
 
-  document.querySelectorAll("input").forEach(input=>{
+
+  document
+  .querySelectorAll("input")
+  .forEach(input=>{
 
     const key=keyFor(input);
 
+
     if(
-      key &&
-      Object.prototype.hasOwnProperty.call(data,key) &&
+      key
+      &&
+      Object.prototype
+      .hasOwnProperty
+      .call(data,key)
+      &&
       document.activeElement!==input
     ){
+
       input.value=data[key];
+
     }
 
   });
 
+
   updateMirrors();
 
-  Object.keys(groupData).forEach(calculateGroup);
+  Object
+  .keys(groupData)
+  .forEach(calculateGroup);
 
-  knockout.forEach(aggregate);
+  knockout
+  .forEach(aggregate);
+
 }
 
-/* SAUVEGARDE FIREBASE */
+
+/* =====================================================
+   SAUVEGARDE FIREBASE
+===================================================== */
 
 let timer=null;
 
+
 async function saveFirebase(){
 
-  status("saving","SAUVEGARDE...");
+  status(
+    "saving",
+    "SAUVEGARDE..."
+  );
+
 
   const data=collect();
+
 
   localStorage.setItem(
     "FC26_TOURNAMENT_BACKUP",
     JSON.stringify(data)
   );
 
+
   try{
 
-    await set(tournamentRef,data);
+    await set(
+      tournamentRef,
+      data
+    );
 
-    status("online","SYNCHRONISÉ");
+    status(
+      "online",
+      "SYNCHRONISÉ"
+    );
 
-  }catch(error){
+  }
+
+  catch(error){
 
     console.error(error);
 
-    status("error","ERREUR FIREBASE");
+    status(
+      "error",
+      "ERREUR FIREBASE"
+    );
 
   }
 
 }
+
 
 function scheduleSave(){
 
@@ -1626,9 +2041,13 @@ function scheduleSave(){
 
 }
 
-/* SYNCHRONISATION */
+
+/* =====================================================
+   SYNCHRONISATION TEMPS RÉEL
+===================================================== */
 
 onValue(
+
   tournamentRef,
 
   snapshot=>{
@@ -1639,7 +2058,10 @@ onValue(
       apply(data);
     }
 
-    status("online","SYNCHRONISÉ");
+    status(
+      "online",
+      "SYNCHRONISÉ"
+    );
 
   },
 
@@ -1647,42 +2069,79 @@ onValue(
 
     console.error(error);
 
-    status("error","ERREUR FIREBASE");
+    status(
+      "error",
+      "ERREUR FIREBASE"
+    );
+
+  }
+
+);
+
+
+/* =====================================================
+   MODIFICATIONS
+===================================================== */
+
+document.addEventListener(
+  "input",
+  event=>{
+
+
+    if(
+      event.target.type==="number"
+      &&
+      event.target.value!==""
+      &&
+      Number(event.target.value)<0
+    ){
+
+      event.target.value=0;
+
+    }
+
+
+    if(
+      event.target
+      .classList
+      .contains("group-score")
+    ){
+
+      calculateGroup(
+        event.target.dataset.group
+      );
+
+    }
+
+
+    updateMirrors();
+
+
+    knockout.forEach(
+      aggregate
+    );
+
+
+    scheduleSave();
 
   }
 );
 
-/* MODIFICATIONS */
 
-document.addEventListener("input",event=>{
+/* =====================================================
+   INITIALISATION
+===================================================== */
 
-  if(
-    event.target.type==="number" &&
-    event.target.value!=="" &&
-    Number(event.target.value)<0
-  ){
-    event.target.value=0;
-  }
+Object
+.keys(groupData)
+.forEach(calculateGroup);
 
-  if(event.target.classList.contains("group-score")){
-    calculateGroup(event.target.dataset.group);
-  }
-
-  updateMirrors();
-
-  knockout.forEach(aggregate);
-
-  scheduleSave();
-
-});
-
-/* INITIALISATION */
-
-Object.keys(groupData).forEach(calculateGroup);
 
 updateMirrors();
 
-knockout.forEach(aggregate);
+
+knockout
+.forEach(aggregate);
 
 </script>
 
